@@ -1,0 +1,142 @@
+[gd_scene load_steps=14 format=3 uid="uid://bgb4avgjexp4t"]
+
+[ext_resource type="Script" path="res://mhjnr/level.gd" id="1_dfqgf"]
+[ext_resource type="Theme" uid="uid://ks2uyxqg6u4k" path="res://mhjnr/theme.tres" id="3_a2fmg"]
+[ext_resource type="Script" path="res://mhjnr/camera.gd" id="3_e6xoo"]
+[ext_resource type="Texture2D" path="datafile://data/set1/sprites/hud_live.bmp" id="4_4bu8b"]
+[ext_resource type="Texture2D" path="datafile://data/set1/sprites/hud_shield.bmp" id="5_6bu8b"]
+[ext_resource type="Texture2D" path="datafile://data/set1/sprites/hud_bullet.bmp" id="5_rxbck"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j78b3"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3mxdl"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p4tp1"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ixcvh"]
+
+[sub_resource type="GDScript" id="GDScript_nmpfh"]
+resource_name = "TimeLabel"
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	var time_left = %LevelTimer.time_left
+	text = \"%02d:%02d\" % [int(time_left / 60), int(time_left) % 60]
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glgkj"]
+atlas = ExtResource("5_6bu8b")
+region = Rect2(0, 0, 136, 42)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nrpq"]
+atlas = ExtResource("4_4bu8b")
+region = Rect2(0, 0, 36, 32)
+filter_clip = true
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_dfqgf")
+level_id = 2
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("3_e6xoo")
+
+[node name="parallax" type="ParallaxBackground" parent="."]
+unique_name_in_owner = true
+
+[node name="WorldBounds" type="StaticBody2D" parent="."]
+
+[node name="WorldBoundTop" type="CollisionShape2D" parent="WorldBounds"]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_j78b3")
+
+[node name="WorldBoundRight" type="CollisionShape2D" parent="WorldBounds"]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_3mxdl")
+
+[node name="WorldBoundLeft" type="CollisionShape2D" parent="WorldBounds"]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_p4tp1")
+
+[node name="KillFloor" type="Area2D" parent="."]
+
+[node name="WorldBoundBottom" type="CollisionShape2D" parent="KillFloor"]
+unique_name_in_owner = true
+shape = SubResource("WorldBoundaryShape2D_ixcvh")
+
+[node name="LevelTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="GridContainer" type="GridContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="HUD/MarginContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "0035570"
+
+[node name="Time" type="Label" parent="HUD/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("3_a2fmg")
+text = "04:36"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_nmpfh")
+
+[node name="HudLevel" type="Label" parent="HUD/MarginContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Level 4"
+
+[node name="shield" type="TextureRect" parent="HUD/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+texture = SubResource("AtlasTexture_glgkj")
+
+[node name="Lives" type="HBoxContainer" parent="HUD/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/GridContainer/Lives"]
+layout_mode = 2
+text = "4"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/GridContainer/Lives"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_2nrpq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_rxbck")

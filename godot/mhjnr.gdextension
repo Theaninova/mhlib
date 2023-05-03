@@ -1,0 +1,12 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+
+[libraries]
+linux.debug.x86_64 = "res://../rust/target/debug/libmhjnr.so"
+linux.release.x86_64 = "res://../rust/target/release/libmhjnr.so"
+windows.debug.x86_64 = "res://../rust/target/debug/mhjnr.dll"
+windows.release.x86_64 = "res://../rust/target/release/mhjnr.dll"
+macos.debug = "res://../rust/target/debug/mhjnr.dylib"
+macos.release = "res://../rust/target/release/mhjnr.dylib"
+macos.debug.arm64 = "res://../rust/target/aarch64-apple-darwin/debug/mhjnr.dylib"
+macos.release.arm64 = "res://../rust/target/aarch64-apple-darwin/release/mhjnr.dylib"

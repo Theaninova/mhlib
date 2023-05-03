@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://ks2uyxqg6u4k"]
+
+[ext_resource type="FontFile" path="datafile://data/fonts/menufont.bmp" id="9_6bx8b"]
+
+[resource]
+/fonts/menufont = ExtResource("9_6bx8b")
