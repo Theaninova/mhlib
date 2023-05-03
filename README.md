@@ -1,5 +1,7 @@
 # MHLIB
 
+![](godot/icon.png)
+
 A project to make the old classic Moorhuhn Games playable
 on modern systems via an engine reimplementation, written
 in Rust and Godot.
