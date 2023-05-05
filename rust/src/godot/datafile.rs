@@ -178,9 +178,9 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
                     game_object.to_variant()
                 }
                 Ok(DatafileFile::Ui(ui)) => {
-                    let ui = convert_ui(ui);
+                    let ui = convert_ui(ui, None);
                     let mut scene = PackedScene::new();
-                    scene.pack(ui.upcast());
+                    scene.pack(ui);
 
                     self.save_to_cache(scene.share().upcast(), format!("{}.scn", datafile_path));
                     scene.to_variant()
