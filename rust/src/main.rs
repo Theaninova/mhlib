@@ -66,9 +66,7 @@ fn extract(datafile: &Datafile, file: &mut File) {
 }
 
 fn main() {
-    let file_name = Some(NullString::from(
-        "data\\menu\\screens\\options_controls.xml",
-    ));
+    let file_name = Some(NullString::from("data\\profile_00.txt"));
     let dat_path = "E:\\Games\\Schatzjäger\\data\\datafile.dat";
 
     let mut file = File::open(dat_path).unwrap();
@@ -102,7 +100,10 @@ fn main() {
                     let sprites = Sprites::parse(decr.as_str()).unwrap();
                     println!("{:#?}", sprites);
                 } else {
-                    println!("{}", decrypt_txt(data.into_iter()).unwrap())
+                    println!(
+                        "{}",
+                        decrypt_exposed_txt(decrypt_txt(data.into_iter()).unwrap()).unwrap()
+                    )
                 }
             }
             Some("rle") => {

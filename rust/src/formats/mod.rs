@@ -2,7 +2,7 @@ use crate::formats::datafile::FileEntry;
 use crate::formats::level::LevelLayer;
 use crate::formats::rle::RleImage;
 use crate::formats::sprites::Sprites;
-use crate::formats::txt::{decrypt_txt, DecryptError};
+use crate::formats::txt::{decrypt_exposed_txt, decrypt_txt, DecryptError};
 use crate::formats::ui_xml::UiTag;
 use binrw::BinRead;
 use encoding_rs::WINDOWS_1252;
@@ -92,6 +92,10 @@ where
             } else if stem == "sprites" {
                 Ok(DatafileFile::Sprites(
                     Sprites::parse(decr.as_str()).map_err(custom_err)?,
+                ))
+            } else if stem.starts_with("profile") || stem.starts_with("highscores") {
+                Ok(DatafileFile::Txt(
+                    decrypt_exposed_txt(decr).map_err(custom_err)?,
                 ))
             } else {
                 Ok(DatafileFile::Txt(decr))

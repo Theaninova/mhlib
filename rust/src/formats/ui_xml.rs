@@ -7,6 +7,7 @@ pub enum UiTag {
     Image(UiImage),
     TextButton(UiTextButton),
     TextArea(UiTextArea),
+    TextField(UiTextField),
     StaticText(UiStaticText),
     ToggleButton(UiToggleButton),
 }
@@ -18,6 +19,24 @@ pub struct UiMenu {
     pub on_back: Option<String>,
     #[serde(rename = "$value", default)]
     pub children: Vec<UiTag>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct UiTextField {
+    pub name: Option<String>,
+    pub text: String,
+    #[serde(deserialize_with = "deserialize_vec2")]
+    pub position: [i32; 2],
+    #[serde(rename = "bufferVar")]
+    pub buffer_var: String,
+    #[serde(deserialize_with = "deserialize_vec4")]
+    pub area: [i32; 4],
+    #[serde(rename = "halign", default)]
+    pub horizontal_align: HorizontalAlign,
+    #[serde(rename = "fademode")]
+    pub fade_mode: FadeMode,
+    #[serde(rename = "OnSelect")]
+    pub on_select: String,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -172,12 +191,18 @@ where
     to_vec2::<D>(String::deserialize(deserializer)?)
 }
 
-fn to_vec2<'de, D>(buf: String) -> Result<[i32; 2], D::Error>
+fn deserialize_vec4<'de, D>(deserializer: D) -> Result<[i32; 4], D::Error>
 where
     D: Deserializer<'de>,
 {
-    let mut values: Vec<Result<i32, D::Error>> = buf
-        .split(',')
+    to_vec4::<D>(String::deserialize(deserializer)?)
+}
+
+fn to_vec<'de, D>(buf: String) -> Result<Vec<i32>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    buf.split(',')
         .into_iter()
         .map(|value| {
             // there's some typos so we have to cover that...
@@ -186,9 +211,29 @@ where
                 .parse::<i32>()
                 .map_err(|err| Error::custom(err.to_string()))
         })
-        .collect();
-    let y = values.pop().ok_or(Error::custom("InvalidField"))??;
-    let x = values.pop().ok_or(Error::custom("InvalidField"))??;
+        .collect()
+}
+
+fn to_vec4<'de, D>(buf: String) -> Result<[i32; 4], D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let mut values = to_vec::<D>(buf)?;
+    let w = values.pop().ok_or(Error::custom("InvalidField"))?;
+    let z = values.pop().ok_or(Error::custom("InvalidField"))?;
+    let y = values.pop().ok_or(Error::custom("InvalidField"))?;
+    let x = values.pop().ok_or(Error::custom("InvalidField"))?;
+
+    Ok([x, y, z, w])
+}
+
+fn to_vec2<'de, D>(buf: String) -> Result<[i32; 2], D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let mut values = to_vec::<D>(buf)?;
+    let y = values.pop().ok_or(Error::custom("InvalidField"))?;
+    let x = values.pop().ok_or(Error::custom("InvalidField"))?;
 
     Ok([x, y])
 }

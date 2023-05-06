@@ -3,7 +3,7 @@ use godot::builtin::{Array, Dictionary, GodotString, ToVariant, Vector2};
 use godot::engine::control::LayoutPreset;
 use godot::engine::global::HorizontalAlignment;
 use godot::engine::node::InternalMode;
-use godot::engine::{load, Button, Control, Label, Node, SpinBox, TextureRect};
+use godot::engine::{load, Button, Control, Label, LineEdit, Node, SpinBox, TextureRect};
 use godot::obj::{Gd, Inherits, Share};
 use itertools::Itertools;
 
@@ -42,6 +42,19 @@ pub fn convert_ui(ui: UiTag, base_path: &str) -> Gd<Node> {
             text_area.set_size(to_vec2(area.size.unwrap()), false);
             attach_children(&mut text_area, area.children, base_path);
             text_area.upcast()
+        }
+        UiTag::TextField(field) => {
+            let mut text_field = LineEdit::new_alloc();
+            if let Some(name) = field.name {
+                text_field.set_name(name.into());
+            }
+            text_field.set_text(field.text.into());
+            text_field.set_horizontal_alignment(field.horizontal_align.into());
+            text_field.set_position(to_vec2([field.area[0], field.area[1]]), false);
+            text_field.set_size(to_vec2([field.area[2], field.area[3]]), false);
+            text_field.set_meta("buffer_var".into(), field.buffer_var.to_variant());
+            attach_call_meta(&mut text_field, field.on_select);
+            text_field.upcast()
         }
         UiTag::ToggleButton(toggle) => {
             let mut spin_box = SpinBox::new_alloc();

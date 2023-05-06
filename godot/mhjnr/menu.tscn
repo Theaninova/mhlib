@@ -7,10 +7,13 @@
 [sub_resource type="GDScript" id="GDScript_oemh7"]
 script/source = "extends MarginContainer
 
+const Profile = preload(\"res://mhjnr/profile/player_profile.gd\")
+
 @export var entry: String = \"main\"
 @export var window_size: Vector2i = Vector2i(800, 600)
 
 var menu: Node
+var profile: Profile
 @onready var translations: Translation = load(\"datafile://data/text.csv\")
 
 func _ready() -> void:
@@ -52,15 +55,37 @@ func _on_minimize_pressed() -> void:
 func _on_close_pressed() -> void:
 	get_tree().quit()
 
+func _on_action_CheckStartGame() -> void:
+	var level = profile.current_level
+	if level == 0:
+		set_menu(\"screen_set1\")
+	else:
+		set_menu(\"screen_set2\")
+
+func _on_action_SelectProfile(id: String) -> void:
+	profile = load(\"user://profile_%02d.tres\" % (id.to_int() + 1))
+	if profile == null:
+		set_menu(\"profile_create\")
+	else:
+		set_menu(\"main\")
+
+func _on_action_ProfileCreated() -> void:
+	profile = Profile.new()
+	profile.name = menu.find_child(\"profile1\").text
+	ResourceSaver.save(profile, \"user://profile_01.tres\")
+	set_menu(\"main\")
 
 func _on_action_SetMenu(name: String) -> void:
 	set_menu(name)
 
-func _on_action_CheckStartGame() -> void:
-	print(\"CheckStartGame\")
-
 func _on_action_DisplayEndscreen() -> void:
 	get_tree().quit()
+
+func _on_action_StartGame() -> void:
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, false)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	get_tree().change_scene_to_file(\"res://mhjnr/level.tscn\")
+	
 "
 
 [node name="Root" type="MarginContainer"]
@@ -71,6 +96,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_o0c21")
 script = SubResource("GDScript_oemh7")
+entry = "profile_start_select"
 
 [node name="Titlebar" type="HBoxContainer" parent="."]
 layout_mode = 2
