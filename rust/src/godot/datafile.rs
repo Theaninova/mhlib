@@ -1,6 +1,5 @@
 use crate::formats;
 use crate::formats::datafile::{Datafile, FileEntry};
-use crate::formats::sprites::{CropMode, RenderMode, SpriteType};
 use crate::formats::{load_data, DatafileFile};
 use crate::godot::font::load_bitmap_font;
 use crate::godot::game_object::parse_game_object;
@@ -10,16 +9,11 @@ use crate::godot::tile_map::{create_tile_map, TileCollision};
 use crate::godot::ui::convert_ui;
 use binrw::BinRead;
 use godot::engine::global::Error;
-use godot::engine::image::Format;
 use godot::engine::resource_loader::CacheMode;
 use godot::engine::resource_saver::SaverFlags;
-use godot::engine::utilities::{printerr, prints};
-use godot::engine::{
-    AtlasTexture, AudioStream, AudioStreamOggVorbis, DirAccess, OggPacketSequence,
-    PlaceholderTexture2D, SpriteFrames,
-};
-use godot::engine::{Image, PckPacker};
-use godot::engine::{ImageTexture, ProjectSettings};
+use godot::engine::utilities::printerr;
+use godot::engine::ImageTexture;
+use godot::engine::{AudioStreamOggVorbis, DirAccess, OggPacketSequence, Translation};
 use godot::engine::{ResourceFormatLoader, ResourceSaver};
 use godot::engine::{ResourceFormatLoaderVirtual, ResourceLoader};
 use godot::prelude::*;
@@ -137,12 +131,12 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
 
     fn load(
         &self,
-        path: GodotString,
+        virtual_path: GodotString,
         _original_path: GodotString,
         _use_sub_threads: bool,
         _cache_mode: i64,
     ) -> Variant {
-        let datafile_path = convert_path(&path);
+        let datafile_path = convert_path(&virtual_path);
         if let Some(resource) = self.retrieve_cache::<Resource>(format!(
             "{}.{}",
             datafile_path,
@@ -178,12 +172,24 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
                     game_object.to_variant()
                 }
                 Ok(DatafileFile::Ui(ui)) => {
-                    let ui = convert_ui(ui, None);
+                    let full_path = virtual_path.to_string();
+                    let (_, _, base_path) = full_path
+                        .rsplitn(3, '/')
+                        .collect_tuple()
+                        .expect("Illegal path for UI");
+                    let ui = convert_ui(ui, None, base_path);
                     let mut scene = PackedScene::new();
                     scene.pack(ui);
 
                     self.save_to_cache(scene.share().upcast(), format!("{}.scn", datafile_path));
                     scene.to_variant()
+                }
+                Ok(DatafileFile::Translations(translations)) => {
+                    let mut translation = Translation::new();
+                    for (key, message) in translations {
+                        translation.add_message(key.into(), message.join("\n").into(), "".into());
+                    }
+                    translation.to_variant()
                 }
                 Ok(DatafileFile::Vorbis(vorbis)) => {
                     let mut audio = AudioStreamOggVorbis::new();
@@ -198,7 +204,7 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
                 }
                 Ok(DatafileFile::RleSprite(rle)) => load_rle_as_sprite_frames(*rle).to_variant(),
                 Ok(DatafileFile::Sprites(sprites)) => {
-                    let sprite_frames = load_sprite_frames(sprites, path);
+                    let sprite_frames = load_sprite_frames(sprites, virtual_path);
 
                     self.save_to_cache(
                         sprite_frames.share().upcast(),

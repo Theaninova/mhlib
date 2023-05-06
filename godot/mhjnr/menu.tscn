@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://dleusk0maomll"]
+
+[ext_resource type="Theme" uid="uid://ks2uyxqg6u4k" path="res://mhjnr/theme.tres" id="1_o0c21"]
+[ext_resource type="Texture2D" uid="uid://dkeuhlg0ki67o" path="res://remakes/minimize.svg" id="3_qkgqr"]
+[ext_resource type="Texture2D" uid="uid://24kg870sjulo" path="res://remakes/close.svg" id="4_a24a2"]
+
+[sub_resource type="GDScript" id="GDScript_oemh7"]
+script/source = "extends MarginContainer
+
+@export var entry = \"main\"
+
+var menu: Node
+
+func _ready() -> void:
+	set_menu(entry)
+
+func set_menu(name: String) -> void:
+	if menu != null:
+		menu.queue_free()
+	var translations: Translation = load(\"datafile://data/text.csv\")
+	menu = load(\"datafile://data/menu/screens/%s.xml\" % name).instantiate()
+	add_child(menu)
+	move_child(menu, 0)
+	
+	for button in menu.find_children(\"*\", \"Button\"):
+		if not button.has_meta(\"action\"):
+			continue
+		var action = button.get_meta(\"action\")
+		var callable = Callable(self, \"_on_action_%s\" % action.name)
+		button.connect(\"pressed\", callable.bindv(action.args))
+	
+	for node in  menu.find_children(\"*\"):
+		if node.has_method(\"set_text\"):
+			node.text = translations.tr(node.text)
+
+func _on_close_pressed() -> void:
+	get_tree().quit()
+
+func _on_action_SetMenu(name: String) -> void:
+	set_menu(name)
+
+func _on_action_CheckStartGame() -> void:
+	print(\"CheckStartGame\")
+"
+
+[node name="Root" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_o0c21")
+script = SubResource("GDScript_oemh7")
+
+[node name="Titlebar" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Minimize" type="Button" parent="Titlebar"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/icon_hover_color = Color(0.403922, 0.403922, 0.403922, 1)
+icon = ExtResource("3_qkgqr")
+flat = true
+
+[node name="Close" type="Button" parent="Titlebar"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/icon_hover_color = Color(0.780392, 0.435294, 0.360784, 1)
+icon = ExtResource("4_a24a2")
+flat = true
+
+[connection signal="pressed" from="Titlebar/Close" to="." method="_on_close_pressed"]

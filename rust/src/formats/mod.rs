@@ -5,6 +5,8 @@ use crate::formats::sprites::Sprites;
 use crate::formats::txt::{decrypt_txt, DecryptError};
 use crate::formats::ui_xml::UiTag;
 use binrw::BinRead;
+use itertools::Itertools;
+use std::collections::HashMap;
 use std::ffi::OsStr;
 use std::fmt::Debug;
 use std::io::{Cursor, Read, Seek, SeekFrom};
@@ -26,6 +28,7 @@ pub enum DatafileFile {
     Vorbis(Vec<u8>),
     TileCollision(String),
     Ui(UiTag),
+    Translations(HashMap<String, Vec<String>>),
 }
 
 pub enum Error {
@@ -90,26 +93,20 @@ where
                 Ok(DatafileFile::Txt(decr))
             }
         }
-        /*Some("rle") => {
-            let image: RleImage = RleImage::read(&mut Cursor::new(data)).unwrap();
-            let path = Path::new(dat_path).with_file_name("res.gif");
-            println!("{:?}", path);
-            let mut encoder = GifEncoder::new(
-                OpenOptions::new()
-                    .create(true)
-                    .write(true)
-                    .open(path)
-                    .unwrap(),
-            );
-            encoder.set_repeat(Repeat::Infinite).unwrap();
-            encoder.try_encode_frames(image.into_frames()).unwrap();
-        }
-        Some("dat") => {
-            let image = level_tile_data_to_image(&data).unwrap();
-            let path = Path::new(dat_path).with_file_name("res.png");
-            println!("{:?}", path);
-            image.save_with_format(path, ImageFormat::Png).unwrap();
-        }*/
+        "csv" => Ok(DatafileFile::Translations(
+            String::from_utf8(data)
+                .unwrap()
+                .split('\n')
+                .map(|l| l.trim())
+                .filter(|l| !l.is_empty())
+                .map(|l| {
+                    l.splitn(2, ';')
+                        .map(|s| s.to_string())
+                        .collect_tuple::<(String, String)>()
+                        .expect("Invalid csv")
+                })
+                .into_group_map(),
+        )),
         ext => Err(Error::UnknownFormat(ext.to_string())),
     }
 }

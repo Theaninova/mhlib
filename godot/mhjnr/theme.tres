@@ -1,6 +1,17 @@
-[gd_resource type="Theme" format=3 uid="uid://ks2uyxqg6u4k"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ks2uyxqg6u4k"]
 
-[ext_resource type="FontFile" path="datafile://data/fonts/menufont.bmp" id="9_6bx8b"]
+[ext_resource type="FontFile" uid="uid://b50bdb32aerbb" path="res://remakes/font/LondrinaSolid-Regular.otf" id="1_1apnt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wa7wi"]
 
 [resource]
-/fonts/menufont = ExtResource("9_6bx8b")
+default_font = ExtResource("1_1apnt")
+default_font_size = 29
+Button/colors/font_color = Color(0.572549, 0.517647, 0.411765, 0.929412)
+Button/colors/font_outline_color = Color(0, 0, 0, 0.568627)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 39
+Button/styles/focus = SubResource("StyleBoxEmpty_wa7wi")
+Fonts/fonts/large = ExtResource("1_1apnt")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 8

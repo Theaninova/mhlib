@@ -16,7 +16,7 @@ pub struct UiMenu {
     pub selected: String,
     #[serde(rename = "OnBack")]
     pub on_back: Option<String>,
-    #[serde(rename = "$value")]
+    #[serde(rename = "$value", default)]
     pub children: Vec<UiTag>,
 }
 
@@ -45,13 +45,14 @@ pub struct UiTextButton {
     pub on_select: String,
 }
 
+/// This sometimes appears completely empty
 #[derive(Debug, Deserialize)]
 pub struct UiTextArea {
-    #[serde(deserialize_with = "deserialize_vec2")]
+    #[serde(deserialize_with = "deserialize_vec2", default)]
     pub position: [i32; 2],
-    #[serde(deserialize_with = "deserialize_vec2")]
+    #[serde(deserialize_with = "deserialize_vec2", default)]
     pub size: [i32; 2],
-    #[serde(rename = "$value")]
+    #[serde(rename = "$value", default)]
     pub children: Vec<UiTag>,
 }
 

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmqfu6cc780h4"]
+
+[ext_resource type="Theme" uid="uid://ks2uyxqg6u4k" path="res://mhjnr/theme.tres" id="1_4qyey"]
+[ext_resource type="Texture2D" uid="uid://dyga5qn124307" path="res://cover_art/schatzjaeger.webp" id="2_f5uhf"]
+
+[node name="main" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4qyey")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Schatzjäger"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_f5uhf")
+flat = true
+icon_alignment = 1
