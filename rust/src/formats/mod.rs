@@ -5,6 +5,7 @@ use crate::formats::sprites::Sprites;
 use crate::formats::txt::{decrypt_txt, DecryptError};
 use crate::formats::ui_xml::UiTag;
 use binrw::BinRead;
+use encoding_rs::WINDOWS_1252;
 use itertools::Itertools;
 use std::collections::HashMap;
 use std::ffi::OsStr;
@@ -82,7 +83,7 @@ where
                 .file_stem()
                 .and_then(OsStr::to_str)
                 .ok_or(Error::Custom("Stem".to_string()))?;
-            let decr = decrypt_txt(data.into_iter()).map_err(|e| Error::DecryptError(e))?;
+            let decr = decrypt_txt(data.into_iter()).map_err(Error::DecryptError)?;
             if stem.starts_with("tile_collision") {
                 Ok(DatafileFile::TileCollision(decr))
             } else if stem == "sprites" {
@@ -94,8 +95,9 @@ where
             }
         }
         "csv" => Ok(DatafileFile::Translations(
-            String::from_utf8(data)
-                .unwrap()
+            WINDOWS_1252
+                .decode(data.as_slice())
+                .0
                 .split('\n')
                 .map(|l| l.trim())
                 .filter(|l| !l.is_empty())

@@ -30,8 +30,8 @@ func set_menu(name: String) -> void:
 		button.connect(\"pressed\", callable.bindv(action.args))
 	
 	for node in  menu.find_children(\"*\"):
-		if node.has_method(\"set_text\"):
-			node.text = translations.tr(node.text)
+		if \"text\" in node:
+			node.text = translations.get_message(node.text)
 
 func _on_close_pressed() -> void:
 	get_tree().quit()
@@ -41,6 +41,9 @@ func _on_action_SetMenu(name: String) -> void:
 
 func _on_action_CheckStartGame() -> void:
 	print(\"CheckStartGame\")
+
+func _on_action_DisplayEndscreen() -> void:
+	get_tree().quit()
 "
 
 [node name="Root" type="MarginContainer"]

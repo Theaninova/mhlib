@@ -187,8 +187,16 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
                 Ok(DatafileFile::Translations(translations)) => {
                     let mut translation = Translation::new();
                     for (key, message) in translations {
-                        translation.add_message(key.into(), message.join("\n").into(), "".into());
+                        translation.add_message(
+                            format!("%{}%", key).into(),
+                            message.join("\n").into(),
+                            "".into(),
+                        );
                     }
+                    self.save_to_cache(
+                        translation.share().upcast(),
+                        format!("{}.res", datafile_path),
+                    );
                     translation.to_variant()
                 }
                 Ok(DatafileFile::Vorbis(vorbis)) => {
