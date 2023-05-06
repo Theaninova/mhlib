@@ -76,7 +76,10 @@ where
         "xml" => {
             serde_xml_rs::from_str::<UiTag>(String::from_utf8(data).map_err(custom_err)?.as_str())
                 .map_err(custom_err)
-                .map(DatafileFile::Ui)
+                .map(|mut it| {
+                    it.post_process();
+                    DatafileFile::Ui(it)
+                })
         }
         "txt" => {
             let stem = path

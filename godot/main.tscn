@@ -1,32 +1,234 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmqfu6cc780h4"]
+[gd_scene load_steps=21 format=3 uid="uid://cmqfu6cc780h4"]
 
 [ext_resource type="Theme" uid="uid://ks2uyxqg6u4k" path="res://mhjnr/theme.tres" id="1_4qyey"]
+[ext_resource type="Texture2D" uid="uid://wetnflcj1b0w" path="res://cover_art/mh1.jpg" id="2_epsv5"]
 [ext_resource type="Texture2D" uid="uid://dyga5qn124307" path="res://cover_art/schatzjaeger.webp" id="2_f5uhf"]
+[ext_resource type="Script" path="res://main.gd" id="2_j1xqk"]
+[ext_resource type="Texture2D" uid="uid://baqjofchj6yaw" path="res://cover_art/mhw.webp" id="3_wgtv5"]
+[ext_resource type="Texture2D" uid="uid://brovl1cel1uiw" path="res://cover_art/mh2.jpg" id="4_fb5aq"]
+[ext_resource type="Texture2D" uid="uid://ix132vewff0h" path="res://cover_art/mh3.jpg" id="5_q44ta"]
+[ext_resource type="Texture2D" uid="uid://k8i84cvnuun" path="res://cover_art/mhx.jpg" id="6_b76vr"]
+[ext_resource type="Texture2D" uid="uid://bst48atkwn7r1" path="res://cover_art/mhrem.png" id="7_ios37"]
+[ext_resource type="Texture2D" uid="uid://chcjw51coc53r" path="res://cover_art/mhinv.jpg" id="8_1fm4r"]
+[ext_resource type="Texture2D" uid="uid://l37kev18676o" path="res://cover_art/mhwant.jpg" id="8_yb215"]
+[ext_resource type="Texture2D" uid="uid://bk5a3xob0raqj" path="res://cover_art/mh_kart.jpg" id="9_b3ixn"]
+[ext_resource type="Texture2D" uid="uid://cpigwqlll0kbf" path="res://cover_art/mhpir.jpg" id="9_v7fae"]
+[ext_resource type="Texture2D" uid="uid://dkhygfyylbjov" path="res://cover_art/mh_kart2.jpg" id="10_1woe1"]
+[ext_resource type="Texture2D" uid="uid://l8groudaf385" path="res://cover_art/mh_kart3.webp" id="11_7me0v"]
+[ext_resource type="Texture2D" uid="uid://bmybnhi2i2ep" path="res://cover_art/mhdir.jpg" id="11_fweyu"]
+[ext_resource type="Texture2D" uid="uid://cjp0ilsodyu4j" path="res://cover_art/mh_kart4.jpg" id="12_hv57k"]
+[ext_resource type="Texture2D" uid="uid://by4wug5r7311q" path="res://cover_art/schatzjaeger_2.jpg" id="14_tnyyh"]
+[ext_resource type="Texture2D" uid="uid://bkn3cdrm1fj8b" path="res://cover_art/schatzjaeger_3.jpg" id="15_kbsip"]
+[ext_resource type="Texture2D" uid="uid://8vn1dpq37mve" path="res://cover_art/atlantis.webp" id="16_xvpbi"]
 
-[node name="main" type="MarginContainer"]
+[node name="main" type="ScrollContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 20.0
+offset_bottom = 154.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_4qyey")
+script = ExtResource("2_j1xqk")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="margins" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margins"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="JNR" type="VBoxContainer" parent="margins/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="margins/VBoxContainer/JNR"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Schatzjäger"
+text = "Moorhuhn Schatzjäger"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="JNR" type="HFlowContainer" parent="margins/VBoxContainer/JNR"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Schatzjaeger1" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
+custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 icon = ExtResource("2_f5uhf")
 flat = true
 icon_alignment = 1
+expand_icon = true
+
+[node name="Schatzjaeger2" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+icon = ExtResource("14_tnyyh")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Schatzjaeger3" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+icon = ExtResource("15_kbsip")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Atlantis" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("16_xvpbi")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Kart" type="VBoxContainer" parent="margins/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="margins/VBoxContainer/Kart"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Moorhuhn Kart"
+
+[node name="JNR2" type="HFlowContainer" parent="margins/VBoxContainer/Kart"]
+layout_mode = 2
+
+[node name="Kart" type="Button" parent="margins/VBoxContainer/Kart/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("9_b3ixn")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Kart2" type="Button" parent="margins/VBoxContainer/Kart/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("10_1woe1")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Kart3" type="Button" parent="margins/VBoxContainer/Kart/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("11_7me0v")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Kart4" type="Button" parent="margins/VBoxContainer/Kart/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("12_hv57k")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Shoot" type="VBoxContainer" parent="margins/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="margins/VBoxContainer/Shoot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Shoot 'em Up"
+
+[node name="JNR2" type="HFlowContainer" parent="margins/VBoxContainer/Shoot"]
+layout_mode = 2
+
+[node name="MH1" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("2_epsv5")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MHW" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("3_wgtv5")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MH2" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("4_fb5aq")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MH3" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("5_q44ta")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MHX" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("6_b76vr")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MHREM" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("7_ios37")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MHWAN" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("8_yb215")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MHPIR" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("9_v7fae")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MHINV" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("8_1fm4r")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MHDIR" type="Button" parent="margins/VBoxContainer/Shoot/JNR2"]
+custom_minimum_size = Vector2(200, 256)
+layout_mode = 2
+disabled = true
+icon = ExtResource("11_fweyu")
+flat = true
+icon_alignment = 1
+expand_icon = true

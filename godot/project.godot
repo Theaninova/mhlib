@@ -13,15 +13,16 @@ config_version=5
 config/name="MHJNR"
 run/main_scene="res://mhjnr/level.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
-boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/bg_color=Color(0, 0, 0, 0)
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://icon.png"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
-window/size/resizable=false
+window/size/viewport_width=512
+window/size/viewport_height=256
 window/size/borderless=true
 
 [input]

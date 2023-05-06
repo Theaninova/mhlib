@@ -1,6 +1,6 @@
 use crate::formats::ui_xml::{HorizontalAlign, UiTag};
 use godot::builtin::{Array, Dictionary, GodotString, ToVariant, Vector2};
-use godot::engine::control::{LayoutPreset, SizeFlags};
+use godot::engine::control::LayoutPreset;
 use godot::engine::global::HorizontalAlignment;
 use godot::engine::node::InternalMode;
 use godot::engine::{load, Button, Control, Label, Node, SpinBox, TextureRect};
@@ -9,12 +9,12 @@ use itertools::Itertools;
 
 const ACTION_META_NAME: &str = "action";
 
-pub fn convert_ui(ui: UiTag, owner: Option<Gd<Node>>, base_path: &str) -> Gd<Node> {
+pub fn convert_ui(ui: UiTag, base_path: &str) -> Gd<Node> {
     match ui {
         UiTag::Menu(menu) => {
             let mut gd_menu = Control::new_alloc();
             gd_menu.set_anchors_preset(LayoutPreset::PRESET_FULL_RECT, false);
-            attach_children(&mut gd_menu, owner, menu.children, base_path);
+            attach_children(&mut gd_menu, menu.children, base_path);
             gd_menu.upcast()
         }
         UiTag::Image(image) => {
@@ -37,10 +37,10 @@ pub fn convert_ui(ui: UiTag, owner: Option<Gd<Node>>, base_path: &str) -> Gd<Nod
         }
         UiTag::TextArea(area) => {
             let mut text_area = Control::new_alloc();
-            text_area.set_anchors_preset(LayoutPreset::PRESET_FULL_RECT, false);
-            text_area.set_position(to_vec2(area.position), false);
-            text_area.set_size(to_vec2(area.size), false);
-            attach_children(&mut text_area, owner, area.children, base_path);
+            // text_area.set_anchors_preset(LayoutPreset::PRESET_, false);
+            text_area.set_position(to_vec2(area.position.unwrap()), false);
+            text_area.set_size(to_vec2(area.size.unwrap()), false);
+            attach_children(&mut text_area, area.children, base_path);
             text_area.upcast()
         }
         UiTag::ToggleButton(toggle) => {
@@ -54,10 +54,7 @@ pub fn convert_ui(ui: UiTag, owner: Option<Gd<Node>>, base_path: &str) -> Gd<Nod
             }
             spin_box.set_meta("text".into(), toggle.text.to_variant());
             spin_box.set_meta("target".into(), toggle.target.to_variant());
-            spin_box.set_meta(
-                "no_sound".into(),
-                toggle.no_sound.unwrap_or(false).to_variant(),
-            );
+            spin_box.set_meta("no_sound".into(), toggle.no_sound.to_variant());
             attach_call_meta(&mut spin_box, toggle.on_change);
             spin_box.upcast()
         }
@@ -87,22 +84,18 @@ impl Into<HorizontalAlignment> for HorizontalAlign {
     }
 }
 
-fn attach_children<T>(
-    node: &mut Gd<T>,
-    owner: Option<Gd<Node>>,
-    children: Vec<UiTag>,
-    base_path: &str,
-) where
+fn attach_children<T>(node: &mut Gd<T>, children: Vec<UiTag>, base_path: &str)
+where
     T: Inherits<Node>,
 {
-    let owner_node = owner.unwrap_or_else(|| node.share().upcast());
+    let mut parent = node.share().upcast();
 
     for child in children {
-        let mut child = convert_ui(child, Some(owner_node.share()), base_path);
-        node.share()
-            .upcast()
-            .add_child(child.share(), false, InternalMode::INTERNAL_MODE_FRONT);
-        child.set_owner(owner_node.share());
+        parent.add_child(
+            convert_ui(child, base_path),
+            false,
+            InternalMode::INTERNAL_MODE_DISABLED,
+        );
     }
 }
 

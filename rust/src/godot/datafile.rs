@@ -177,7 +177,9 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
                         .rsplitn(3, '/')
                         .collect_tuple()
                         .expect("Illegal path for UI");
-                    let ui = convert_ui(ui, None, base_path);
+                    let mut ui = convert_ui(ui, base_path);
+                    own_children(&mut ui, None);
+
                     let mut scene = PackedScene::new();
                     scene.pack(ui);
 
@@ -282,5 +284,15 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
             printerr("File not found".to_variant(), &[]);
             Error::ERR_FILE_NOT_FOUND.to_variant()
         }
+    }
+}
+
+fn own_children(node: &mut Gd<Node>, owner: Option<&mut Gd<Node>>) {
+    let iter = node.get_children(false);
+    let owner = owner.unwrap_or(node);
+    for mut child in iter.iter_shared() {
+        println!("{:#?}", child);
+        child.set_owner(owner.share());
+        own_children(&mut child, Some(owner));
     }
 }

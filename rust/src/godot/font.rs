@@ -1,9 +1,7 @@
 use godot::builtin::{Rect2, Vector2, Vector2i};
 use godot::engine::{FontFile, Image};
-use godot::prelude::utilities::{print_verbose, prints};
+use godot::prelude::utilities::prints;
 use godot::prelude::{Color, Gd, Share, ToVariant};
-use std::ops::Index;
-use unicode_segmentation::UnicodeSegmentation;
 
 const CHARSET: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜabcdefghijklmnopqrstuvwxyzäöüß0123456789,;.:!?\
     +-*/=<>()[]{}\"$%&#~_’^@|¡¿™©®º¹²³ªÀÁÂÃÅÆÇÈÉÊËÌÍÎÏIÐGÑÒÓÔÕŒØSŠÙÚÛÝÞŸŽàáâãåæçèéêëìíî\
@@ -13,13 +11,6 @@ pub fn load_bitmap_font(image: Gd<Image>) -> Gd<FontFile> {
     let mut font_chars = CHARSET.as_bytes().iter();
 
     let mut font_file = FontFile::new();
-
-    let chroma_key = Color {
-        r: 0.0,
-        g: 0.0,
-        b: 0.0,
-        a: 0.0,
-    };
 
     let mut was_empty_column = true;
     let mut char_x = 0;

@@ -66,16 +66,18 @@ fn extract(datafile: &Datafile, file: &mut File) {
 }
 
 fn main() {
-    let file_name = Some(NullString::from("data\\loading\\sprites.txt"));
+    let file_name = Some(NullString::from(
+        "data\\menu\\screens\\options_controls.xml",
+    ));
     let dat_path = "E:\\Games\\Schatzjäger\\data\\datafile.dat";
 
     let mut file = File::open(dat_path).unwrap();
     let dat: Datafile = Datafile::read(&mut file).unwrap();
     println!("{:#?}", dat);
 
-    extract(&dat, &mut file);
+    // extract(&dat, &mut file);
 
-    /*if let Some(file_name) = file_name {
+    if let Some(file_name) = file_name {
         let target = dat.files.iter().find(|it| it.name == file_name).unwrap();
         file.seek(SeekFrom::Start(target.pos as u64)).unwrap();
         let mut data = vec![0u8; target.len as usize];
@@ -85,10 +87,12 @@ fn main() {
             .extension()
             .and_then(OsStr::to_str)
         {
-            Some("xml") => println!(
-                "{:#?}",
-                from_str::<UiTag>(String::from_utf8(data).unwrap().as_str())
-            ),
+            Some("xml") => {
+                let mut data =
+                    from_str::<UiTag>(String::from_utf8(data).unwrap().as_str()).unwrap();
+                data.post_process();
+                println!("{:#?}", data)
+            }
             Some("txt") => {
                 if false {
                     /*let decr = decrypt_txt(&mut data);
@@ -124,7 +128,7 @@ fn main() {
             Some(ext) => eprintln!("Unknown file extension <{}>", ext),
             None => eprintln!("Failed to read"),
         }
-    }*/
+    }
 }
 
 // pub fn decr2()

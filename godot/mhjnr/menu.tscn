@@ -7,34 +7,51 @@
 [sub_resource type="GDScript" id="GDScript_oemh7"]
 script/source = "extends MarginContainer
 
-@export var entry = \"main\"
+@export var entry: String = \"main\"
+@export var window_size: Vector2i = Vector2i(800, 600)
 
 var menu: Node
+@onready var translations: Translation = load(\"datafile://data/text.csv\")
 
 func _ready() -> void:
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
+	DisplayServer.window_set_size(window_size)
+	DisplayServer.window_set_position(
+		(DisplayServer.screen_get_size(0) - window_size) / 2, 0
+	)
 	set_menu(entry)
 
 func set_menu(name: String) -> void:
 	if menu != null:
 		menu.queue_free()
-	var translations: Translation = load(\"datafile://data/text.csv\")
 	menu = load(\"datafile://data/menu/screens/%s.xml\" % name).instantiate()
 	add_child(menu)
 	move_child(menu, 0)
-	
+	connect_actions()
+	translate()
+
+func connect_actions() -> void:
 	for button in menu.find_children(\"*\", \"Button\"):
 		if not button.has_meta(\"action\"):
 			continue
 		var action = button.get_meta(\"action\")
 		var callable = Callable(self, \"_on_action_%s\" % action.name)
+		button.z_index = 1
 		button.connect(\"pressed\", callable.bindv(action.args))
-	
-	for node in  menu.find_children(\"*\"):
-		if \"text\" in node:
+
+func translate() -> void:
+	for node in menu.find_children(\"*\"):
+		if \"text\" in node and not translations.get_message(node.text).is_empty():
 			node.text = translations.get_message(node.text)
+
+
+func _on_minimize_pressed() -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
 
 func _on_close_pressed() -> void:
 	get_tree().quit()
+
 
 func _on_action_SetMenu(name: String) -> void:
 	set_menu(name)
@@ -74,4 +91,5 @@ theme_override_colors/icon_hover_color = Color(0.780392, 0.435294, 0.360784, 1)
 icon = ExtResource("4_a24a2")
 flat = true
 
+[connection signal="pressed" from="Titlebar/Minimize" to="." method="_on_minimize_pressed"]
 [connection signal="pressed" from="Titlebar/Close" to="." method="_on_close_pressed"]
