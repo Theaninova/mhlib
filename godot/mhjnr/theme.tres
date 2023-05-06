@@ -7,10 +7,10 @@
 [resource]
 default_font = ExtResource("1_1apnt")
 default_font_size = 29
-Button/colors/font_color = Color(0.572549, 0.517647, 0.411765, 0.929412)
-Button/colors/font_outline_color = Color(0, 0, 0, 0.568627)
-Button/constants/outline_size = 2
-Button/font_sizes/font_size = 39
+Button/colors/font_color = Color(0.584314, 0.52549, 0.407843, 0.945098)
+Button/colors/font_outline_color = Color(0, 0, 0, 0.215686)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 30
 Button/styles/focus = SubResource("StyleBoxEmpty_wa7wi")
 Fonts/fonts/large = ExtResource("1_1apnt")
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
