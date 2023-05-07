@@ -23,7 +23,7 @@ Support of games primarily depends on who developed them - Games with structural
 	* [ ] Moorhuhn Winter
 	* [ ] Moorhuhn 3
 	* [ ] Moorhuhn X
-	* [ ] Moorhuhn Kart 2
+	* [ ] Moorhuhn Kart 2 (Renderware)
 	* [ ] Moorhuhn Remake
 	* [ ] Moorhuhn Invasion
 	* [x] Moorhuhn Schatzjäger 1

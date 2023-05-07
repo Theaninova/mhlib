@@ -1,14 +1,13 @@
+use encoding_rs::WINDOWS_1252;
 use godot::builtin::{Rect2, Vector2, Vector2i};
 use godot::engine::{FontFile, Image};
 use godot::prelude::utilities::prints;
-use godot::prelude::{Color, Gd, Share, ToVariant};
+use godot::prelude::{Gd, Share, ToVariant};
 
-const CHARSET: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜabcdefghijklmnopqrstuvwxyzäöüß0123456789,;.:!?\
-    +-*/=<>()[]{}\"$%&#~_’^@|¡¿™©®º¹²³ªÀÁÂÃÅÆÇÈÉÊËÌÍÎÏIÐGÑÒÓÔÕŒØSŠÙÚÛÝÞŸŽàáâãåæçèéêëìíî\
-    ïiðgñòóôõœøsšùúûýþÿž£¥ƒ¤¯¦¬¸¨·§×¢±÷µ«»";
+const CHARSET: &[u8] = include_bytes!("charset.txt");
 
 pub fn load_bitmap_font(image: Gd<Image>) -> Gd<FontFile> {
-    let mut font_chars = CHARSET.as_bytes().iter();
+    let mut font_chars = CHARSET.iter();
 
     let mut font_file = FontFile::new();
 
@@ -27,11 +26,16 @@ pub fn load_bitmap_font(image: Gd<Image>) -> Gd<FontFile> {
 
         if !was_empty_column && is_empty_column {
             let char = font_chars.next().expect("Font has too many characters!");
-            let glyph = *char as i64;
-            /*let mut glyph = 0i64;
-            for (i, c) in char.bytes().rev().enumerate() {
-                glyph |= (c as i64) << (i * 8);
-            }*/
+            let mut glyph = 0i64;
+            for (i, c) in WINDOWS_1252
+                .decode(&[*char])
+                .0
+                .as_bytes()
+                .iter()
+                .enumerate()
+            {
+                glyph |= (*c as i64) << (i * 8);
+            }
 
             let glyph_offset = Vector2 {
                 x: char_x as f32,
