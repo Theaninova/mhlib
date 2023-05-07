@@ -71,7 +71,7 @@ impl UiTag {
                         area_stack.push(children);
                     }
 
-                    if area.position.is_some() && area.size.is_some() {
+                    if !area.is_closing_tag() {
                         let children = area.children.drain(..).collect();
                         area_stack.last_mut().unwrap().push(UiTag::TextArea(area));
                         area_stack.push(children);
@@ -83,6 +83,36 @@ impl UiTag {
 
             menu.children = area_stack.pop().unwrap();
             debug_assert!(area_stack.is_empty());
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::media::ui::menu::UiMenu;
+    use crate::media::ui::text_area::UiTextArea;
+    use crate::media::ui::UiTag;
+
+    // language=xml
+    const XML: &str = "<Menu selected='test' OnBack='back'> \
+                         <TextArea position='1,2' size='3,4'/> \
+                            <StaticText position='1,2' text='test' /> \
+                         <TextArea /> \
+                       </Menu>";
+
+    #[test]
+    fn it_should_post_process() {
+        let mut xml: UiTag = serde_xml_rs::from_str(XML).unwrap();
+        xml.post_process();
+
+        if let UiTag::Menu(UiMenu { children, .. }) = xml {
+            if let &[UiTag::TextArea(UiTextArea { children, .. })] = &children.as_slice() {
+                assert!(matches!(&children.as_slice(), &[UiTag::StaticText(..)]));
+            } else {
+                panic!();
+            }
+        } else {
+            panic!();
         }
     }
 }
