@@ -5,8 +5,8 @@ use std::io::{Read, Seek};
 use std::ops::Deref;
 
 pub mod error;
-mod mhjnr;
-mod standard;
+mod v1;
+mod v2;
 
 use crate::archive::error::{Error, Result};
 
@@ -14,6 +14,7 @@ use crate::archive::error::{Error, Result};
 pub struct Archive(HashMap<String, FilePointer>);
 
 /// Pointer to the file inside the archive
+#[derive(Debug, PartialEq)]
 pub struct FilePointer {
     pub position: usize,
     pub length: usize,
@@ -34,17 +35,17 @@ impl From<HashMap<String, FilePointer>> for Archive {
 }
 
 /// These are all slightly divergent data layouts
-enum ArchiveKind {
+pub enum ArchiveKind {
     /// Appears in a variety of Moorhuhn Shoot 'em Up
     /// games, starting with Moorhuhn Winter.
     ///
-    /// The name can have a max length of 0x30, however the header
+    /// The name can have a max length of 0x30/0x40, however the header
     /// does not store the amount of files and instead is delimited
     /// by a final entry with the name `****`
     ///
-    /// File Entries have a max path length of 0x30 with a total entry
+    /// File Entries have a max path length of 0x30/0x40 with a total entry
     /// size of 0x40.
-    V1,
+    V1(usize),
     /// Appears in Moorhuhn Jump 'n Run games as well
     /// as Moorhuhn Kart 2, starting with Moorhuhn Kart 2.
     ///
@@ -54,12 +55,6 @@ enum ArchiveKind {
     /// File Entries have a max path length of 0x68,
     /// with a total entry size of 0x80
     V2,
-    /// Appears in later Moorhuhn Shoot 'em Up games, starting with Moorhuhn
-    /// Invasion.
-    ///
-    /// Works the same as V2, but has the maximum header and path string size
-    /// increased from 0x30 to 0x40
-    V3,
 }
 
 impl ArchiveKind {
@@ -71,9 +66,9 @@ impl ArchiveKind {
         let name = NullString::read(reader)?.to_string();
         reader.rewind()?;
         match name.as_str() {
-            "MHJNR-XXL" | "MHJNR-XS" | "Moorhuhn Kart 2" => Ok(ArchiveKind::V1),
-            "MH-W V1.0" | "MH3 V1.0 " | "MH 1 REMAKE" => Ok(ArchiveKind::V2),
-            "MHP XXL" | "MHINV XXL V1.0" => Ok(ArchiveKind::V3),
+            "MHJNR-XXL" | "MHJNR-XS" | "Moorhuhn Kart 2" => Ok(ArchiveKind::V2),
+            "MH-W V1.0" | "MH3 V1.0 " | "MH 1 REMAKE" => Ok(ArchiveKind::V1(0x30)),
+            "MHP XXL" | "MHINV XXL V1.0" => Ok(ArchiveKind::V1(0x40)),
             name => Err(Error::Unsupported {
                 reason: name.to_string(),
             }),
@@ -87,10 +82,89 @@ impl Archive {
     where
         R: Read + Seek,
     {
-        match ArchiveKind::guess(reader)? {
-            ArchiveKind::V1 => Ok(standard::Container::read_args(reader, (0x30,))?.into()),
-            ArchiveKind::V2 => Ok(mhjnr::Container::read(reader)?.into()),
-            ArchiveKind::V3 => Ok(standard::Container::read_args(reader, (0x40,))?.into()),
+        let kind = ArchiveKind::guess(reader)?;
+        Archive::read_kind(reader, kind)
+    }
+
+    /// Reads a specific archive kind from a binary stream
+    ///
+    /// Usually you want to use `read` instead.
+    pub fn read_kind<R>(reader: &mut R, kind: ArchiveKind) -> Result<Archive>
+    where
+        R: Read + Seek,
+    {
+        match kind {
+            ArchiveKind::V1(size) => Ok(v1::Container::read_args(reader, (size,))?.into()),
+            ArchiveKind::V2 => Ok(v2::Container::read(reader)?.into()),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::archive::{Archive, FilePointer};
+    use std::io::Cursor;
+
+    #[test]
+    fn it_should_load_v2() {
+        let bin = include_bytes!("v2a.dat");
+        let archive = Archive::read(&mut Cursor::new(bin)).unwrap();
+        assert_eq!(archive.len(), 2);
+        assert_eq!(
+            archive["data\\config.txt"],
+            FilePointer {
+                position: 0x57b40,
+                length: 0xf4
+            }
+        );
+        assert_eq!(
+            archive["data\\fonts\\dangerfont.bmp"],
+            FilePointer {
+                position: 0x57c40,
+                length: 0x7dfd8,
+            }
+        )
+    }
+
+    #[test]
+    fn it_should_load_v1a() {
+        let bin = include_bytes!("v1a.dat");
+        let archive = Archive::read(&mut Cursor::new(bin)).unwrap();
+        assert_eq!(archive.len(), 2);
+        assert_eq!(
+            archive["data\\mhx.fnt"],
+            FilePointer {
+                position: 0x1200,
+                length: 0x8d9,
+            }
+        );
+        assert_eq!(
+            archive["data\\text.txt"],
+            FilePointer {
+                position: 0x1c00,
+                length: 0x427e,
+            }
+        )
+    }
+
+    #[test]
+    fn it_should_load_v1b() {
+        let bin = include_bytes!("v1b.dat");
+        let archive = Archive::read(&mut Cursor::new(bin)).unwrap();
+        assert_eq!(archive.len(), 2);
+        assert_eq!(
+            archive["data\\endbranding_xxl.txt"],
+            FilePointer {
+                position: 0x7000,
+                length: 0x40,
+            }
+        );
+        assert_eq!(
+            archive["data\\settings_xxl.txt"],
+            FilePointer {
+                position: 0x7200,
+                length: 0x872,
+            }
+        )
     }
 }
