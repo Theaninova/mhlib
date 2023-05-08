@@ -18,6 +18,7 @@ pub struct Archive(HashMap<String, FilePointer>);
 pub struct FilePointer {
     pub position: usize,
     pub length: usize,
+    pub path: String,
 }
 
 impl Deref for Archive {
@@ -114,7 +115,8 @@ mod tests {
             archive["data\\config.txt"],
             FilePointer {
                 position: 0x57b40,
-                length: 0xf4
+                length: 0xf4,
+                path: "data\\config.txt".to_string(),
             }
         );
         assert_eq!(
@@ -122,6 +124,7 @@ mod tests {
             FilePointer {
                 position: 0x57c40,
                 length: 0x7dfd8,
+                path: "data\\fonts\\dangerfont.bmp".to_string()
             }
         )
     }
@@ -136,6 +139,7 @@ mod tests {
             FilePointer {
                 position: 0x1200,
                 length: 0x8d9,
+                path: "data\\mhx.fnt".to_string()
             }
         );
         assert_eq!(
@@ -143,6 +147,7 @@ mod tests {
             FilePointer {
                 position: 0x1c00,
                 length: 0x427e,
+                path: "data\\text.txt".to_string(),
             }
         )
     }
@@ -157,6 +162,7 @@ mod tests {
             FilePointer {
                 position: 0x7000,
                 length: 0x40,
+                path: "data\\endbranding_xxl.txt".to_string()
             }
         );
         assert_eq!(
@@ -164,6 +170,7 @@ mod tests {
             FilePointer {
                 position: 0x7200,
                 length: 0x872,
+                path: "data\\settings_xxl.txt".to_string(),
             }
         )
     }

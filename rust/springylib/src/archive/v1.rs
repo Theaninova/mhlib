@@ -47,6 +47,7 @@ impl From<FileEntry> for FilePointer {
         FilePointer {
             position: value.pointer[0] as usize,
             length: value.pointer[1] as usize,
+            path: value.name.to_string(),
         }
     }
 }

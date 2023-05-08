@@ -1,9 +1,9 @@
 use binrw::prelude::*;
 use binrw::Endian;
-use image::error::{DecodingError, ImageFormatHint};
-use image::{AnimationDecoder, Delay, Frame, Frames, ImageBuffer, ImageError};
 use std::io::{Read, Seek};
-use std::time::Duration;
+
+#[cfg(all(feature = "rle_gif"))]
+pub mod gif;
 
 #[binread]
 #[br(little, magic = 0x67u32)]
@@ -93,39 +93,6 @@ impl RleImage {
     }
 }
 
-impl<'a> AnimationDecoder<'a> for RleImage {
-    fn into_frames(self) -> Frames<'a> {
-        Frames::new(Box::new(self.frames.into_iter().map(move |frame| {
-            let buffer = ImageBuffer::from_raw(
-                frame.width,
-                frame.height,
-                frame
-                    .data
-                    .into_iter()
-                    .flat_map(|it| bgra_to_rgba(self.color_table[it as usize]))
-                    .collect(),
-            )
-            .ok_or(to_rle_image_err(std::fmt::Error::default()))?;
-            Ok(Frame::from_parts(
-                buffer,
-                frame.left,
-                frame.top,
-                Delay::from_saturating_duration(Duration::from_millis(80)),
-            ))
-        })))
-    }
-}
-
 pub fn bgra_to_rgba(pixel: [u8; 4]) -> [u8; 4] {
     [pixel[2], pixel[1], pixel[0], pixel[3]]
-}
-
-fn to_rle_image_err<T>(err: T) -> ImageError
-where
-    T: Into<Box<dyn std::error::Error + Send + Sync>>,
-{
-    ImageError::Decoding(DecodingError::new(
-        ImageFormatHint::Name(String::from("mhjnr_rle")),
-        err,
-    ))
 }

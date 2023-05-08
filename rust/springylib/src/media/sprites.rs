@@ -1,3 +1,5 @@
+use crate::error::Error;
+
 #[derive(Debug)]
 pub struct Sprites {
     pub name: String,
@@ -5,12 +7,6 @@ pub struct Sprites {
     pub file_name: String,
     pub render_mode: RenderMode,
     pub frames: Option<CropMode>,
-}
-
-#[derive(Debug)]
-pub enum Error {
-    InvalidData,
-    UnknownEnum(String),
 }
 
 impl Sprites {
@@ -25,20 +21,25 @@ impl Sprites {
 
     pub fn parse_single(string: &str) -> Result<Self, Error> {
         let mut components = string.split_whitespace();
+        let invalid_data = |info| Error::InvalidData {
+            info,
+            context: string.to_string(),
+        };
+        let eof = || invalid_data(Some("eof".to_string()));
 
         Ok(Sprites {
-            file_name: components.next().ok_or(Error::InvalidData)?.to_string(),
-            sprite_type: match components.next().ok_or(Error::InvalidData)? {
+            file_name: components.next().ok_or_else(eof)?.to_string(),
+            sprite_type: match components.next().ok_or_else(eof)? {
                 "anim_rle" => SpriteType::AnimRle,
                 "anim" => SpriteType::Anim,
                 "static" => SpriteType::Static,
-                e => return Err(Error::UnknownEnum(e.to_string())),
+                e => return Err(invalid_data(Some(e.to_string()))),
             },
-            name: components.next().ok_or(Error::InvalidData)?.to_string(),
-            render_mode: match components.next().ok_or(Error::InvalidData)? {
+            name: components.next().ok_or_else(eof)?.to_string(),
+            render_mode: match components.next().ok_or_else(eof)? {
                 "normx" => RenderMode::NormX,
                 "flipx" => RenderMode::FlipX,
-                e => return Err(Error::UnknownEnum(e.to_string())),
+                e => return Err(invalid_data(Some(e.to_string()))),
             },
             frames: if let Some(c) = components.next() {
                 Some(match c {
@@ -46,7 +47,7 @@ impl Sprites {
                     x => x
                         .parse::<i32>()
                         .map(CropMode::FrameCount)
-                        .map_err(|e| Error::UnknownEnum(e.to_string()))?,
+                        .map_err(|err| Error::Custom(Box::new(err)))?,
                 })
             } else {
                 None

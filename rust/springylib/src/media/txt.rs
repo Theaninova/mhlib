@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter};
 use std::num::ParseIntError;
 use std::string::FromUtf8Error;
 
@@ -6,6 +7,17 @@ pub enum DecryptError {
     FromUtf8Error(FromUtf8Error),
     ParseIntError(ParseIntError),
 }
+
+impl Display for DecryptError {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            DecryptError::FromUtf8Error(error) => write!(f, "{}", error),
+            DecryptError::ParseIntError(error) => write!(f, "{}", error),
+        }
+    }
+}
+
+impl std::error::Error for DecryptError {}
 
 impl From<FromUtf8Error> for DecryptError {
     fn from(e: FromUtf8Error) -> DecryptError {
@@ -65,4 +77,25 @@ pub fn decrypt_exposed_txt(contents: String) -> Result<String, DecryptError> {
 }
 
 #[cfg(test)]
-mod tests {}
+mod tests {
+    use crate::media::txt::{decrypt_exposed_txt, decrypt_txt, from_hex};
+
+    #[test]
+    fn it_should_parse_hex() {
+        assert_eq!(from_hex("abcdef").unwrap(), vec![0xab, 0xcd, 0xef]);
+    }
+
+    #[test]
+    fn it_should_decrypt() {
+        let data: Vec<u8> = vec![0x3a, 0x9b, 0x6f, 0x09, 0x7e, 0xd3, 0x74, 0xd6];
+        assert_eq!(decrypt_txt(data.into_iter()).unwrap(), "\r\nsound ",)
+    }
+
+    #[test]
+    fn it_should_decrypt_exposed() {
+        assert_eq!(
+            decrypt_exposed_txt("83\r\n248ecc86d5d85f6fc6626a6ef5be3e".to_string()).unwrap(),
+            "{\r\n    \"isValid\" 1"
+        )
+    }
+}

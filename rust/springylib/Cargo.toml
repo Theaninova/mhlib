@@ -5,5 +5,11 @@ edition = "2021"
 
 [dependencies]
 binrw = "0.11.1"
+image = {version = "0.24.6", optional = true}
 serde = {version = "1.0.160", features = ["derive"]}
+encoding_rs = "0.8.32"
+itertools = "0.10.5"
 serde-xml-rs = "0.6.0"
+
+[features]
+rle_gif = ["dep:image"]

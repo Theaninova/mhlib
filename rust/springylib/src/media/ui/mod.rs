@@ -54,8 +54,8 @@ impl Default for FadeMode {
 }
 
 impl UiTag {
-    pub fn post_process(&mut self) {
-        if let UiTag::Menu(menu) = self {
+    pub fn post_process(mut self) -> Self {
+        if let UiTag::Menu(mut menu) = &self {
             let children: Vec<UiTag> = menu.children.drain(..).collect();
             let mut area_stack: Vec<Vec<UiTag>> = vec![vec![]];
 
@@ -84,6 +84,8 @@ impl UiTag {
             menu.children = area_stack.pop().unwrap();
             debug_assert!(area_stack.is_empty());
         }
+
+        self
     }
 }
 
@@ -102,8 +104,7 @@ mod tests {
 
     #[test]
     fn it_should_post_process() {
-        let mut xml: UiTag = serde_xml_rs::from_str(XML).unwrap();
-        xml.post_process();
+        let mut xml = serde_xml_rs::from_str::<UiTag>(XML).unwrap().post_process();
 
         if let UiTag::Menu(UiMenu { children, .. }) = xml {
             if let &[UiTag::TextArea(UiTextArea { children, .. })] = &children.as_slice() {
