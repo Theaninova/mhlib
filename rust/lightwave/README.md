@@ -1,5 +1,17 @@
 # LightWave 3D Rust Parser
 
+Basic Usage
+
+```rust
+use lightwave::LightWaveObject;
+
+fn main() {
+    LightWaveObject::read_file("path/to/file.lwo");
+    // or
+    LightWaveObject::read(Cursor::new(vec![0x00, 0x01, ...]))
+}
+```
+
 ## LightWave Object (LWO2)
 
 Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/filefmts/lwo2.html))
