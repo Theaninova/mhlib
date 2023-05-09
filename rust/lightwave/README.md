@@ -108,8 +108,8 @@ Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/fil
 Ordinal Strings:
 * ✅ [Image Texture Map](#image-texture-map) `IMAP`
 * ❌ [Procedural Texture](#procedural-texture) `PROC`
-* ❌ [Gradient Texture](#gradient-texture) `GRAD`
-* ❌ Shader Plugin `SHDR`
+* ✅ [Gradient Texture](#gradient-texture) `GRAD`
+* ✅ [Shader Plugin](#shaders) `SHDR`
 
 #### Shared
 
@@ -158,16 +158,16 @@ Ordinal Strings:
 
 | Chunk          | Tag               | Status |
 |----------------|-------------------|--------|
-| Parameter Name | `PNAM`            | ❌      |
-| Item Name      | `INAM`            | ❌      |
-| Gradient Range | `GRST`<br>`GREN`  | ❌      |
-| Repeat Mode    | `GRPT`            | ❌      |
-| Key Values     | `FKEY`            | ❌      |
-| Key Parameters | `IKEY`            | ❌      |
+| Parameter Name | `PNAM`            | ✅      |
+| Item Name      | `INAM`            | ✅      |
+| Gradient Range | `GRST`<br>`GREN`  | ✅      |
+| Repeat Mode    | `GRPT`            | ✅      |
+| Key Values     | `FKEY`            | ✅      |
+| Key Parameters | `IKEY`            | ✅      |
 
 #### Shaders
 
 
 | Chunk            | Tag    | Status |
 |------------------|--------|--------|
-| Shader Algorithm | `FUNC` | ❌      |
+| Shader Algorithm | `FUNC` | ✅      |

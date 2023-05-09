@@ -1,11 +1,16 @@
 use crate::binrw_helpers::until_size_limit;
 use crate::iff::SubChunk;
+use crate::lwo2::sub_tags::blocks::gradient_texture::GradientTextureSubChunk;
 use crate::lwo2::sub_tags::blocks::image_texture::SurfaceBlockImageTextureSubChunk;
+use crate::lwo2::sub_tags::blocks::shaders::ShaderAlgorithm;
 use crate::lwo2::sub_tags::EnableState;
 use crate::lwo2::vx;
 use binrw::binread;
 
+pub mod gradient_texture;
 pub mod image_texture;
+pub mod procedural_texture;
+pub mod shaders;
 pub mod texture_mapping;
 
 #[binread]
@@ -21,9 +26,17 @@ pub enum SurfaceBlocks {
     #[br(magic(b"PROC"))]
     ProceduralTexture,
     #[br(magic(b"GRAD"))]
-    GradientTexture,
+    GradientTexture {
+        header: SubChunk<SurfaceBlockHeader>,
+        #[br(parse_with = until_size_limit(length as u64 - (header.length as u64 + 2 + 4)))]
+        attributes: Vec<GradientTextureSubChunk>,
+    },
     #[br(magic(b"SHDR"))]
-    ShaderPlugin,
+    ShaderPlugin {
+        header: SubChunk<SurfaceBlockHeader>,
+        #[br(magic(b"FUNC"))]
+        algorithm: SubChunk<ShaderAlgorithm>,
+    },
 }
 
 #[binread]
