@@ -3,21 +3,24 @@ use crate::iff::SubChunk;
 use crate::lwo2::sub_tags::surface_block_image_texture::SurfaceBlockImageTextureSubChunk;
 use crate::lwo2::sub_tags::EnableState;
 use crate::lwo2::vx;
-use binrw::{binread, PosValue};
+use binrw::binread;
 
 #[binread]
 #[br(import(length: u32))]
 #[derive(Debug)]
-pub struct SurfaceBlocks {
-    #[br(temp)]
-    start_pos: PosValue<()>,
-    pub ordinal: OrdinalString,
-    pub header: SubChunk<SurfaceBlockHeader>,
-    #[br(temp)]
-    end_pos: PosValue<()>,
-    #[br(if(matches!(ordinal, OrdinalString::ImageMapTexture)))]
-    #[br(parse_with = until_size_limit(length as u64 - (end_pos.pos - start_pos.pos)))]
-    pub attributes: Vec<SurfaceBlockImageTextureSubChunk>,
+pub enum SurfaceBlocks {
+    #[br(magic(b"IMAP"))]
+    ImageMapTexture {
+        header: SubChunk<SurfaceBlockHeader>,
+        #[br(parse_with = until_size_limit(length as u64 - (header.length as u64 + 2 + 4)))]
+        attributes: Vec<SurfaceBlockImageTextureSubChunk>,
+    },
+    #[br(magic(b"PROC"))]
+    ProceduralTexture,
+    #[br(magic(b"GRAD"))]
+    GradientTexture,
+    #[br(magic(b"SHDR"))]
+    ShaderPlugin,
 }
 
 #[binread]
@@ -42,20 +45,6 @@ pub enum SurfaceBlockHeaderSubChunk {
     DisplacementAxis(SubChunk<DisplacementAxis>),
     #[br(magic(b"NEGA"))]
     Negative(SubChunk<EnableState>),
-}
-
-#[binread]
-#[br(import(_length: u32))]
-#[derive(Debug)]
-pub enum OrdinalString {
-    #[br(magic(b"IMAP"))]
-    ImageMapTexture,
-    #[br(magic(b"PROC"))]
-    ProceduralTexture,
-    #[br(magic(b"GRAD"))]
-    GradientTexture,
-    #[br(magic(b"SHDR"))]
-    ShaderPlugin,
 }
 
 #[binread]
