@@ -1,7 +1,12 @@
 use crate::lwo2::vx;
-use binrw::{BinRead, BinResult, Endian};
+use binrw::{binread, BinRead, BinResult, Endian};
 use std::io::{Read, Seek};
 use std::iter::from_fn;
+
+#[binread]
+#[br(assert(false, "Not implemented yet"))]
+#[derive(Debug)]
+pub struct BinReadTodo();
 
 pub fn until_size_limit<R, Arg, T, Ret>(
     limit: u64,

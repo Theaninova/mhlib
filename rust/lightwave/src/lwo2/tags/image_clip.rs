@@ -1,6 +1,6 @@
 use crate::binrw_helpers::until_size_limit;
 use crate::iff::SubChunk;
-use crate::lwo2::tags::surface_definition::ValueEnvelope;
+use crate::lwo2::sub_tags::ValueEnvelope;
 use binrw::{binread, NullString};
 
 /// Describes an image or a sequence of images. Surface definitions specify images by referring to

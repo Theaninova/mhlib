@@ -1,0 +1,122 @@
+use crate::binrw_helpers::until_size_limit;
+use crate::iff::SubChunk;
+use crate::lwo2::sub_tags::surface_block_image_texture::SurfaceBlockImageTextureSubChunk;
+use crate::lwo2::sub_tags::EnableState;
+use crate::lwo2::vx;
+use binrw::{binread, PosValue};
+
+#[binread]
+#[br(import(length: u32))]
+#[derive(Debug)]
+pub struct SurfaceBlocks {
+    #[br(temp)]
+    start_pos: PosValue<()>,
+    pub ordinal: OrdinalString,
+    pub header: SubChunk<SurfaceBlockHeader>,
+    #[br(temp)]
+    end_pos: PosValue<()>,
+    #[br(if(matches!(ordinal, OrdinalString::ImageMapTexture)))]
+    #[br(parse_with = until_size_limit(length as u64 - (end_pos.pos - start_pos.pos)))]
+    pub attributes: Vec<SurfaceBlockImageTextureSubChunk>,
+}
+
+#[binread]
+#[br(import(length: u32))]
+#[derive(Debug)]
+pub struct SurfaceBlockHeader {
+    #[br(pad_before = 2)]
+    #[br(parse_with = until_size_limit(length as u64 - 4))]
+    pub block_attributes: Vec<SurfaceBlockHeaderSubChunk>,
+}
+
+#[binread]
+#[derive(Debug)]
+pub enum SurfaceBlockHeaderSubChunk {
+    #[br(magic(b"CHAN"))]
+    Channel(SubChunk<Channel>),
+    #[br(magic(b"ENAB"))]
+    EnabledState(SubChunk<EnableState>),
+    #[br(magic(b"OPAC"))]
+    Opacity(SubChunk<Opacity>),
+    #[br(magic(b"AXIS"))]
+    DisplacementAxis(SubChunk<DisplacementAxis>),
+    #[br(magic(b"NEGA"))]
+    Negative(SubChunk<EnableState>),
+}
+
+#[binread]
+#[br(import(_length: u32))]
+#[derive(Debug)]
+pub enum OrdinalString {
+    #[br(magic(b"IMAP"))]
+    ImageMapTexture,
+    #[br(magic(b"PROC"))]
+    ProceduralTexture,
+    #[br(magic(b"GRAD"))]
+    GradientTexture,
+    #[br(magic(b"SHDR"))]
+    ShaderPlugin,
+}
+
+#[binread]
+#[br(import(_length: u32))]
+#[derive(Debug)]
+pub struct DisplacementAxis {
+    pub displacement_axis: u16,
+}
+
+#[binread]
+#[br(import(_length: u32))]
+#[derive(Debug)]
+pub struct Opacity {
+    pub kind: OpacityType,
+    pub opacity: f32,
+    #[br(parse_with = vx)]
+    pub envelope: u32,
+}
+
+#[binread]
+#[br(repr = u16)]
+#[derive(Debug)]
+pub enum OpacityType {
+    Normal = 0,
+    Subtractive = 1,
+    Difference = 2,
+    Multiply = 3,
+    Divide = 4,
+    Alpha = 5,
+    TextureDisplacement = 6,
+    Additive = 7,
+}
+
+#[binread]
+#[br(import(_length: u32))]
+#[derive(Debug)]
+pub struct Channel {
+    pub texture_channel: TextureChannel,
+}
+
+#[binread]
+#[derive(Debug)]
+pub enum TextureChannel {
+    #[br(magic(b"COLR"))]
+    Color,
+    #[br(magic(b"DIFF"))]
+    Diffuse,
+    #[br(magic(b"LUMI"))]
+    Luminosity,
+    #[br(magic(b"SPEC"))]
+    Specular,
+    #[br(magic(b"GLOS"))]
+    Glossy,
+    #[br(magic(b"REFL"))]
+    Reflectivity,
+    #[br(magic(b"TRAN"))]
+    Transparency,
+    #[br(magic(b"RIND"))]
+    RefractiveIndex,
+    #[br(magic(b"TRNL"))]
+    Translucency,
+    #[br(magic(b"BUMP"))]
+    Bump,
+}

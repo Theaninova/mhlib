@@ -50,3 +50,4 @@ pub enum Tag {
     #[br(magic(b"CLIP"))]
     ImageClip(Chunk<ImageClip>),
 }
+
