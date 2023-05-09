@@ -3,6 +3,7 @@ use binrw::binread;
 
 pub mod blocks;
 pub mod surface_parameters;
+pub mod plugin;
 
 #[binread]
 #[br(import(_length: u32))]

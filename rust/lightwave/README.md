@@ -27,7 +27,7 @@ Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/fil
 | Discontinuous Vertex Mapping               | `VMAD` | ✅      |
 | Vertex Map Parameter                       | `VMPA` | ✅      |
 | [Envelope Definition](#envelope-subchunks) | `ENVL` | ✅      |
-| [Image (-Sequence)](#clip-subchunks)       | `CLIP` | 🚧     |
+| [Image (-Sequence)](#clip-subchunks)       | `CLIP` | ✅      |
 | [Surface Definition](#surface-subchunks)   | `SURF` | 🚧     |
 | Bounding Box                               | `BBOX` | ✅      |
 | Description Line                           | `DESC` | ✅      |
@@ -54,7 +54,7 @@ Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/fil
 |----------------------|--------|--------|
 | Still Image          | `STIL` | ✅      |
 | Image Sequence       | `ISEQ` | ✅      |
-| Plugin Animation     | `ANIM` | ❌      |
+| Plugin Animation     | `ANIM` | ✅      |
 | Reference (Clone)    | `XREF` | ✅      |
 | Flag (Undocumented)  | `FLAG` | ⚠️     | 
 | Color-cycling Still  | `STCC` | ✅      |
@@ -68,9 +68,9 @@ Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/fil
 | Saturation           | `SATR` | ✅      | 
 | Hue                  | `HUE`  | ✅      | 
 | Gamma Correction     | `GAMM` | ✅      | 
-| Negative             | `NEGA` | ❌      | 
-| Plugin Image Filters | `IFLT` | ❌      | 
-| Plugin Pixel Filters | `PFLT` | ❌      | 
+| Negative             | `NEGA` | ✅      | 
+| Plugin Image Filters | `IFLT` | ✅      | 
+| Plugin Pixel Filters | `PFLT` | ✅      | 
 
 
 ### Surface Subchunks

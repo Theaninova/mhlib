@@ -1,7 +1,8 @@
 use crate::binrw_helpers::until_size_limit;
 use crate::iff::SubChunk;
-use crate::lwo2::sub_tags::ValueEnvelope;
-use binrw::{binread, NullString};
+use crate::lwo2::sub_tags::plugin::PluginServerNameAndData;
+use crate::lwo2::sub_tags::{EnableState, ValueEnvelope};
+use binrw::{binread, NullString, PosValue};
 
 /// Describes an image or a sequence of images. Surface definitions specify images by referring to
 /// CLIP chunks. The term "clip" is used to describe these because they can be numbered sequences
@@ -24,6 +25,8 @@ pub enum ImageClipSubChunk {
     StillImage(SubChunk<StillImage>),
     #[br(magic(b"ISEQ"))]
     ImageSequence(SubChunk<ImageSequence>),
+    #[br(magic(b"ANIM"))]
+    PluginAnimation(SubChunk<PluginAnimation>),
     #[br(magic(b"XREF"))]
     Reference(SubChunk<Reference>),
     #[br(magic(b"FLAG"))]
@@ -46,10 +49,33 @@ pub enum ImageClipSubChunk {
     Brightness(SubChunk<ValueEnvelope>),
     #[br(magic(b"SATR"))]
     Saturation(SubChunk<ValueEnvelope>),
-    #[br(magic(b"HUE"))] // TODO: Typo? Docs say it's just "HUE"
+    #[br(magic(b"HUE\0"))]
     Hue(SubChunk<ValueEnvelope>),
     #[br(magic(b"GAMM"))]
     GammaCorrection(SubChunk<ValueEnvelope>),
+    #[br(magic(b"NEGA"))]
+    Negative(SubChunk<EnableState>),
+    #[br(magic(b"IFLT"))]
+    PluginImageFilters(SubChunk<PluginServerNameAndData>),
+    #[br(magic(b"PFLT"))]
+    PluginPixelFilters(SubChunk<PluginServerNameAndData>),
+}
+
+#[binread]
+#[br(import(_length: u32))]
+#[derive(Debug)]
+pub struct PluginAnimation {
+    #[br(temp)]
+    start_pos: PosValue<()>,
+    #[br(align_after = 2)]
+    pub file_name: NullString,
+    #[br(align_after = 2)]
+    pub server_name: NullString,
+    pub flags: u16,
+    #[br(temp)]
+    end_pos: PosValue<()>,
+    #[br(count = end_pos.pos - start_pos.pos)]
+    pub data: Vec<u8>,
 }
 
 /// Contains the color space of the texture. If the flag is 0, then the color space is contained

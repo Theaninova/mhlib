@@ -2,6 +2,7 @@ use crate::binrw_helpers::until_size_limit;
 use crate::iff::SubChunk;
 use crate::lwo2::vx;
 use binrw::{binread, NullString, PosValue};
+use crate::lwo2::sub_tags::plugin::PluginServerNameAndData;
 
 #[binread]
 #[br(import(length: u32))]
@@ -31,7 +32,7 @@ pub enum EnvelopeSubChunk {
     #[br(magic(b"SPAN"))]
     IntervalInterpolation(SubChunk<IntervalInterpolation>),
     #[br(magic(b"CHAN"))]
-    PluginChannelModifiers(SubChunk<PluginChannelModifiers>),
+    PluginChannelModifiers(SubChunk<PluginServerNameAndData>),
     #[br(magic(b"NAME"))]
     ChannelName(SubChunk<PluginChannelName>),
 }
@@ -44,24 +45,6 @@ pub enum EnvelopeSubChunk {
 pub struct PluginChannelName {
     #[br(align_after = 2)]
     pub channel_name: NullString,
-}
-
-/// Channel modifiers can be associated with an envelope. Each channel chunk contains the name of
-/// the plug-in and some flag bits. Only the first flag bit is defined; if set, the plug-in is
-/// disabled. The data that follows this, if any, is owned by the plug-in.
-#[binread]
-#[br(import(length: u32))]
-#[derive(Debug)]
-pub struct PluginChannelModifiers {
-    #[br(temp)]
-    start_pos: PosValue<()>,
-    #[br(align_after = 2)]
-    pub server_name: NullString,
-    pub flags: u16,
-    #[br(temp)]
-    end_pos: PosValue<()>,
-    #[br(count = length as u64 - (end_pos.pos - start_pos.pos))]
-    pub parameters: Vec<u8>,
 }
 
 /// Defines the interpolation between the most recent KEY chunk and the KEY immediately before it in
