@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 starforcelib = {path = "../starforcelib"}
 lightwave = {path = "../lightwave"}
+glob = "0.3.1"

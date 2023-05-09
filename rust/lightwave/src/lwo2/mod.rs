@@ -16,7 +16,7 @@ where
     R: Read + Seek,
 {
     let kind: u16 = reader.read_type(endian)?;
-    Ok(if (kind & 0xff) != 0xff {
+    Ok(if kind < 0xff00 {
         kind as u32
     } else {
         (((kind as u32) & 0xff) << 16) | (reader.read_type::<u16>(endian)? as u32)
