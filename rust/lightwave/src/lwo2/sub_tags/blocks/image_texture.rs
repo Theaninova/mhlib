@@ -1,5 +1,5 @@
 use crate::iff::SubChunk;
-use crate::lwo2::sub_tags::texture_mapping::TextureMapping;
+use crate::lwo2::sub_tags::blocks::texture_mapping::TextureMapping;
 use crate::lwo2::sub_tags::{ValueEnvelope, VxReference};
 use crate::lwo2::vx;
 use binrw::{binread, NullString};
@@ -27,6 +27,8 @@ pub enum SurfaceBlockImageTextureSubChunk {
     AntialiasingStrength(SubChunk<AntialiasingStrength>),
     #[br(magic(b"PIXB"))]
     PixelBlending(SubChunk<PixelBlending>),
+    #[br(magic(b"STICK"))]
+    StickyProjection(SubChunk<ValueEnvelope>),
     #[br(magic(b"TAMP"))]
     TextureAmplitude(SubChunk<ValueEnvelope>),
 }
@@ -60,6 +62,8 @@ pub struct AntialiasingStrength {
     pub strength: f32,
 }
 
+/// For UV projection, which depends on texture coordinates at each vertex, this selects the name of
+/// the TXUV vertex map that contains those coordinates.
 #[binread]
 #[br(import(_length: u32))]
 #[derive(Debug)]
@@ -68,6 +72,8 @@ pub struct UvMap {
     pub txuv_map_name: NullString,
 }
 
+/// For cylindrical and spherical projections, these parameters control how many times the image
+/// repeats over each full interval.
 #[binread]
 #[br(import(_length: u32))]
 #[derive(Debug)]
@@ -77,6 +83,7 @@ pub struct ImageWrapAmount {
     pub envelope: u32,
 }
 
+/// Specifies how the color of the texture is derived for areas outside the image.
 #[binread]
 #[br(import(_length: u32))]
 #[derive(Debug)]
@@ -89,9 +96,15 @@ pub struct ImageWrapOptions {
 #[br(repr = u16)]
 #[derive(Debug)]
 pub enum ImageWrapType {
+    /// Areas outside the image are assumed to be black. The ultimate effect of this depends on
+    /// the opacity settings. For an additive texture layer on the color channel, the final color
+    /// will come from the preceding layers or from the base color of the surface.
     Reset = 0,
+    /// The image is repeated or tiled.
     Repeat = 1,
+    /// Like repeat, but alternate tiles are mirror-reversed.
     Mirror = 2,
+    /// The color is taken from the image's nearest edge pixel.
     Edge = 3,
 }
 

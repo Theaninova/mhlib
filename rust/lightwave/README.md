@@ -44,7 +44,7 @@ Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/fil
 | Image Sequence       | `ISEQ` | ✅      |
 | Plugin Animation     | `ANIM` | ❌      |
 | Reference (Clone)    | `XREF` | ✅      |
- | Flag (Undocumented)  | `FLAG` | 🚧     | 
+| Flag (Undocumented)  | `FLAG` | ⚠️     | 
 | Color-cycling Still  | `STCC` | ✅      |
 | Time                 | `TIME` | ✅      |
 | Color Space RGB      | `CLRS` | ✅      |
@@ -76,19 +76,19 @@ Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/fil
 | Max Smoothing Angle               | `SMAN`                                                   | ✅      |
 | Reflection Options                | `RFOP`                                                   | ✅      |
 | Reflection Map Image              | `RIMG`                                                   | ✅      |
-| Reflection Map Image Seam Angle   | `RSAN`                                                   | ❌      |
-| Reflection Blurring               | `RBLR`                                                   | ❌      |
-| Refractive Index                  | `RIND`                                                   | ❌      | 
-| Transparency Options              | `TROP`                                                   | ❌      | 
-| Refraction Map Image              | `TIMG`                                                   | ❌      | 
+| Reflection Map Image Seam Angle   | `RSAN`                                                   | ✅      |
+| Reflection Blurring               | `RBLR`                                                   | ✅      |
+| Refractive Index                  | `RIND`                                                   | ✅      | 
+| Transparency Options              | `TROP`                                                   | ✅      | 
+| Refraction Map Image              | `TIMG`                                                   | ✅      | 
 | Refraction Blurring               | `TBLR`                                                   | ✅      | 
 | Color Highlights                  | `CLRH`                                                   | ✅      | 
 | Color Filter                      | `CLRF`                                                   | ✅      | 
 | Additive Transparency             | `ADRT`                                                   | ✅      | 
-| Glow Effect                       | `GLOW`                                                   | ❌      | 
-| Render Outlines                   | `LINE`                                                   | ❌      | 
-| Alpha Mode                        | `ALPH`                                                   | ❌      | 
-| Vertex Color Map                  | `VCOL`                                                   | ❌      | 
+| Glow Effect                       | `GLOW`                                                   | ✅      | 
+| Render Outlines                   | `LINE`                                                   | ✅      | 
+| Alpha Mode                        | `ALPH`                                                   | ✅      | 
+| Vertex Color Map                  | `VCOL`                                                   | ✅      | 
 | [Surface Blocks](#surface-blocks) | `BLOK`                                                   | 🚧     | 
 
 ### Surface Blocks
@@ -107,7 +107,7 @@ Ordinal Strings:
 | Enable State            | `ENAB` | ✅      |
 | Opacity                 | `OPAC` | ✅      |
 | Displacement Axis       | `AXIS` | ✅      |
-| Negative (Undocumented) | `NEGA` | 🚧     |
+| Negative (Undocumented) | `NEGA` | ⚠️     |
 
 #### Texture Mapping
 

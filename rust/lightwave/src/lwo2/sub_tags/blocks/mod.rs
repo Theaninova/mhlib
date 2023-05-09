@@ -1,9 +1,12 @@
 use crate::binrw_helpers::until_size_limit;
 use crate::iff::SubChunk;
-use crate::lwo2::sub_tags::surface_block_image_texture::SurfaceBlockImageTextureSubChunk;
+use crate::lwo2::sub_tags::blocks::image_texture::SurfaceBlockImageTextureSubChunk;
 use crate::lwo2::sub_tags::EnableState;
 use crate::lwo2::vx;
 use binrw::binread;
+
+pub mod image_texture;
+pub mod texture_mapping;
 
 #[binread]
 #[br(import(length: u32))]
