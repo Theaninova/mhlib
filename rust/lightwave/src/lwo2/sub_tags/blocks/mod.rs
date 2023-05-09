@@ -2,15 +2,14 @@ use crate::binrw_helpers::until_size_limit;
 use crate::iff::SubChunk;
 use crate::lwo2::sub_tags::blocks::gradient_texture::GradientTextureSubChunk;
 use crate::lwo2::sub_tags::blocks::image_texture::SurfaceBlockImageTextureSubChunk;
-use crate::lwo2::sub_tags::blocks::shaders::ShaderAlgorithm;
+use crate::lwo2::sub_tags::blocks::procedural_texture::ProceduralTextureSubChunk;
 use crate::lwo2::sub_tags::EnableState;
 use crate::lwo2::vx;
-use binrw::binread;
+use binrw::{binread, NullString};
 
 pub mod gradient_texture;
 pub mod image_texture;
 pub mod procedural_texture;
-pub mod shaders;
 pub mod texture_mapping;
 
 #[binread]
@@ -24,7 +23,11 @@ pub enum SurfaceBlocks {
         attributes: Vec<SurfaceBlockImageTextureSubChunk>,
     },
     #[br(magic(b"PROC"))]
-    ProceduralTexture,
+    ProceduralTexture {
+        header: SubChunk<SurfaceBlockHeader>,
+        #[br(parse_with = until_size_limit(length as u64 - (header.length as u64 + 2 + 4)))]
+        attributes: Vec<ProceduralTextureSubChunk>,
+    },
     #[br(magic(b"GRAD"))]
     GradientTexture {
         header: SubChunk<SurfaceBlockHeader>,
@@ -35,8 +38,18 @@ pub enum SurfaceBlocks {
     ShaderPlugin {
         header: SubChunk<SurfaceBlockHeader>,
         #[br(magic(b"FUNC"))]
-        algorithm: SubChunk<ShaderAlgorithm>,
+        algorithm: SubChunk<Algorithm>,
     },
+}
+
+#[binread]
+#[br(import(length: u32))]
+#[derive(Debug)]
+pub struct Algorithm {
+    #[br(align_after = 2)]
+    pub algorithm_name: NullString,
+    #[br(count = length - (algorithm_name.len() as u32 + 1))]
+    pub data: Vec<u8>,
 }
 
 #[binread]

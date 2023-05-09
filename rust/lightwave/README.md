@@ -1,5 +1,7 @@
 # LightWave 3D Rust Parser
 
+Complete LWO2 parser for Rust.
+
 Basic Usage
 
 ```rust
@@ -14,7 +16,7 @@ fn main() {
 
 ## LightWave Object (LWO2)
 
-Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/filefmts/lwo2.html))
+Fully feature complete following the [LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/filefmts/lwo2.html).
 
 | Chunk                                      | Tag    | Status |
 |--------------------------------------------|--------|--------|
@@ -107,7 +109,7 @@ Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/fil
 
 Ordinal Strings:
 * ✅ [Image Texture Map](#image-texture-map) `IMAP`
-* ❌ [Procedural Texture](#procedural-texture) `PROC`
+* ✅ [Procedural Texture](#procedural-texture) `PROC`
 * ✅ [Gradient Texture](#gradient-texture) `GRAD`
 * ✅ [Shader Plugin](#shaders) `SHDR`
 
@@ -150,9 +152,9 @@ Ordinal Strings:
 
 | Chunk                    | Tag    | Status |
 |--------------------------|--------|--------|
-| Axis                     | `AXIS` | ❌      |
-| Basic Value              | `VALU` | ❌      |
-| Algorithm and Parameters | `FUNC` | ❌      |
+| Axis                     | `AXIS` | ✅      |
+| Basic Value              | `VALU` | ✅      |
+| Algorithm and Parameters | `FUNC` | ✅      |
 
 #### Gradient Texture
 
