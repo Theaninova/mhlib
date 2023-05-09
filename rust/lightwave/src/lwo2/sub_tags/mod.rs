@@ -1,17 +1,8 @@
-use crate::lwo2::sub_tags::envelope_type::EnvelopeType;
 use crate::lwo2::vx;
 use binrw::binread;
 
 pub mod blocks;
-pub mod envelope_type;
 pub mod surface_parameters;
-
-#[binread]
-#[derive(Debug)]
-pub enum SubTag {
-    #[br(magic(b"TYPE"))]
-    EnvelopeType(EnvelopeType),
-}
 
 #[binread]
 #[br(import(_length: u32))]

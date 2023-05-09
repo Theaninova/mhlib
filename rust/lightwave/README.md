@@ -26,26 +26,26 @@ Progress: About 90% ([LWO2 Spec](http://static.lightwave3d.com/sdk/2015/html/fil
 | Polygon Tag Mapping                        | `PTAG` | ✅      |
 | Discontinuous Vertex Mapping               | `VMAD` | ✅      |
 | Vertex Map Parameter                       | `VMPA` | ✅      |
-| [Envelope Definition](#envelope-subchunks) | `ENVL` | ❌      |
+| [Envelope Definition](#envelope-subchunks) | `ENVL` | ✅      |
 | [Image (-Sequence)](#clip-subchunks)       | `CLIP` | 🚧     |
 | [Surface Definition](#surface-subchunks)   | `SURF` | 🚧     |
 | Bounding Box                               | `BBOX` | ✅      |
-| Description Line                           | `DESC` | ❌      |
-| Commentary Text                            | `TEXT` | ❌      |
-| Thumbnail Icon Image                       | `ICON` | ❌      |
+| Description Line                           | `DESC` | ✅      |
+| Commentary Text                            | `TEXT` | ✅      |
+| Thumbnail Icon Image                       | `ICON` | ✅      |
 
 
 ### Envelope Subchunks
 
 | Chunk                    | Tag    | Status |
 |--------------------------|--------|--------|
-| Envelope Type            | `TYPE` | ❌      |
-| Pre-Behavior             | `PRE`  | ❌      |
-| Post-Behavior            | `POST` | ❌      |
-| Keyframe Time and Value  | `KEY`  | ❌      |
-| Interval Interpolation   | `SPAN` | ❌      |
-| Plugin Channel Modifiers | `CHAN` | ❌      |
-| Channel Name             | `NAME` | ❌      |
+| Envelope Type            | `TYPE` | ✅      |
+| Pre-Behavior             | `PRE`  | ✅      |
+| Post-Behavior            | `POST` | ✅      |
+| Keyframe Time and Value  | `KEY`  | ✅      |
+| Interval Interpolation   | `SPAN` | ✅      |
+| Plugin Channel Modifiers | `CHAN` | ✅      |
+| Channel Name             | `NAME` | ✅      |
 
 
 ### Clip Subchunks

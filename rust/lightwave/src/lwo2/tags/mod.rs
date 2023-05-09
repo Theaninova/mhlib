@@ -3,6 +3,7 @@ use crate::lwo2::tags::bounding_box::BoundingBox;
 use crate::lwo2::tags::discontinuous_vertex_mapping::DiscontinuousVertexMappings;
 use crate::lwo2::tags::image_clip::ImageClip;
 use crate::lwo2::tags::layer::Layer;
+use crate::lwo2::tags::meta::{DescriptionLine, ThumbnailIconImage};
 use crate::lwo2::tags::point_list::PointList;
 use crate::lwo2::tags::polygon_list::PolygonLists;
 use crate::lwo2::tags::polygon_tag_mapping::PolygonTagMappings;
@@ -14,8 +15,10 @@ use binrw::binread;
 
 pub mod bounding_box;
 pub mod discontinuous_vertex_mapping;
+pub mod envelope;
 pub mod image_clip;
 pub mod layer;
+pub mod meta;
 pub mod point_list;
 pub mod polygon_list;
 pub mod polygon_tag_mapping;
@@ -43,6 +46,12 @@ pub enum Tag {
     VertexMapParameter(Chunk<VertexMapParameter>),
     #[br(magic(b"BBOX"))]
     BoundingBox(Chunk<BoundingBox>),
+    #[br(magic(b"DESC"))]
+    DescriptionLine(Chunk<DescriptionLine>),
+    #[br(magic(b"TEXT"))]
+    CommentaryText(Chunk<DescriptionLine>),
+    #[br(magic(b"ICON"))]
+    ThumbnailIconImage(Chunk<ThumbnailIconImage>),
     #[br(magic(b"POLS"))]
     PolygonList(Chunk<PolygonLists>),
     #[br(magic(b"SURF"))]
@@ -50,4 +59,3 @@ pub enum Tag {
     #[br(magic(b"CLIP"))]
     ImageClip(Chunk<ImageClip>),
 }
-
