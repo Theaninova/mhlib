@@ -347,6 +347,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "mhex"
+version = "0.1.0"
+dependencies = [
+ "starforcelib",
+]
+
+[[package]]
 name = "miniz_oxide"
 version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -581,6 +588,13 @@ dependencies = [
  "itertools",
  "serde",
  "serde-xml-rs",
+]
+
+[[package]]
+name = "starforcelib"
+version = "0.1.0"
+dependencies = [
+ "binrw",
 ]
 
 [[package]]
