@@ -30,7 +30,7 @@ Fully feature complete following the [LWO2 Spec](http://static.lightwave3d.com/s
 | Vertex Map Parameter                       | `VMPA` | ✅      |
 | [Envelope Definition](#envelope-subchunks) | `ENVL` | ✅      |
 | [Image (-Sequence)](#clip-subchunks)       | `CLIP` | ✅      |
-| [Surface Definition](#surface-subchunks)   | `SURF` | 🚧     |
+| [Surface Definition](#surface-subchunks)   | `SURF` | ✅      |
 | Bounding Box                               | `BBOX` | ✅      |
 | Description Line                           | `DESC` | ✅      |
 | Commentary Text                            | `TEXT` | ✅      |
