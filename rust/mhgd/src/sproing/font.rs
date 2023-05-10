@@ -1,10 +1,7 @@
-use encoding_rs::WINDOWS_1252;
 use godot::builtin::{Rect2, Vector2, Vector2i};
 use godot::engine::{FontFile, Image};
 use godot::prelude::utilities::prints;
 use godot::prelude::{Gd, Share, ToVariant};
-
-const CHARSET: &[u8] = include_bytes!("charset.txt");
 
 pub fn load_bitmap_font(image: Gd<Image>) -> Gd<FontFile> {
     let mut font_chars = CHARSET.iter();

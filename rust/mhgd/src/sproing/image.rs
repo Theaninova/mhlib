@@ -1,9 +1,9 @@
-use crate::formats::rle::RleImage;
 use godot::builtin::{Color, PackedByteArray};
 use godot::engine::global::Error;
 use godot::engine::image::Format;
 use godot::engine::{Image, ImageTexture, SpriteFrames};
 use godot::obj::Gd;
+use springylib::media::rle::RleImage;
 
 const FPS: f64 = 15.0;
 

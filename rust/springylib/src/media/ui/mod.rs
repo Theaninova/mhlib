@@ -55,12 +55,12 @@ impl Default for FadeMode {
 
 impl UiTag {
     pub fn post_process(mut self) -> Self {
-        if let UiTag::Menu(mut menu) = &self {
+        if let UiTag::Menu(menu) = &mut self {
             let children: Vec<UiTag> = menu.children.drain(..).collect();
             let mut area_stack: Vec<Vec<UiTag>> = vec![vec![]];
 
-            for mut child in children {
-                child.post_process();
+            for child in children {
+                let child = child.post_process();
                 if let UiTag::TextArea(mut area) = child {
                     let children = area_stack.pop().unwrap();
                     let opening_tag = area_stack.last_mut().map(|it| it.last_mut());

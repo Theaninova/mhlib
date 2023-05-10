@@ -1,4 +1,3 @@
-use crate::formats::sprites::{CropMode, RenderMode, Sprites};
 use godot::builtin::{GodotString, Rect2, StringName, ToVariant, Vector2};
 use godot::engine::utilities::printerr;
 use godot::engine::{
@@ -6,6 +5,7 @@ use godot::engine::{
 };
 use godot::obj::{Gd, Share};
 use godot::prelude::GodotClass;
+use springylib::media::sprites::{CropMode, RenderMode, Sprites};
 
 const FPS: f64 = 15.0;
 const SPRITE_EXTENSIONS: &[&str] = &["bmp", "rle"];

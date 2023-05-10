@@ -25,7 +25,7 @@ impl Display for Error {
             Error::InvalidData { info, context } => write!(
                 f,
                 "Invalid data: {}; {}",
-                info.unwrap_or("[no info]".to_string()),
+                info.clone().unwrap_or("[no info]".to_string()),
                 context
             ),
             Error::Custom(error) => write!(f, "{}", error),

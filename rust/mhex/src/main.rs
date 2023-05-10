@@ -1,5 +1,5 @@
 use glob::glob;
-use lightwave::LightWaveObject;
+use lightwave_3d::LightWaveObject;
 
 fn main() {
     let mut successful = 0;

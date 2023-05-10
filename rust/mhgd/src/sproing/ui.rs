@@ -1,4 +1,3 @@
-use crate::formats::ui_xml::{HorizontalAlign, UiTag};
 use godot::builtin::{Array, Dictionary, GodotString, ToVariant, Vector2};
 use godot::engine::control::LayoutPreset;
 use godot::engine::global::HorizontalAlignment;
@@ -6,6 +5,7 @@ use godot::engine::node::InternalMode;
 use godot::engine::{load, Button, Control, Label, LineEdit, Node, SpinBox, TextureRect};
 use godot::obj::{Gd, Inherits, Share};
 use itertools::Itertools;
+use springylib::media::ui::{HorizontalAlign, UiTag};
 
 const ACTION_META_NAME: &str = "action";
 
@@ -31,7 +31,7 @@ pub fn convert_ui(ui: UiTag, base_path: &str) -> Gd<Node> {
             let mut label = Label::new_alloc();
             label.set_anchors_preset(LayoutPreset::PRESET_TOP_WIDE, false);
             label.set_position(to_vec2(text.position), false);
-            label.set_horizontal_alignment(text.horizontal_align.into());
+            label.set_horizontal_alignment(to_h_alignment(text.horizontal_align));
             label.set_text(text.text.into());
             label.upcast()
         }
@@ -49,7 +49,7 @@ pub fn convert_ui(ui: UiTag, base_path: &str) -> Gd<Node> {
                 text_field.set_name(name.into());
             }
             text_field.set_text(field.text.into());
-            text_field.set_horizontal_alignment(field.horizontal_align.into());
+            text_field.set_horizontal_alignment(to_h_alignment(field.horizontal_align));
             text_field.set_position(to_vec2([field.area[0], field.area[1]]), false);
             text_field.set_size(to_vec2([field.area[2], field.area[3]]), false);
             text_field.set_meta("buffer_var".into(), field.buffer_var.to_variant());
@@ -76,7 +76,7 @@ pub fn convert_ui(ui: UiTag, base_path: &str) -> Gd<Node> {
             gd_button.set_anchors_preset(LayoutPreset::PRESET_TOP_WIDE, false);
             gd_button.set_flat(true);
             gd_button.set_position(to_vec2(button.position), false);
-            gd_button.set_text_alignment(button.horizontal_align.into());
+            gd_button.set_text_alignment(to_h_alignment(button.horizontal_align));
             if let Some(name) = button.name {
                 gd_button.set_name(GodotString::from(name));
             }
@@ -87,13 +87,11 @@ pub fn convert_ui(ui: UiTag, base_path: &str) -> Gd<Node> {
     }
 }
 
-impl Into<HorizontalAlignment> for HorizontalAlign {
-    fn into(self) -> HorizontalAlignment {
-        match self {
-            HorizontalAlign::Center => HorizontalAlignment::HORIZONTAL_ALIGNMENT_CENTER,
-            HorizontalAlign::Left => HorizontalAlignment::HORIZONTAL_ALIGNMENT_LEFT,
-            HorizontalAlign::Right => HorizontalAlignment::HORIZONTAL_ALIGNMENT_RIGHT,
-        }
+fn to_h_alignment(align: HorizontalAlign) -> HorizontalAlignment {
+    match align {
+        HorizontalAlign::Center => HorizontalAlignment::HORIZONTAL_ALIGNMENT_CENTER,
+        HorizontalAlign::Left => HorizontalAlignment::HORIZONTAL_ALIGNMENT_LEFT,
+        HorizontalAlign::Right => HorizontalAlignment::HORIZONTAL_ALIGNMENT_RIGHT,
     }
 }
 

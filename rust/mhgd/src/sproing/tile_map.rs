@@ -1,4 +1,3 @@
-use crate::formats::level::LevelLayer;
 use godot::engine::global::Error;
 use godot::engine::utilities::{clampi, printerr};
 use godot::engine::{load, PackedScene};
@@ -6,6 +5,7 @@ use godot::engine::{ImageTexture, TileSet};
 use godot::engine::{TileMap, TileSetAtlasSource};
 use godot::prelude::*;
 use godot::prelude::{Gd, PackedByteArray, Share, ToVariant};
+use springylib::media::level::LevelLayer;
 
 pub fn create_tile_map(layer: LevelLayer, level_id: u32) -> Gd<PackedScene> {
     let mut tile_set = TileSet::new();

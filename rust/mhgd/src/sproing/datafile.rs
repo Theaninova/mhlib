@@ -1,13 +1,8 @@
-use crate::formats;
-use crate::formats::datafile::{Datafile, FileEntry};
-use crate::formats::{load_data, DatafileFile};
-use crate::godot::font::load_bitmap_font;
-use crate::godot::game_object::parse_game_object;
-use crate::godot::image::{load_bmp_as_image_texture, load_rle_as_sprite_frames};
-use crate::godot::sprites::load_sprite_frames;
-use crate::godot::tile_map::{create_tile_map, TileCollision};
-use crate::godot::ui::convert_ui;
-use binrw::BinRead;
+use crate::sproing::game_object::parse_game_object;
+use crate::sproing::image::{load_bmp_as_image_texture, load_rle_as_sprite_frames};
+use crate::sproing::sprites::load_sprite_frames;
+use crate::sproing::tile_map::{create_tile_map, TileCollision};
+use crate::sproing::ui::convert_ui;
 use godot::engine::global::Error;
 use godot::engine::resource_loader::CacheMode;
 use godot::engine::resource_saver::SaverFlags;
@@ -18,7 +13,8 @@ use godot::engine::{ResourceFormatLoader, ResourceSaver};
 use godot::engine::{ResourceFormatLoaderVirtual, ResourceLoader};
 use godot::prelude::*;
 use itertools::Itertools;
-use std::collections::HashMap;
+use springylib::archive::Archive;
+use springylib::DatafileFile;
 use std::fs::File;
 use std::str::FromStr;
 
@@ -27,7 +23,7 @@ const DAT_PATH: &str = "E:\\Games\\Schatzjäger\\data\\datafile.dat";
 #[derive(GodotClass)]
 #[class(base=ResourceFormatLoader)]
 pub struct DatafileLoader {
-    pub datafile_table: HashMap<String, FileEntry>,
+    pub datafile_table: Archive,
 
     #[base]
     pub base: Base<ResourceFormatLoader>,
@@ -86,7 +82,7 @@ impl DatafileLoader {
 impl ResourceFormatLoaderVirtual for DatafileLoader {
     fn init(base: Base<Self::Base>) -> Self {
         let mut file = File::open(DAT_PATH).unwrap();
-        let datafile_table = Datafile::read(&mut file).unwrap().into_index();
+        let datafile_table = Archive::read(&mut file).unwrap();
 
         DatafileLoader {
             base,
@@ -151,7 +147,7 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
 
         if let Some(target) = self.datafile_table.get(datafile_path.as_str()) {
             let mut file = File::open(DAT_PATH).unwrap();
-            match load_data(target, &mut file) {
+            match target.load_from(&mut file) {
                 Ok(DatafileFile::Level(level)) => {
                     let level_id = datafile_path
                         .split_terminator('\\')
@@ -229,13 +225,14 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
                     };
 
                     if datafile_path.contains("\\fonts\\") {
-                        let font = load_bitmap_font(gd_image);
+                        panic!();
+                        /*let font = load_bitmap_font(gd_image);
 
                         self.save_to_cache(
                             font.share().upcast(),
                             format!("{}.tres", datafile_path),
                         );
-                        font.to_variant()
+                        font.to_variant()*/
                     } else {
                         let mut texture = ImageTexture::new();
                         texture.set_image(gd_image);
@@ -263,16 +260,22 @@ impl ResourceFormatLoaderVirtual for DatafileLoader {
                     );*/
                     tile_collision.to_variant()
                 }
-                Err(formats::Error::UnknownFormat(ext)) => {
+                Err(springylib::error::Error::UnknownFormat(ext)) => {
                     printerr(format!("Unknown format <{}>", ext).to_variant(), &[]);
                     Error::ERR_FILE_UNRECOGNIZED.to_variant()
                 }
-                Err(formats::Error::Deserialization) => {
-                    printerr("Failed to deserialize".to_variant(), &[]);
+                Err(springylib::error::Error::InvalidData { info, context }) => {
+                    printerr(
+                        "Failed to deserialize".to_variant(),
+                        &[
+                            info.unwrap_or("".to_string()).to_variant(),
+                            context.to_variant(),
+                        ],
+                    );
                     Error::ERR_FILE_CORRUPT.to_variant()
                 }
-                Err(formats::Error::Custom(message)) => {
-                    printerr(message.to_variant(), &[]);
+                Err(springylib::error::Error::Custom(message)) => {
+                    printerr(message.to_string().to_variant(), &[]);
                     Error::ERR_BUG.to_variant()
                 }
                 _ => {

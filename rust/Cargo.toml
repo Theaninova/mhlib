@@ -1,3 +1,3 @@
 [workspace]
 
-members = ["renderwarelib", "springylib", "starforcelib", "mhex", "lightwave"]
+members = ["renderwarelib", "springylib", "starforcelib", "mhex", "mhgd"]
