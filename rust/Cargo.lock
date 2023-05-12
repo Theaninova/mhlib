@@ -21,6 +21,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
+name = "bincode"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e103c8b299b28a9c6990458b7013dc4a8356a9b854c51b9883241f5866fac36e"
+dependencies = [
+ "byteorder",
+ "num-traits 0.1.43",
+ "serde",
+]
+
+[[package]]
 name = "binrw"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -143,6 +154,18 @@ name = "crunchy"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7a81dae078cea95a014a339291cec439d2f232ebe854a9d672b796c6afafa9b7"
+
+[[package]]
+name = "dds-rs"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4c293f2e4ae9760641b1b5faf1c05c63d2ff1755763f87853217c8774afa55a1"
+dependencies = [
+ "bincode",
+ "rgb",
+ "serde",
+ "serde_derive",
+]
 
 [[package]]
 name = "either"
@@ -355,7 +378,7 @@ dependencies = [
  "gif",
  "jpeg-decoder",
  "num-rational",
- "num-traits",
+ "num-traits 0.2.15",
  "png",
  "qoi",
  "tiff",
@@ -450,6 +473,7 @@ dependencies = [
 name = "mhgd"
 version = "0.1.0"
 dependencies = [
+ "dds-rs",
  "godot",
  "itertools",
  "lightwave-3d",
@@ -507,7 +531,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "225d3389fb3509a24c93f5c29eb6bde2586b98d9f016636dff58d7c6f7569cd9"
 dependencies = [
  "autocfg",
- "num-traits",
+ "num-traits 0.2.15",
 ]
 
 [[package]]
@@ -518,7 +542,16 @@ checksum = "0638a1c9d0a3c0914158145bc76cff373a75a627e6ecbfb71cbe6f453a5a19b0"
 dependencies = [
  "autocfg",
  "num-integer",
- "num-traits",
+ "num-traits 0.2.15",
+]
+
+[[package]]
+name = "num-traits"
+version = "0.1.43"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "92e5113e9fd4cc14ded8e499429f396a20f98c772a47cc8622a736e1ec843c31"
+dependencies = [
+ "num-traits 0.2.15",
 ]
 
 [[package]]
@@ -643,6 +676,15 @@ dependencies = [
 [[package]]
 name = "renderwarelib"
 version = "0.1.0"
+
+[[package]]
+name = "rgb"
+version = "0.8.36"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "20ec2d3e3fc7a92ced357df9cebd5a10b6fb2aa1ee797bf7e9ce2f17dffc8f59"
+dependencies = [
+ "bytemuck",
+]
 
 [[package]]
 name = "scopeguard"

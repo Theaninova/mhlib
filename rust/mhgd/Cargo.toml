@@ -11,5 +11,6 @@ crate-type = ["cdylib"]
 godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
 lightwave-3d = "1.0.0"
 itertools = "0.10.5"
+dds-rs = "0.7.0"
 starforcelib = { path = "../starforcelib" }
 springylib = { path = "../springylib" }

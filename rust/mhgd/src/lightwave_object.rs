@@ -3,13 +3,22 @@ use godot::builtin::{
     Dictionary, GodotString, PackedInt32Array, PackedVector2Array, PackedVector3Array,
     VariantArray, Vector2, Vector3,
 };
+use godot::engine::base_material_3d::TextureParam;
 use godot::engine::mesh::{ArrayFormat, ArrayType, PrimitiveType};
-use godot::engine::{ArrayMesh, SurfaceTool};
+use godot::engine::{load, ArrayMesh, Image, ImageTexture, StandardMaterial3D, SurfaceTool};
+use godot::log::godot_print;
 use godot::obj::{EngineEnum, Gd};
 use godot::prelude::{godot_warn, Array, GodotClass, Share, ToVariant};
 use lightwave_3d::iff::Chunk;
+use lightwave_3d::lwo2::sub_tags::blocks::image_texture::SurfaceBlockImageTextureSubChunk;
+use lightwave_3d::lwo2::sub_tags::blocks::{
+    SurfaceBlockHeaderSubChunk, SurfaceBlocks, TextureChannel,
+};
+use lightwave_3d::lwo2::sub_tags::surface_parameters::SurfaceParameterSubChunk;
+use lightwave_3d::lwo2::tags::image_clip::{ImageClip, ImageClipSubChunk};
 use lightwave_3d::lwo2::tags::point_list::PointList;
 use lightwave_3d::lwo2::tags::polygon_list::PolygonLists;
+use lightwave_3d::lwo2::tags::surface_definition::SurfaceDefinition;
 use lightwave_3d::lwo2::tags::Tag;
 use lightwave_3d::LightWaveObject;
 
@@ -27,7 +36,10 @@ impl Lwo {
 
 pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
     let mut mesh = ArrayMesh::new();
+
     let mut arrays: Option<VariantArray> = None;
+    let mut materials = vec![];
+    let mut images: Option<ImageClip> = None;
 
     let mut vert_count = 0;
 
@@ -46,26 +58,44 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
                 );
                 arrays = Some(ars);
             }
+            Tag::DiscontinuousVertexMapping(vmad) => match &vmad.kind {
+                b"TXUV" => {
+                    collect_uvs(
+                        vmad.data.mappings.into_iter().map(|it| {
+                            (
+                                it.vert as usize,
+                                Vector2 {
+                                    x: it.values[0],
+                                    y: it.values[1],
+                                },
+                            )
+                        }),
+                        vert_count,
+                        arrays.as_mut().unwrap(),
+                    );
+                }
+                x => godot_warn!(
+                    "Discontinuous Vertex Mapping: {}",
+                    String::from_utf8(x.to_vec()).unwrap()
+                ),
+            },
             Tag::VertexMapping(vmap) => match &vmap.kind {
                 b"TXUV" => {
-                    if let Some(arrays) = &mut arrays {
-                        let mut arr = PackedVector2Array::new();
-                        arr.resize(vert_count);
-
-                        for uv in vmap.data.mapping {
-                            arr.set(
-                                uv.vert as usize,
+                    /*collect_uvs(
+                        vmap.data.mapping.into_iter().map(|it| {
+                            (
+                                it.vert as usize,
                                 Vector2 {
-                                    x: uv.value[0],
-                                    y: uv.value[1],
+                                    x: it.value[0],
+                                    y: it.value[1],
                                 },
-                            );
-                        }
-
-                        arrays.set(ArrayType::ARRAY_TEX_UV.ord() as usize, arr.to_variant());
-                    }
+                            )
+                        }),
+                        vert_count,
+                        arrays.as_mut().unwrap(),
+                    );*/
                 }
-                x => godot_warn!("{}", String::from_utf8(x.to_vec()).unwrap()),
+                x => godot_warn!("Vertex Mapping: {}", String::from_utf8(x.to_vec()).unwrap()),
             },
             Tag::PolygonList(polygons) => match &polygons.kind {
                 b"FACE" => {
@@ -76,18 +106,32 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
                 }
                 x => godot_warn!("{}", String::from_utf8(x.to_vec()).unwrap()),
             },
-            _ => (),
+            Tag::ImageClip(clip) => {
+                images = Some(clip.data);
+            }
+            Tag::SurfaceDefinition(surf) => {
+                let mat = collect_material(surf.data, images.unwrap());
+                images = None;
+                materials.push(mat);
+            }
+            x => {
+                godot_warn!("Invalid chunk {:?}", x);
+            }
         }
     }
 
     try_commit(&mut mesh, &arrays);
     let mut out_mesh = ArrayMesh::new();
+    let mut mats = materials.into_iter();
     for i in 0..mesh.get_surface_count() {
         let mut tool = SurfaceTool::new();
         tool.create_from(mesh.share().upcast(), i);
         tool.generate_normals(false);
         tool.generate_tangents();
         try_commit(&mut out_mesh, &Some(tool.commit_to_arrays()));
+        if let Some(mat) = mats.next() {
+            out_mesh.surface_set_material(i, mat.upcast())
+        }
     }
     out_mesh
 }
@@ -104,6 +148,27 @@ fn try_commit(mesh: &mut ArrayMesh, arrays: &Option<VariantArray>) {
     }
 }
 
+fn collect_uvs<I: Iterator<Item = (usize, Vector2)>>(
+    mapping: I,
+    vert_count: usize,
+    arrays: &mut VariantArray,
+) {
+    let mut arr = arrays
+        .get(ArrayType::ARRAY_TEX_UV.ord() as usize)
+        .try_to::<PackedVector2Array>()
+        .unwrap_or_else(|_| {
+            let mut new_uvs = PackedVector2Array::new();
+            new_uvs.resize(vert_count);
+            new_uvs
+        });
+
+    for (index, uv) in mapping {
+        arr.set(index, uv);
+    }
+
+    arrays.set(ArrayType::ARRAY_TEX_UV.ord() as usize, arr.to_variant());
+}
+
 fn collect_points(chunk: Chunk<PointList>) -> PackedVector3Array {
     PackedVector3Array::from(
         chunk
@@ -114,6 +179,79 @@ fn collect_points(chunk: Chunk<PointList>) -> PackedVector3Array {
             .collect::<Vec<Vector3>>()
             .as_slice(),
     )
+}
+
+fn collect_material(surface: SurfaceDefinition, clip: ImageClip) -> Gd<StandardMaterial3D> {
+    let mut material = StandardMaterial3D::new();
+    material.set_name(surface.name.to_string().into());
+
+    let mut i: Option<Gd<Image>> = None;
+    for img in clip.attributes {
+        match img {
+            ImageClipSubChunk::StillImage(still) => {
+                let path = format!(
+                    "sar://{}",
+                    still.name.to_string().replace('\\', "/").replace(':', ":/")
+                );
+                godot_print!("Loading {}", &path);
+                i = Some(load(path));
+            }
+            x => {
+                godot_warn!("Invalid clip chunk {:?}", x)
+            }
+        }
+    }
+
+    for attr in surface.attributes {
+        match attr {
+            SurfaceParameterSubChunk::Blocks(blocks) => {
+                if let SurfaceBlocks::ImageMapTexture { header, attributes } = blocks.data {
+                    let mut texture = ImageTexture::new();
+                    let mut chan = TextureParam::TEXTURE_ALBEDO;
+                    for attr in header.data.block_attributes {
+                        match attr {
+                            SurfaceBlockHeaderSubChunk::Channel(c) => {
+                                chan = match c.data.texture_channel {
+                                    TextureChannel::Color => TextureParam::TEXTURE_ALBEDO,
+                                    TextureChannel::Diffuse => TextureParam::TEXTURE_ALBEDO,
+                                    TextureChannel::Bump => TextureParam::TEXTURE_HEIGHTMAP,
+                                    TextureChannel::RefractiveIndex => {
+                                        TextureParam::TEXTURE_REFRACTION
+                                    }
+                                    TextureChannel::Specular => TextureParam::TEXTURE_METALLIC,
+                                    TextureChannel::Glossy => TextureParam::TEXTURE_ROUGHNESS,
+                                    x => {
+                                        godot_warn!("Invalid channel {:?}", x);
+                                        TextureParam::TEXTURE_ORM
+                                    }
+                                }
+                            }
+                            x => {
+                                godot_warn!("Invalid surface header chunk {:?}", x)
+                            }
+                        }
+                    }
+                    for attr in attributes {
+                        match attr {
+                            SurfaceBlockImageTextureSubChunk::ImageMap(r) => {
+                                texture.set_image(i.unwrap());
+                                i = None;
+                            }
+                            x => {
+                                godot_warn!("Invalid image texture chunk {:?}", x)
+                            }
+                        }
+                    }
+                    material.set_texture(chan, texture.upcast());
+                }
+            }
+            x => {
+                godot_warn!("Invalid Surface Chunk {:?}", x)
+            }
+        }
+    }
+
+    material
 }
 
 fn collect_polygons(chunk: Chunk<PolygonLists>) -> PackedInt32Array {
