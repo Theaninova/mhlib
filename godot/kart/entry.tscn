@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://4n26dt3e4pv3"]
+
+[ext_resource type="Shader" path="res://kart/flag.gdshader" id="1_lbvg8"]
+[ext_resource type="FontFile" uid="uid://b50bdb32aerbb" path="res://remakes/font/LondrinaSolid-Regular.otf" id="2_fj37l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6o8u"]
+shader = ExtResource("1_lbvg8")
+shader_parameter/rotation = 2.2
+shader_parameter/size = 160.0
+shader_parameter/time_scale = 0.125
+shader_parameter/wave_amount = 0.6
+shader_parameter/wave_scale = 0.2
+shader_parameter/color1 = Color(0.12549, 0.12549, 0.12549, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_ugqrn"]
+
+[node name="Control" type="PanelContainer"]
+material = SubResource("ShaderMaterial_y6o8u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ugqrn")
+
+[node name="Logo" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Logo"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_right = 151.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.996078, 0.92549, 0.14902, 1)
+theme_override_colors/font_outline_color = Color(0.776471, 0.215686, 0.14902, 1)
+theme_override_constants/outline_size = 23
+theme_override_fonts/font = ExtResource("2_fj37l")
+theme_override_font_sizes/font_size = 60
+text = "Moorhuhn"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label2" type="Label" parent="Logo/Label"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 302.0
+offset_bottom = 162.0
+theme_override_colors/font_color = Color(0.894118, 0.133333, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/line_spacing = -140
+theme_override_fonts/font = ExtResource("2_fj37l")
+theme_override_font_sizes/font_size = 97
+text = "»KART«"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Logo/Label"]
+layout_mode = 2
+offset_left = 174.0
+offset_top = 156.0
+offset_right = 337.0
+offset_bottom = 214.0
+rotation = -0.338594
+theme_override_colors/font_color = Color(0.913725, 0.945098, 0.952941, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("2_fj37l")
+theme_override_font_sizes/font_size = 48
+text = "ULTIMATE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"

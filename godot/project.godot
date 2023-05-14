@@ -19,12 +19,6 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 
-[display]
-
-window/size/viewport_width=512
-window/size/viewport_height=256
-window/size/borderless=true
-
 [input]
 
 "Move Up"={
