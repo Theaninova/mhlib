@@ -8,7 +8,9 @@ use binrw::BinRead;
 use binrw::BinResult;
 use binrw::Endian;
 use std::fmt::Debug;
+use std::fs::File;
 use std::io::{Read, Seek};
+use std::path::Path;
 
 pub(crate) mod chunk;
 pub(crate) mod internal;
@@ -55,6 +57,13 @@ pub struct PowerRenderMaterial {
     pub two_sided: bool,
     pub frag_shader: Option<String>,
     pub vert_shader: Option<String>,
+}
+
+impl PowerRenderObject {
+    pub fn from_file<P: AsRef<Path>>(path: P) -> BinResult<Self> {
+        let mut file = File::open(path).map_err(binrw::Error::Io)?;
+        Self::read(&mut file)
+    }
 }
 
 impl ReadEndian for PowerRenderObject {

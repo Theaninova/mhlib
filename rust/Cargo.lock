@@ -492,6 +492,7 @@ dependencies = [
  "godot",
  "itertools",
  "lightwave-3d",
+ "powerrender-3d",
  "springylib",
  "starforcelib",
 ]

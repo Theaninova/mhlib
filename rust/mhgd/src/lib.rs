@@ -7,6 +7,7 @@ use ::godot::prelude::{ExtensionLibrary, Gd, InitHandle, InitLevel, Share};
 
 pub mod data_installer;
 pub mod lightwave_object;
+pub mod pr3d;
 pub mod sproing;
 pub mod starforce;
 

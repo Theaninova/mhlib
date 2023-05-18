@@ -51,9 +51,9 @@ impl PrVertices {
                     *index
                 } else {
                     surface.vertices.push([
-                        f32::from_ne_bytes(point.pos[0].to_ne_bytes()),
-                        f32::from_ne_bytes(point.pos[1].to_ne_bytes()),
                         f32::from_ne_bytes(point.pos[2].to_ne_bytes()),
+                        f32::from_ne_bytes(point.pos[1].to_ne_bytes()),
+                        f32::from_ne_bytes(point.pos[0].to_ne_bytes()),
                     ]);
                     surface.normals.push([
                         point.normal[0] as f32 / 1024.0,
