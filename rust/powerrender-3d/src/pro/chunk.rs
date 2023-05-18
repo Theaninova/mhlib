@@ -1,4 +1,4 @@
-use binrw::io::{TakeSeek, TakeSeekExt};
+use binrw::io::TakeSeekExt;
 use binrw::meta::{EndianKind, ReadEndian};
 use binrw::{until_eof, BinRead, BinReaderExt, BinResult, Endian};
 use std::io::{Read, Seek, SeekFrom};

@@ -16,7 +16,7 @@ Support of games primarily depends on who developed them - Games with structural
 * `.wtn` "Witan Entertainment Engine"
 	* [ ] Moorhuhn
 	* [ ] Moorhuhn 2
-* `.dat` Torque3D Engine
+* `.dat` Power Render 3D Engine
 	* [ ] Moorhuhn Kart
 	* [ ] Moorhuhn Kart Extra
 * `data/datafile.dat` "Sproing Interactive Engine"
