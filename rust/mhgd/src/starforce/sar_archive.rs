@@ -1,4 +1,4 @@
-use crate::lightwave_object::lightwave_to_gd;
+use crate::lwo::object::lightwave_to_gd;
 use dds::{Compression, PixelFormat, DDS};
 use godot::bind::{godot_api, GodotClass};
 use godot::builtin::{GodotString, PackedByteArray, StringName, ToVariant, Variant};
