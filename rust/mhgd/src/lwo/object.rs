@@ -1,12 +1,12 @@
+use crate::lwo::clips::collect_clip;
 use crate::lwo::mapping::{collect_discontinuous_mappings, collect_mappings};
 use crate::lwo::material::collect_material;
 use crate::lwo::surface::try_commit;
 use godot::builtin::{Array, Dictionary, Vector2, Vector3};
 use godot::engine::mesh::{ArrayFormat, PrimitiveType};
-use godot::engine::{ArrayMesh, SurfaceTool};
+use godot::engine::{ArrayMesh, Image, SurfaceTool};
 use godot::log::{godot_error, godot_warn};
 use godot::obj::{Gd, Share};
-use lightwave_3d::lwo2::tags::image_clip::ImageClip;
 use lightwave_3d::lwo2::tags::polygon_list::PolygonList;
 use lightwave_3d::lwo2::tags::Tag;
 use lightwave_3d::LightWaveObject;
@@ -16,12 +16,15 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
     let mut mesh = ArrayMesh::new();
 
     let mut materials = vec![];
-    let mut images: Option<ImageClip> = None;
+    let mut images = HashMap::<u32, Gd<Image>>::new();
 
     let mut points = Vec::<Vector3>::new();
     let mut uv_mappings = HashMap::<i32, HashMap<i32, Vector2>>::new();
     let mut weight_mappings = HashMap::<i32, HashMap<i32, f32>>::new();
     let mut polygons = Vec::<PolygonList>::new();
+    let mut surfaces = HashMap::<i32, u16>::new();
+
+    let mut surface_materials = Vec::<u16>::new();
 
     for tag in lightwave.data {
         match tag {
@@ -32,6 +35,8 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
                     &mut uv_mappings,
                     &mut weight_mappings,
                     &mut polygons,
+                    &mut surfaces,
+                    &mut surface_materials,
                 );
             }
             Tag::PointList(points_chunk) => {
@@ -76,14 +81,8 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
                     todo!();
                 },*/
                 b"SURF" => {
-                    let surfaces = ptag
-                        .data
-                        .mappings
-                        .iter()
-                        .map(|map| map.tag)
-                        .collect::<HashSet<u16>>();
-                    if surfaces.len() > 1 {
-                        godot_error!("Too many surfaces: {:?}", surfaces)
+                    for surf in ptag.data.mappings {
+                        surfaces.insert(surf.poly as i32, surf.tag);
                     }
                 }
                 x => godot_warn!(
@@ -97,17 +96,10 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
                 }
                 x => godot_warn!("{}", String::from_utf8(x.to_vec()).unwrap()),
             },
-            Tag::ImageClip(clip) => {
-                images = Some(clip.data);
-            }
+            Tag::ImageClip(clip) => collect_clip(&mut images, clip.data),
             Tag::SurfaceDefinition(surf) => {
-                if let Some(img) = images {
-                    let mat = collect_material(surf.data, img);
-                    images = None;
-                    materials.push(mat);
-                } else {
-                    godot_error!("Missing images for surface {}", surf.name)
-                }
+                let mat = collect_material(surf.data, &images);
+                materials.push(mat);
             }
             Tag::BoundingBox(_) => (),
             x => {
@@ -122,9 +114,10 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
         &mut uv_mappings,
         &mut weight_mappings,
         &mut polygons,
+        &mut surfaces,
+        &mut surface_materials,
     );
     let mut out_mesh = ArrayMesh::new();
-    let mut mats = materials.into_iter();
     for i in 0..mesh.get_surface_count() {
         let mut tool = SurfaceTool::new();
 
@@ -140,8 +133,8 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<ArrayMesh> {
             ArrayFormat::ARRAY_FORMAT_NORMAL,
         );
 
-        if let Some(mat) = mats.next() {
-            out_mesh.surface_set_material(i, mat.upcast())
+        if let Some(mat) = materials.get(surfaces[&(i as i32)] as usize) {
+            out_mesh.surface_set_material(i, mat.share().upcast())
         }
     }
     out_mesh

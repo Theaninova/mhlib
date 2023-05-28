@@ -5,6 +5,7 @@ use godot::engine::ArrayMesh;
 use godot::obj::Gd;
 use lightwave_3d::LightWaveObject;
 
+pub(crate) mod clips;
 pub(crate) mod mapping;
 pub(crate) mod material;
 pub(crate) mod object;

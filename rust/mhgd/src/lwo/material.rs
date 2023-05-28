@@ -1,36 +1,25 @@
 use godot::builtin::Color;
-use godot::engine::base_material_3d::TextureParam;
-use godot::engine::{load, Image, ImageTexture, StandardMaterial3D};
-use godot::log::{godot_error, godot_print, godot_warn};
-use godot::obj::Gd;
-use lightwave_3d::lwo2::sub_tags::blocks::image_texture::SurfaceBlockImageTextureSubChunk;
+use godot::engine::base_material_3d::{DiffuseMode, TextureParam};
+use godot::engine::{Image, ImageTexture, StandardMaterial3D};
+use godot::log::{godot_error, godot_warn};
+use godot::obj::{Gd, Share};
+use lightwave_3d::lwo2::sub_tags::blocks::image_texture::{
+    ProjectionMode, SurfaceBlockImageTextureSubChunk,
+};
 use lightwave_3d::lwo2::sub_tags::blocks::{
     SurfaceBlockHeaderSubChunk, SurfaceBlocks, TextureChannel,
 };
 use lightwave_3d::lwo2::sub_tags::surface_parameters::SurfaceParameterSubChunk;
-use lightwave_3d::lwo2::tags::image_clip::{ImageClip, ImageClipSubChunk};
 use lightwave_3d::lwo2::tags::surface_definition::SurfaceDefinition;
+use std::collections::HashMap;
 
-pub fn collect_material(surface: SurfaceDefinition, clip: ImageClip) -> Gd<StandardMaterial3D> {
+pub fn collect_material(
+    surface: SurfaceDefinition,
+    images: &HashMap<u32, Gd<Image>>,
+) -> Gd<StandardMaterial3D> {
     let mut material = StandardMaterial3D::new();
     material.set_name(surface.name.to_string().into());
-
-    let mut i: Option<Gd<Image>> = None;
-    for img in clip.attributes {
-        match img {
-            ImageClipSubChunk::StillImage(still) => {
-                let path = format!(
-                    "sar://{}",
-                    still.name.to_string().replace('\\', "/").replace(':', ":/")
-                );
-                godot_print!("Loading {}", &path);
-                i = Some(load(path));
-            }
-            x => {
-                godot_warn!("Invalid clip chunk {:?}", x)
-            }
-        }
-    }
+    material.set_diffuse_mode(DiffuseMode::DIFFUSE_TOON);
 
     for attr in surface.attributes {
         match attr {
@@ -64,15 +53,28 @@ pub fn collect_material(surface: SurfaceDefinition, clip: ImageClip) -> Gd<Stand
                     for attr in attributes {
                         match attr {
                             SurfaceBlockImageTextureSubChunk::ImageMap(r) => {
-                                if let Some(i) = i {
-                                    texture.set_image(i);
+                                if let Some(i) = images.get(&r.texture_image) {
+                                    texture.set_image(i.share());
                                 } else {
                                     godot_error!("Missing texture {:?}", r);
                                 }
-                                i = None;
+                            }
+                            SurfaceBlockImageTextureSubChunk::ProjectionMode(projection) => {
+                                match projection.data {
+                                    ProjectionMode::UV => {}
+                                    _ => {
+                                        godot_error!("TODO: Projection mode {:?}", projection)
+                                    }
+                                }
+                            }
+                            SurfaceBlockImageTextureSubChunk::UvVertexMap(map) => {
+                                godot_error!(
+                                    "TODO: UV maps (this one is using '{}')",
+                                    map.txuv_map_name
+                                )
                             }
                             x => {
-                                godot_warn!("Invalid image texture chunk {:?}", x)
+                                godot_error!("TODO: Image texture chunk {:?}", x)
                             }
                         }
                     }
@@ -85,17 +87,23 @@ pub fn collect_material(surface: SurfaceDefinition, clip: ImageClip) -> Gd<Stand
                 b: base_color.base_color[2],
                 a: 1.0,
             }),
-            SurfaceParameterSubChunk::BaseShadingValueSpecular(base_specular) => {
-                material.set_specular(base_specular.value as f64);
-                if base_specular.envelope != 0 {
+            SurfaceParameterSubChunk::BaseShadingValueDiffuse(base_diffuse) => {
+                if base_diffuse.envelope != 0 || base_diffuse.value != 1.0 {
                     godot_error!(
-                        "Not implemented: Specular envelope {}",
-                        base_specular.envelope
+                        "TODO: Diffuse {{envelope: {}, value: {}}}",
+                        base_diffuse.envelope,
+                        base_diffuse.value
                     );
                 }
             }
+            SurfaceParameterSubChunk::BaseShadingValueSpecular(base_specular) => {
+                material.set_specular(base_specular.value as f64);
+                if base_specular.envelope != 0 {
+                    godot_error!("TODO: Specular envelope {}", base_specular.envelope);
+                }
+            }
             x => {
-                godot_error!("Invalid Surface Chunk {:?}", x)
+                godot_error!("TODO: Surface Chunk {:?}", x)
             }
         }
     }
