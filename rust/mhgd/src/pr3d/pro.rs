@@ -27,7 +27,7 @@ pub fn pro_to_gd(pro: PowerRenderObject) -> Gd<PackedScene> {
             let pr_tex = &pro.textures[m.texture_index];
 
             let mut image_file =
-                File::open(format!("E:\\Games\\Moorhuhn Kart\\data\\{}", pr_tex.name)).unwrap();
+                File::open(format!("../games/Moorhuhn Kart/data/{}", pr_tex.name)).unwrap();
             let mut image = Image::new();
             let mut buffer = vec![];
             image_file.read_to_end(&mut buffer).unwrap();

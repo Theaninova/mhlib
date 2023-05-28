@@ -18,7 +18,7 @@ use springylib::DatafileFile;
 use std::fs::File;
 use std::str::FromStr;
 
-const DAT_PATH: &str = "E:\\Games\\Schatzjäger\\data\\datafile.dat";
+const DAT_PATH: &str = "../games/Schatzjäger/data/datafile.dat";
 
 #[derive(GodotClass)]
 #[class(base=ResourceFormatLoader)]

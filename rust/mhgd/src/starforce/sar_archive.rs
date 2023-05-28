@@ -11,7 +11,7 @@ use starforcelib::sarc::SarcArchive;
 use std::fs::File;
 use std::io::Cursor;
 
-const SAR_PATH: &str = r#"E:\Games\mhall\Moorhuhn Kart 3\data.sar"#;
+const SAR_PATH: &str = r#"../games/Moorhuhn Kart 3/data.sar"#;
 
 #[derive(GodotClass)]
 #[class(base=ResourceFormatLoader)]
@@ -61,7 +61,7 @@ impl ResourceFormatLoaderVirtual for SarLoader {
                 let obj = LightWaveObject::read(&mut Cursor::new(data)).unwrap();
                 lightwave_to_gd(obj).to_variant()
             }
-            Some((_, "bmp")) => {
+            Some((_, "bmp" | "dds")) => {
                 let mut f = File::open(SAR_PATH).unwrap();
 
                 let mut image = Image::new();

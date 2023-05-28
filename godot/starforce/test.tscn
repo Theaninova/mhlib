@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://kyw4wuusc33g"]
 
-[ext_resource type="ArrayMesh" path="sar://D:/Moorhuhnkart/3dobjects_cars/affe.lwo" id="2_ab234"]
+[ext_resource type="ArrayMesh" path="sar://D:/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo" id="2_ab234"]
 
 [node name="test" type="Node3D"]
 
