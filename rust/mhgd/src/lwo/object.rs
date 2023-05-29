@@ -4,7 +4,7 @@ use crate::lwo::mapping::{collect_discontinuous_mappings, collect_mappings};
 use crate::lwo::material::MaterialUvInfo;
 use godot::builtin::{Vector2, Vector3};
 use godot::engine::node::InternalMode;
-use godot::engine::{Image, MeshInstance3D, Node3D, PackedScene};
+use godot::engine::{MeshInstance3D, Node3D, PackedScene, Texture2D};
 use godot::log::{godot_error, godot_print, godot_warn};
 use godot::obj::{Gd, Share};
 use itertools::Itertools;
@@ -13,8 +13,8 @@ use lightwave_3d::LightWaveObject;
 use std::collections::HashMap;
 
 pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
-    let mut surfaces = HashMap::<u16, MaterialUvInfo>::new();
-    let mut images = HashMap::<u32, Gd<Image>>::new();
+    let mut materials = HashMap::<u16, MaterialUvInfo>::new();
+    let mut textures = HashMap::<u32, Gd<Texture2D>>::new();
     let mut layers = vec![];
     let mut tag_strings = vec![];
 
@@ -26,7 +26,11 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
             }
             Tag::Layer(layer_tag) => {
                 layers.push(IntermediateLayer {
-                    name: layer_tag.name.clone(),
+                    name: if layer_tag.name.is_empty() {
+                        format!("layer_{}", layer_tag.number)
+                    } else {
+                        layer_tag.name.clone()
+                    },
                     parent: layer_tag.parent,
                     id: layer_tag.number,
                     pivot: Vector3 {
@@ -132,7 +136,7 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
                 }
                 x => godot_warn!("{}", String::from_utf8(x.to_vec()).unwrap()),
             },
-            Tag::ImageClip(clip) => collect_clip(&mut images, clip.data),
+            Tag::ImageClip(clip) => collect_clip(&mut textures, clip.data),
             Tag::SurfaceDefinition(surf) => {
                 let surf_name = surf.name.clone();
                 let (tag_index, _) = tag_strings
@@ -141,9 +145,9 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
                     .expect("Invalid File");
                 godot_print!("'{}': {}", surf_name, tag_index);
 
-                surfaces.insert(
+                materials.insert(
                     tag_index as u16,
-                    MaterialUvInfo::collect(surf.data, &images, tag_index as u16),
+                    MaterialUvInfo::collect(surf.data, &textures, tag_index as u16),
                 );
             }
             Tag::BoundingBox(_) => (),
@@ -171,7 +175,7 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
     for layer in layers {
         let mut instance = MeshInstance3D::new_alloc();
         instance.set_name(layer.name.clone().into());
-        instance.set_mesh(layer.commit(&surfaces).upcast());
+        instance.set_mesh(layer.commit(&materials).upcast());
 
         root_node.add_child(
             instance.share().upcast(),

@@ -1,5 +1,5 @@
 use godot::builtin::{Basis, Color, EulerOrder, ToVariant, Transform3D, Variant, Vector3};
-use godot::engine::{load, Image, ImageTexture, ShaderMaterial};
+use godot::engine::{load, PlaceholderTexture2D, ShaderMaterial, Texture2D};
 use godot::log::{godot_error, godot_print};
 use godot::obj::{Gd, Share};
 use lightwave_3d::lwo2::sub_tags::blocks::image_texture::{
@@ -24,7 +24,11 @@ pub struct MaterialUvInfo {
 }
 
 impl MaterialUvInfo {
-    pub fn collect(surface: SurfaceDefinition, images: &HashMap<u32, Gd<Image>>, id: u16) -> Self {
+    pub fn collect(
+        surface: SurfaceDefinition,
+        textures: &HashMap<u32, Gd<Texture2D>>,
+        id: u16,
+    ) -> Self {
         let mut m = MaterialUvInfo {
             diffuse_channel: None,
             color_channel: None,
@@ -39,7 +43,7 @@ impl MaterialUvInfo {
             match attr {
                 SurfaceParameterSubChunk::Blocks(blocks) => {
                     if let SurfaceBlocks::ImageMapTexture { header, attributes } = blocks.data {
-                        let mut texture = ImageTexture::new();
+                        let mut texture: Gd<Texture2D> = PlaceholderTexture2D::new().upcast();
                         let mut chan = TextureChannel::Color;
                         let mut uv_channel = None;
                         let mut major_axis = 0;
@@ -67,9 +71,12 @@ impl MaterialUvInfo {
                         for attr in attributes {
                             match attr {
                                 SurfaceBlockImageTextureSubChunk::ImageMap(r) => {
-                                    if let Some(i) = images.get(&r.texture_image) {
-                                        godot_print!("{}", i.get_name());
-                                        texture.set_image(i.share());
+                                    if let Some(tex) = textures.get(&r.texture_image) {
+                                        godot_print!("{}", tex.get_name());
+                                        debug_assert!(texture
+                                            .try_cast::<PlaceholderTexture2D>()
+                                            .is_some());
+                                        texture = tex.share()
                                     } else {
                                         godot_error!("Missing texture {:?}", r);
                                     }

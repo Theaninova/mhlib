@@ -3,6 +3,7 @@ use crate::lwo::surface_info::SurfaceInfo;
 use godot::builtin::{Array, Dictionary, Vector2, Vector3};
 use godot::engine::mesh::{ArrayFormat, PrimitiveType};
 use godot::engine::{ArrayMesh, SurfaceTool};
+use godot::log::godot_print;
 use godot::obj::{Gd, Share};
 use itertools::Itertools;
 use lightwave_3d::lwo2::tags::polygon_list::PolygonList;
@@ -24,16 +25,13 @@ pub struct IntermediateLayer {
 }
 
 impl IntermediateLayer {
-    pub fn commit(mut self, materials: &HashMap<u16, MaterialUvInfo>) -> Gd<ArrayMesh> {
+    pub fn commit(self, materials: &HashMap<u16, MaterialUvInfo>) -> Gd<ArrayMesh> {
         let mut mesh = ArrayMesh::new();
         mesh.set_name(self.name.clone().into());
         let mut surface_material_ids = Vec::<u16>::new();
 
-        self.uv_mappings.sort_by(|a, b| a.0.cmp(&b.0));
-
         for material_id in self.material_mappings.values().unique() {
-            let material = &materials[material_id];
-            let surface_info = SurfaceInfo::collect_from_layer(&self, material);
+            let surface_info = SurfaceInfo::collect_from_layer(&self, &materials[material_id]);
 
             if !surface_info.is_empty() {
                 mesh.add_surface_from_arrays(
@@ -46,6 +44,16 @@ impl IntermediateLayer {
                 surface_material_ids.push(*material_id);
             }
         }
+
+        godot_print!(
+            "{}: {:?}",
+            &self.name,
+            surface_material_ids
+                .iter()
+                .unique()
+                .map(|id| { (*id, materials[id].material.get_name().to_string()) })
+                .collect_vec()
+        );
 
         let mut final_mesh = post_process_mesh(
             mesh,

@@ -7,7 +7,7 @@ use binrw::{binread, parser, until_exclusive, BinResult, NullString};
 pub struct Container {
     #[br(temp, args(string_size))]
     pub header: FileEntry,
-    #[br(parse_with = until_end, args_raw(string_size))]
+    #[br(parse_with = until_end, args_raw((string_size,)))]
     pub entries: Vec<FileEntry>,
 }
 

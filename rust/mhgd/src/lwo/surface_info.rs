@@ -68,46 +68,42 @@ impl SurfaceInfo {
         );
 
         #[cfg(debug_assertions)]
-        for (i, inc) in self.material_incomplete.into_iter().enumerate() {
-            if inc != 0 {
-                godot_error!(
-                    "{} ({}%) incomplete UVs",
-                    inc,
-                    (inc as f32 / self.vertices.len() as f32) * 100.0
-                );
-            }
+        for inc in self.material_incomplete.into_iter().filter(|it| it != &0) {
+            let percentage = (inc as f32 / self.vertices.len() as f32) * 100.0;
+            godot_error!("{} ({}%) incomplete UVs", inc, percentage);
         }
 
         arrays
     }
 
     pub fn collect_from_layer(layer: &IntermediateLayer, material: &MaterialUvInfo) -> Self {
-        let material_uv_names = [
+        let uv_names = [
             material.diffuse_channel.as_ref(),
             material.color_channel.as_ref(),
         ];
 
-        let materials_subset = material_uv_names
+        let uv_subset = uv_names
             .iter()
             .map(|it| it.and_then(|it| layer.uv_mappings.iter().find(|(name, _)| name == it)))
             .collect_vec();
 
         let mut surface_info = SurfaceInfo {
-            uv_sets: materials_subset
+            uv_sets: uv_subset
                 .iter()
                 .map(|it| it.map(|_| PackedVector2Array::new()))
                 .collect(),
-            material_incomplete: material_uv_names.iter().map(|_| 0).collect_vec(),
+            material_incomplete: uv_names.iter().map(|_| 0).collect_vec(),
             ..SurfaceInfo::default()
         };
 
-        let mut surface_polygons = layer.polygons.iter().enumerate().filter(|(id, _)| {
-            layer.material_mappings.get(&(*id as i32)).unwrap_or(&0) == &material.id
-        });
+        let surface_polygons =
+            layer.polygons.iter().enumerate().filter(|(id, _)| {
+                layer.material_mappings.get(&(*id as i32)).unwrap() == &material.id
+            });
 
         for (id, poly) in surface_polygons {
             for index in triangulate(&poly.vert) {
-                let uv = materials_subset
+                let uv = uv_subset
                     .iter()
                     .map(|it| it.and_then(|(_, it)| find_mapping(it, id, index)))
                     .collect_vec();

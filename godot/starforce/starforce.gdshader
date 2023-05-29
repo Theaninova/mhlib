@@ -92,7 +92,7 @@ void fragment() {
 	);
 }
 
-void light() {
+/*void light() {
 	DIFFUSE_LIGHT =project(
 		tex_diffuse,
 		tex_diffuse_projection,
@@ -102,4 +102,4 @@ void light() {
 		tex_diffuse_projection_world_coords,
 		UV
 	);
-}
+}*/
