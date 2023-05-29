@@ -5,9 +5,23 @@ resource_name = "load"
 script/source = "@tool
 extends Node3D
 
+@export var load_list = [
+	\"anlagen\",
+	\"boden\",
+	\"bok\",
+	\"fensterscheiben\",
+	\"gelaender\",
+	\"kraftfelder\",
+	\"rundgang\",
+	\"stampfer\",
+	\"timetunnel\",
+	\"waende\",
+]
+
 func _ready():
-	var scene = load(\"sar://D:/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo\").instantiate()
-	add_child(scene)
+	for item in load_list:
+		var scene = load(\"sar://D:/Moorhuhnkart/3dobjects_tracks/track07_ufo/%s.lwo\" % item).instantiate()
+		add_child(scene)
 "
 
 [node name="test" type="Node3D"]

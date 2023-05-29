@@ -34,12 +34,12 @@ pub fn collect_clip(target: &mut HashMap<u32, Gd<Texture2D>>, clip: ImageClip) {
             if sequence.data.flags & 0x1 != 1 {
                 godot_error!("Non-looping animated textures are not supported!")
             }
-            let mut frame_duration = 15.0 / 60.0;
+            let mut frame_duration = 1.0 / 15.0;
 
             for meta in attributes {
                 match meta {
                     ImageClipSubChunk::Time(time) => {
-                        frame_duration = time.frame_rate as f64 / 60.0;
+                        frame_duration = 1.0 / time.frame_rate as f64;
                     }
                     x => godot_error!("TODO: {:?}", x),
                 }

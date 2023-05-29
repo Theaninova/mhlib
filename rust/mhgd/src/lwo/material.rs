@@ -163,6 +163,7 @@ impl MaterialUvInfo {
                                                 .scaled(size),
                                             origin: pos,
                                         }
+                                        .affine_inverse()
                                         .to_variant(),
                                     ));
                                 }

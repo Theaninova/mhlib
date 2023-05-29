@@ -50,17 +50,17 @@ vec3 project(
 		case 4: // Front Projection
 			return vec3(0.0, 1.0, 0.0);
 		case 3:
-			vec3 p = (transform * vec4(position, 1.0)).xyz / 10.0;
+			vec3 p = (transform * vec4(position, 1.0)).xyz;
 			vec3 n = normalize(abs(mat3(transform) * normal));
 			vec2 uv2 = (n.x > n.y && n.x > n.z) ? vec2(p.z, p.y)
 				: ((n.y > n.x && n.y > n.z) ? vec2(p.x, p.z) : vec2(p.x, p.y));
-			return texture(tex, uv2).rgb;
+			return texture(tex, uv2 + 0.5).rgb;
 		case 2: // Spherical
 			return vec3(0.0, 0.0, 1.0);
 		case 1: // Cylindrical
 			return vec3(1.0, 1.0, 0.0);
 		case 0: // Planar
-			return texture(tex, (transform * vec4(position, 1.0)).xz / 10.0).rgb;
+			return texture(tex, (transform * vec4(position, 1.0)).xz).rgb;
 		default:
 			return vec3(0.0);
 	}

@@ -32,7 +32,7 @@ Support of games primarily depends on who developed them - Games with structural
 	* [x] Moorhuhn Schatzjäger 3
 	* [ ] Moorhuhn Invasion
 * `.sar` Starforce 3D Engine (Visual Imagination Software "VIS" GbR): LightWave 3D + Open Dynamics Engine + CEGUI
-	* [ ] Moorhuhn Kart 3
+	* [x] Moorhuhn Kart 3
 	* [ ] Moorhuhn Director's Cut
 	* [ ] Moorhuhn Kart Thunder
 * `*.dat` "Phenomedia 2D Engine"
