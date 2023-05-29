@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://4n26dt3e4pv3"]
 
-[ext_resource type="Shader" path="res://kart/flag.gdshader" id="1_lbvg8"]
-[ext_resource type="FontFile" uid="uid://b50bdb32aerbb" path="res://remakes/font/LondrinaSolid-Regular.otf" id="2_fj37l"]
+[ext_resource type="Shader" path="res://kart/flag.gdshader" id="1_mtrao"]
+[ext_resource type="FontFile" uid="uid://b50bdb32aerbb" path="res://remakes/font/LondrinaSolid-Regular.otf" id="2_vriwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y6o8u"]
-shader = ExtResource("1_lbvg8")
+shader = ExtResource("1_mtrao")
 shader_parameter/rotation = 2.2
 shader_parameter/size = 160.0
 shader_parameter/time_scale = 0.125
@@ -40,7 +40,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.996078, 0.92549, 0.14902, 1)
 theme_override_colors/font_outline_color = Color(0.776471, 0.215686, 0.14902, 1)
 theme_override_constants/outline_size = 23
-theme_override_fonts/font = ExtResource("2_fj37l")
+theme_override_fonts/font = ExtResource("2_vriwa")
 theme_override_font_sizes/font_size = 60
 text = "Moorhuhn"
 horizontal_alignment = 1
@@ -55,7 +55,7 @@ theme_override_colors/font_color = Color(0.894118, 0.133333, 0.0705882, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 15
 theme_override_constants/line_spacing = -140
-theme_override_fonts/font = ExtResource("2_fj37l")
+theme_override_fonts/font = ExtResource("2_vriwa")
 theme_override_font_sizes/font_size = 97
 text = "»KART«"
 horizontal_alignment = 1
@@ -71,7 +71,7 @@ rotation = -0.338594
 theme_override_colors/font_color = Color(0.913725, 0.945098, 0.952941, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 14
-theme_override_fonts/font = ExtResource("2_fj37l")
+theme_override_fonts/font = ExtResource("2_vriwa")
 theme_override_font_sizes/font_size = 48
 text = "ULTIMATE"
 horizontal_alignment = 1

@@ -1,6 +1,4 @@
-use godot::builtin::{
-    Basis, Color, EulerOrder, Quaternion, ToVariant, Transform3D, Variant, Vector3,
-};
+use godot::builtin::{Basis, Color, EulerOrder, ToVariant, Transform3D, Variant, Vector3};
 use godot::engine::{load, Image, ImageTexture, ShaderMaterial};
 use godot::log::{godot_error, godot_print};
 use godot::obj::{Gd, Share};
@@ -17,20 +15,23 @@ use lightwave_3d::lwo2::sub_tags::surface_parameters::SurfaceParameterSubChunk;
 use lightwave_3d::lwo2::tags::surface_definition::SurfaceDefinition;
 use std::collections::HashMap;
 
+#[derive(Debug)]
 pub struct MaterialUvInfo {
     pub diffuse_channel: Option<String>,
     pub color_channel: Option<String>,
     pub material: Gd<ShaderMaterial>,
+    pub id: u16,
 }
 
 impl MaterialUvInfo {
-    pub fn collect(surface: SurfaceDefinition, images: &HashMap<u32, Gd<Image>>) -> Self {
+    pub fn collect(surface: SurfaceDefinition, images: &HashMap<u32, Gd<Image>>, id: u16) -> Self {
         let mut m = MaterialUvInfo {
             diffuse_channel: None,
             color_channel: None,
             material: ShaderMaterial::new(),
+            id,
         };
-        m.material.set_name(surface.name.to_string().into());
+        m.material.set_name(surface.name.into());
         m.material
             .set_shader(load("res://starforce/starforce.gdshader"));
 
@@ -41,6 +42,7 @@ impl MaterialUvInfo {
                         let mut texture = ImageTexture::new();
                         let mut chan = TextureChannel::Color;
                         let mut uv_channel = None;
+                        let mut major_axis = 0;
                         let mut projection_mode = ProjectionMode::UV;
                         let mut mapping_info = Vec::<(&str, Variant)>::new();
                         for attr in header.data.block_attributes {
@@ -66,6 +68,7 @@ impl MaterialUvInfo {
                             match attr {
                                 SurfaceBlockImageTextureSubChunk::ImageMap(r) => {
                                     if let Some(i) = images.get(&r.texture_image) {
+                                        godot_print!("{}", i.get_name());
                                         texture.set_image(i.share());
                                     } else {
                                         godot_error!("Missing texture {:?}", r);
@@ -75,7 +78,7 @@ impl MaterialUvInfo {
                                     projection_mode = projection.data;
                                 }
                                 SurfaceBlockImageTextureSubChunk::UvVertexMap(map) => {
-                                    uv_channel = Some(map.txuv_map_name.to_string());
+                                    uv_channel = Some(map.txuv_map_name.clone());
                                 }
                                 SurfaceBlockImageTextureSubChunk::TextureMapping(mapping) => {
                                     let mut pos = Vector3::default();
@@ -85,33 +88,33 @@ impl MaterialUvInfo {
                                         match mapping_param {
                                             TextureMappingSubChunk::Center(it) => {
                                                 pos = Vector3 {
-                                                    x: it.base_color[0],
+                                                    z: it.base_color[0],
                                                     y: it.base_color[1],
-                                                    z: it.base_color[2],
+                                                    x: it.base_color[2],
                                                 };
                                             }
                                             TextureMappingSubChunk::Rotation(it) => {
                                                 rot = Vector3 {
-                                                    x: it.base_color[0],
+                                                    z: it.base_color[0],
                                                     y: it.base_color[1],
-                                                    z: it.base_color[2],
+                                                    x: it.base_color[2],
                                                 }
                                                 .normalized();
                                             }
                                             TextureMappingSubChunk::Size(it) => {
                                                 size = Vector3 {
-                                                    x: it.base_color[0],
+                                                    z: it.base_color[0],
                                                     y: it.base_color[1],
-                                                    z: it.base_color[2],
+                                                    x: it.base_color[2],
                                                 };
                                             }
                                             TextureMappingSubChunk::Falloff(it) => {
                                                 mapping_info.push((
                                                     "falloff",
                                                     Vector3 {
-                                                        x: it.vector[0],
+                                                        z: it.vector[0],
                                                         y: it.vector[1],
-                                                        z: it.vector[2],
+                                                        x: it.vector[2],
                                                     }
                                                     .to_variant(),
                                                 ));
@@ -138,10 +141,8 @@ impl MaterialUvInfo {
                                                 ));
                                             }
                                             TextureMappingSubChunk::ReferenceObject(it) => {
-                                                if !matches!(
-                                                    it.object_name.to_string().as_str(),
-                                                    "" | "(none)"
-                                                ) {
+                                                if !matches!(it.object_name.as_str(), "" | "(none)")
+                                                {
                                                     godot_error!("Reference object '{}': not supported for texture mapping", it.object_name)
                                                 }
                                             }
@@ -151,15 +152,15 @@ impl MaterialUvInfo {
                                     mapping_info.push((
                                         "transform",
                                         Transform3D {
-                                            basis: Basis::from_euler(EulerOrder::XYZ, rot)
+                                            basis: Basis::from_euler(EulerOrder::ZYX, rot)
                                                 .scaled(size),
                                             origin: pos,
                                         }
                                         .to_variant(),
                                     ));
                                 }
-                                SurfaceBlockImageTextureSubChunk::MajorAxis(_) => {
-                                    // TODO;
+                                SurfaceBlockImageTextureSubChunk::MajorAxis(axis) => {
+                                    major_axis = axis.data.texture_axis;
                                 }
                                 SurfaceBlockImageTextureSubChunk::ImageWrapOptions(_) => {
                                     // TODO;
@@ -181,19 +182,31 @@ impl MaterialUvInfo {
                                 }
                             }
                         }
-                        godot_print!("TX: {:?} @ UV{:?}", chan, uv_channel);
-                        let channel_name = match chan {
+                        /*godot_print!(
+                            "TX: {:?} ({:?}) @ UV{:?}",
+                            chan,
+                            projection_mode,
+                            uv_channel
+                        );*/
+                        let channel_name = match &chan {
                             TextureChannel::Color => "color",
                             TextureChannel::Diffuse => "diffuse",
-                            TextureChannel::Luminosity => "luminosity",
-                            TextureChannel::Specular => "specular",
-                            TextureChannel::Glossy => "glossy",
-                            TextureChannel::Reflectivity => "reflectivity",
-                            TextureChannel::Transparency => "transparency",
-                            TextureChannel::RefractiveIndex => "refractive_index",
-                            TextureChannel::Translucency => "translucency",
-                            TextureChannel::Bump => "bump",
+                            x => {
+                                godot_error!("TODO: Texture channel {:?} is not supported", x);
+                                "color"
+                            } /*TextureChannel::Luminosity => "luminosity",
+                              TextureChannel::Specular => "specular",
+                              TextureChannel::Glossy => "glossy",
+                              TextureChannel::Reflectivity => "reflectivity",
+                              TextureChannel::Transparency => "transparency",
+                              TextureChannel::RefractiveIndex => "refractive_index",
+                              TextureChannel::Translucency => "translucency",
+                              TextureChannel::Bump => "bump",*/
                         };
+                        m.material.set_shader_parameter(
+                            format!("tex_{}_axis", channel_name).into(),
+                            major_axis.to_variant(),
+                        );
                         m.material.set_shader_parameter(
                             format!("tex_{}_projection", channel_name).into(),
                             match projection_mode {

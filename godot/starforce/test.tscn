@@ -6,8 +6,8 @@ script/source = "@tool
 extends Node3D
 
 func _ready():
-	var scene = load(\"sar://D:/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo\")
-	add_child(scene.instantiate())
+	var scene = load(\"sar://D:/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo\").instantiate()
+	add_child(scene)
 "
 
 [node name="test" type="Node3D"]

@@ -1,52 +1,59 @@
 use crate::lwo::clips::collect_clip;
+use crate::lwo::intermediate_layer::IntermediateLayer;
 use crate::lwo::mapping::{collect_discontinuous_mappings, collect_mappings};
 use crate::lwo::material::MaterialUvInfo;
-use crate::lwo::surface::IntermediateLayer;
 use godot::builtin::{Vector2, Vector3};
 use godot::engine::node::InternalMode;
 use godot::engine::{Image, MeshInstance3D, Node3D, PackedScene};
 use godot::log::{godot_error, godot_print, godot_warn};
 use godot::obj::{Gd, Share};
+use itertools::Itertools;
 use lightwave_3d::lwo2::tags::Tag;
 use lightwave_3d::LightWaveObject;
 use std::collections::HashMap;
 
 pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
-    let mut materials = vec![];
+    let mut surfaces = HashMap::<u16, MaterialUvInfo>::new();
     let mut images = HashMap::<u32, Gd<Image>>::new();
     let mut layers = vec![];
+    let mut tag_strings = vec![];
 
     for tag in lightwave.data {
         match tag {
+            Tag::TagStrings(it) => {
+                tag_strings = it.data.tag_strings.into_iter().collect();
+                godot_print!("{:?}", tag_strings);
+            }
             Tag::Layer(layer_tag) => {
                 layers.push(IntermediateLayer {
-                    name: layer_tag.name.to_string(),
+                    name: layer_tag.name.clone(),
                     parent: layer_tag.parent,
                     id: layer_tag.number,
                     pivot: Vector3 {
-                        x: layer_tag.pivot[0],
+                        z: layer_tag.pivot[0],
                         y: layer_tag.pivot[1],
-                        z: layer_tag.pivot[2],
+                        x: layer_tag.pivot[2],
                     },
                     ..IntermediateLayer::default()
                 });
             }
             Tag::PointList(points_chunk) => {
+                debug_assert_eq!(layers.last().unwrap().points.len(), 0);
                 layers.last_mut().unwrap().points = points_chunk
                     .data
                     .point_location
                     .into_iter()
                     .map(|p| Vector3 {
-                        x: p[0],
+                        z: p[0],
                         y: p[1],
-                        z: p[2],
+                        x: p[2],
                     })
                     .collect();
             }
             Tag::DiscontinuousVertexMapping(vmad) => match &vmad.kind {
                 b"TXUV" => {
                     debug_assert!(vmad.data.mappings[0].values.len() == 2);
-                    let name = vmad.name.to_string();
+                    let name = vmad.name.clone();
 
                     let layer = layers.last_mut().unwrap();
                     let map = if let Some(mappings) =
@@ -76,7 +83,7 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
             Tag::VertexMapping(vmap) => match &vmap.kind {
                 b"TXUV" => {
                     debug_assert!(vmap.data.mapping[0].value.len() == 2);
-                    let name = vmap.name.to_string();
+                    let name = vmap.name.clone();
 
                     let layer = layers.last_mut().unwrap();
                     let map = if let Some(mappings) =
@@ -109,7 +116,7 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
                         layers
                             .last_mut()
                             .unwrap()
-                            .surfaces
+                            .material_mappings
                             .insert(surf.poly as i32, surf.tag);
                     }
                 }
@@ -120,14 +127,24 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
             },
             Tag::PolygonList(polygon_lists) => match &polygon_lists.kind {
                 b"FACE" => {
+                    debug_assert_eq!(layers.last().unwrap().polygons.len(), 0);
                     layers.last_mut().unwrap().polygons = polygon_lists.data.polygons;
                 }
                 x => godot_warn!("{}", String::from_utf8(x.to_vec()).unwrap()),
             },
             Tag::ImageClip(clip) => collect_clip(&mut images, clip.data),
             Tag::SurfaceDefinition(surf) => {
-                godot_print!("Def: '{}' -> '{}'", surf.source, surf.name);
-                materials.push(MaterialUvInfo::collect(surf.data, &images));
+                let surf_name = surf.name.clone();
+                let (tag_index, _) = tag_strings
+                    .iter()
+                    .find_position(|name| name == &&surf_name)
+                    .expect("Invalid File");
+                godot_print!("'{}': {}", surf_name, tag_index);
+
+                surfaces.insert(
+                    tag_index as u16,
+                    MaterialUvInfo::collect(surf.data, &images, tag_index as u16),
+                );
             }
             Tag::BoundingBox(_) => (),
             x => {
@@ -136,12 +153,25 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
         }
     }
 
+    /*godot_print!(
+        "{:?}",
+        surfaces
+            .iter()
+            .map(|(k, v)| (
+                k,
+                tag_strings[*k as usize].clone(),
+                v.material.get_shader_parameter("tex_diffuse".into()),
+                v.material.get_shader_parameter("tex_color".into())
+            ))
+            .collect_vec()
+    );*/
+
     let mut root_node = Node3D::new_alloc();
 
     for layer in layers {
         let mut instance = MeshInstance3D::new_alloc();
         instance.set_name(layer.name.clone().into());
-        instance.set_mesh(layer.commit(&mut materials).upcast());
+        instance.set_mesh(layer.commit(&surfaces).upcast());
 
         root_node.add_child(
             instance.share().upcast(),

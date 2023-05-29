@@ -1,25 +1,25 @@
 [gd_scene load_steps=21 format=3 uid="uid://cmqfu6cc780h4"]
 
-[ext_resource type="Theme" uid="uid://ks2uyxqg6u4k" path="res://mhjnr/theme.tres" id="1_4qyey"]
-[ext_resource type="Texture2D" uid="uid://wetnflcj1b0w" path="res://cover_art/mh1.jpg" id="2_epsv5"]
-[ext_resource type="Texture2D" uid="uid://dyga5qn124307" path="res://cover_art/schatzjaeger.webp" id="2_f5uhf"]
-[ext_resource type="Script" path="res://main.gd" id="2_j1xqk"]
-[ext_resource type="Texture2D" uid="uid://baqjofchj6yaw" path="res://cover_art/mhw.webp" id="3_wgtv5"]
-[ext_resource type="Texture2D" uid="uid://brovl1cel1uiw" path="res://cover_art/mh2.jpg" id="4_fb5aq"]
-[ext_resource type="Texture2D" uid="uid://ix132vewff0h" path="res://cover_art/mh3.jpg" id="5_q44ta"]
-[ext_resource type="Texture2D" uid="uid://k8i84cvnuun" path="res://cover_art/mhx.jpg" id="6_b76vr"]
-[ext_resource type="Texture2D" uid="uid://bst48atkwn7r1" path="res://cover_art/mhrem.png" id="7_ios37"]
-[ext_resource type="Texture2D" uid="uid://chcjw51coc53r" path="res://cover_art/mhinv.jpg" id="8_1fm4r"]
-[ext_resource type="Texture2D" uid="uid://l37kev18676o" path="res://cover_art/mhwant.jpg" id="8_yb215"]
-[ext_resource type="Texture2D" uid="uid://bk5a3xob0raqj" path="res://cover_art/mh_kart.jpg" id="9_b3ixn"]
-[ext_resource type="Texture2D" uid="uid://cpigwqlll0kbf" path="res://cover_art/mhpir.jpg" id="9_v7fae"]
-[ext_resource type="Texture2D" uid="uid://dkhygfyylbjov" path="res://cover_art/mh_kart2.jpg" id="10_1woe1"]
-[ext_resource type="Texture2D" uid="uid://l8groudaf385" path="res://cover_art/mh_kart3.webp" id="11_7me0v"]
-[ext_resource type="Texture2D" uid="uid://bmybnhi2i2ep" path="res://cover_art/mhdir.jpg" id="11_fweyu"]
-[ext_resource type="Texture2D" uid="uid://cjp0ilsodyu4j" path="res://cover_art/mh_kart4.jpg" id="12_hv57k"]
-[ext_resource type="Texture2D" uid="uid://by4wug5r7311q" path="res://cover_art/schatzjaeger_2.jpg" id="14_tnyyh"]
-[ext_resource type="Texture2D" uid="uid://bkn3cdrm1fj8b" path="res://cover_art/schatzjaeger_3.jpg" id="15_kbsip"]
-[ext_resource type="Texture2D" uid="uid://8vn1dpq37mve" path="res://cover_art/atlantis.webp" id="16_xvpbi"]
+[ext_resource type="Theme" uid="uid://ks2uyxqg6u4k" path="res://mhjnr/theme.tres" id="1_24af1"]
+[ext_resource type="Script" path="res://main.gd" id="2_3ufyn"]
+[ext_resource type="Texture2D" uid="uid://dyga5qn124307" path="res://cover_art/schatzjaeger.webp" id="3_dq726"]
+[ext_resource type="Texture2D" uid="uid://by4wug5r7311q" path="res://cover_art/schatzjaeger_2.jpg" id="4_qurcc"]
+[ext_resource type="Texture2D" uid="uid://bkn3cdrm1fj8b" path="res://cover_art/schatzjaeger_3.jpg" id="5_wceoy"]
+[ext_resource type="Texture2D" uid="uid://8vn1dpq37mve" path="res://cover_art/atlantis.webp" id="6_mwmag"]
+[ext_resource type="Texture2D" uid="uid://bk5a3xob0raqj" path="res://cover_art/mh_kart.jpg" id="7_kndjp"]
+[ext_resource type="Texture2D" uid="uid://dkhygfyylbjov" path="res://cover_art/mh_kart2.jpg" id="8_r2mlu"]
+[ext_resource type="Texture2D" uid="uid://l8groudaf385" path="res://cover_art/mh_kart3.webp" id="9_yfa8e"]
+[ext_resource type="Texture2D" uid="uid://cjp0ilsodyu4j" path="res://cover_art/mh_kart4.jpg" id="10_s4ouh"]
+[ext_resource type="Texture2D" uid="uid://wetnflcj1b0w" path="res://cover_art/mh1.jpg" id="11_0icjw"]
+[ext_resource type="Texture2D" uid="uid://baqjofchj6yaw" path="res://cover_art/mhw.webp" id="12_8qgke"]
+[ext_resource type="Texture2D" uid="uid://brovl1cel1uiw" path="res://cover_art/mh2.jpg" id="13_dypyq"]
+[ext_resource type="Texture2D" uid="uid://ix132vewff0h" path="res://cover_art/mh3.jpg" id="14_tc2rn"]
+[ext_resource type="Texture2D" uid="uid://k8i84cvnuun" path="res://cover_art/mhx.jpg" id="15_gxg0f"]
+[ext_resource type="Texture2D" uid="uid://bst48atkwn7r1" path="res://cover_art/mhrem.png" id="16_dtmhv"]
+[ext_resource type="Texture2D" uid="uid://l37kev18676o" path="res://cover_art/mhwant.jpg" id="17_pcn4f"]
+[ext_resource type="Texture2D" uid="uid://cpigwqlll0kbf" path="res://cover_art/mhpir.jpg" id="18_w72rq"]
+[ext_resource type="Texture2D" uid="uid://chcjw51coc53r" path="res://cover_art/mhinv.jpg" id="19_31858"]
+[ext_resource type="Texture2D" uid="uid://bmybnhi2i2ep" path="res://cover_art/mhdir.jpg" id="20_b2doc"]
 
 [node name="main" type="ScrollContainer"]
 anchors_preset = 15
@@ -29,8 +29,8 @@ offset_right = 20.0
 offset_bottom = 154.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_4qyey")
-script = ExtResource("2_j1xqk")
+theme = ExtResource("1_24af1")
+script = ExtResource("2_3ufyn")
 
 [node name="margins" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -55,7 +55,7 @@ layout_mode = 2
 [node name="Schatzjaeger1" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
-icon = ExtResource("2_f5uhf")
+icon = ExtResource("3_dq726")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -63,7 +63,7 @@ expand_icon = true
 [node name="Schatzjaeger2" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
-icon = ExtResource("14_tnyyh")
+icon = ExtResource("4_qurcc")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -71,7 +71,7 @@ expand_icon = true
 [node name="Schatzjaeger3" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
-icon = ExtResource("15_kbsip")
+icon = ExtResource("5_wceoy")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -80,7 +80,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("16_xvpbi")
+icon = ExtResource("6_mwmag")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -100,7 +100,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("9_b3ixn")
+icon = ExtResource("7_kndjp")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -109,7 +109,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("10_1woe1")
+icon = ExtResource("8_r2mlu")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -118,7 +118,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("11_7me0v")
+icon = ExtResource("9_yfa8e")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -127,7 +127,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("12_hv57k")
+icon = ExtResource("10_s4ouh")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -147,7 +147,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("2_epsv5")
+icon = ExtResource("11_0icjw")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -156,7 +156,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("3_wgtv5")
+icon = ExtResource("12_8qgke")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -165,7 +165,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("4_fb5aq")
+icon = ExtResource("13_dypyq")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -174,7 +174,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("5_q44ta")
+icon = ExtResource("14_tc2rn")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -183,7 +183,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("6_b76vr")
+icon = ExtResource("15_gxg0f")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -192,7 +192,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("7_ios37")
+icon = ExtResource("16_dtmhv")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -201,7 +201,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("8_yb215")
+icon = ExtResource("17_pcn4f")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -210,7 +210,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("9_v7fae")
+icon = ExtResource("18_w72rq")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -219,7 +219,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("8_1fm4r")
+icon = ExtResource("19_31858")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -228,7 +228,7 @@ expand_icon = true
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
 disabled = true
-icon = ExtResource("11_fweyu")
+icon = ExtResource("20_b2doc")
 flat = true
 icon_alignment = 1
 expand_icon = true
