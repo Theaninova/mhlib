@@ -8,7 +8,7 @@ pub fn find_mapping<T: Default + Copy + std::fmt::Debug>(
     target: &HashMap<i32, HashMap<i32, T>>,
     poly: usize,
     vert: i32,
-) -> T {
+) -> Option<T> {
     target
         .get(&(poly as i32))
         .and_then(|mapping| mapping.get(&vert).copied())
@@ -16,17 +16,6 @@ pub fn find_mapping<T: Default + Copy + std::fmt::Debug>(
             target
                 .get(&-1)
                 .and_then(|mapping| mapping.get(&vert).copied())
-        })
-        .unwrap_or_else(|| {
-            godot_error!(
-                "Missing VX Mapping for {{vert: {}, poly: {}}}; {:?}",
-                vert,
-                poly,
-                target
-                    .get(&(poly as i32))
-                    .map(|p| p.keys().collect::<Vec<&i32>>())
-            );
-            T::default()
         })
 }
 

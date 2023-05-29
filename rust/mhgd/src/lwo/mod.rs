@@ -1,7 +1,7 @@
 use crate::lwo::object::lightwave_to_gd;
 use godot::bind::{godot_api, GodotClass};
 use godot::builtin::GodotString;
-use godot::engine::ArrayMesh;
+use godot::engine::{ArrayMesh, PackedScene};
 use godot::obj::Gd;
 use lightwave_3d::LightWaveObject;
 
@@ -18,7 +18,7 @@ struct Lwo {}
 #[godot_api]
 impl Lwo {
     #[func]
-    pub fn get_mesh(path: GodotString) -> Gd<ArrayMesh> {
+    pub fn get_mesh(path: GodotString) -> Gd<PackedScene> {
         lightwave_to_gd(LightWaveObject::read_file(path.to_string()).unwrap())
     }
 }

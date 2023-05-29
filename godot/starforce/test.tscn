@@ -1,8 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://kyw4wuusc33g"]
 
-[ext_resource type="ArrayMesh" path="sar://D:/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo" id="2_ab234"]
+[sub_resource type="GDScript" id="GDScript_jhapx"]
+resource_name = "load"
+script/source = "@tool
+extends Node3D
+
+func _ready():
+	var scene = load(\"sar://D:/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo\")
+	add_child(scene.instantiate())
+"
 
 [node name="test" type="Node3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_ab234")
+script = SubResource("GDScript_jhapx")
