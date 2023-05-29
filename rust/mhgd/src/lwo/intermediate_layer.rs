@@ -28,21 +28,20 @@ impl IntermediateLayer {
     pub fn commit(self, materials: &HashMap<u16, MaterialUvInfo>) -> Gd<ArrayMesh> {
         let mut mesh = ArrayMesh::new();
         mesh.set_name(self.name.clone().into());
-        let mut surface_material_ids = Vec::<u16>::new();
+        let surface_material_ids = self.material_mappings.values().unique().collect_vec();
 
-        for material_id in self.material_mappings.values().unique() {
+        for material_id in surface_material_ids.iter() {
             let surface_info = SurfaceInfo::collect_from_layer(&self, &materials[material_id]);
 
-            if !surface_info.is_empty() {
-                mesh.add_surface_from_arrays(
-                    PrimitiveType::PRIMITIVE_TRIANGLES,
-                    surface_info.commit_to_arrays(),
-                    Array::new(),
-                    Dictionary::new(),
-                    ArrayFormat::ARRAY_FORMAT_NORMAL,
-                );
-                surface_material_ids.push(*material_id);
-            }
+            debug_assert!(!surface_info.is_empty());
+
+            mesh.add_surface_from_arrays(
+                PrimitiveType::PRIMITIVE_TRIANGLES,
+                surface_info.commit_to_arrays(),
+                Array::new(),
+                Dictionary::new(),
+                ArrayFormat::ARRAY_FORMAT_NORMAL,
+            );
         }
 
         godot_print!(
@@ -55,12 +54,7 @@ impl IntermediateLayer {
                 .collect_vec()
         );
 
-        let mut final_mesh = post_process_mesh(
-            mesh,
-            materials,
-            surface_material_ids,
-            &self.material_mappings,
-        );
+        let mut final_mesh = post_process_mesh(mesh, materials, surface_material_ids);
         final_mesh.set_name(self.name.into());
         final_mesh
     }
@@ -69,8 +63,7 @@ impl IntermediateLayer {
 fn post_process_mesh(
     mesh: Gd<ArrayMesh>,
     materials: &HashMap<u16, MaterialUvInfo>,
-    material_ids: Vec<u16>,
-    material_mappings: &HashMap<i32, u16>,
+    material_ids: Vec<&u16>,
 ) -> Gd<ArrayMesh> {
     let mut out_mesh = ArrayMesh::new();
 
@@ -91,9 +84,8 @@ fn post_process_mesh(
             ArrayFormat::ARRAY_FORMAT_NORMAL,
         );
 
-        if let Some(mat) = materials.get(&material_mappings[&(surface_id as i32)]) {
-            out_mesh.surface_set_material(surface_idx as i64, mat.material.share().upcast())
-        }
+        let mat = &materials[surface_id];
+        out_mesh.surface_set_material(surface_idx as i64, mat.material.share().upcast())
     }
 
     out_mesh
