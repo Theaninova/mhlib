@@ -52,15 +52,15 @@ vec3 project(
 		case 3:
 			vec3 p = (transform * vec4(position, 1.0)).xyz;
 			vec3 n = normalize(abs(mat3(transform) * normal));
-			vec2 uv2 = (n.x > n.y && n.x > n.z) ? vec2(p.z, p.y)
-				: ((n.y > n.x && n.y > n.z) ? vec2(p.x, p.z) : vec2(p.x, p.y));
+			vec2 uv2 = (n.x > n.y && n.x > n.z) ? p.zy
+				: ((n.y > n.x && n.y > n.z) ? p.zx : p.xy);
 			return texture(tex, uv2 + 0.5).rgb;
 		case 2: // Spherical
 			return vec3(0.0, 0.0, 1.0);
 		case 1: // Cylindrical
 			return vec3(1.0, 1.0, 0.0);
 		case 0: // Planar
-			return texture(tex, (transform * vec4(position, 1.0)).xz).rgb;
+			return texture(tex, (transform * vec4(position, 1.0)).zx + 0.5).rgb;
 		default:
 			return vec3(0.0);
 	}
@@ -92,7 +92,7 @@ void fragment() {
 	);
 }
 
-/*void light() {
+void light() {
 	DIFFUSE_LIGHT =project(
 		tex_diffuse,
 		tex_diffuse_projection,
@@ -102,4 +102,4 @@ void fragment() {
 		tex_diffuse_projection_world_coords,
 		UV
 	);
-}*/
+}

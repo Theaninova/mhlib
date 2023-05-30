@@ -1,20 +1,24 @@
+use crate::starforce::sar_archive::sarc_path_to_gd;
+use godot::builtin::{GodotString, Variant};
 use godot::engine::{load, AnimatedTexture, Image, ImageTexture, Texture2D};
-use godot::log::godot_error;
+use godot::log::{godot_error, godot_print};
 use godot::obj::Gd;
 use lightwave_3d::lwo2::tags::image_clip::{ImageClip, ImageClipSubChunk};
 use std::collections::HashMap;
 
-fn convert_path(path: &str) -> String {
-    path.replace('\\', "/").replace(':', ":/")
-}
-
-fn load_texture(path: &str, name: &str) -> Gd<ImageTexture> {
-    let mut image: Gd<Image> = load(path);
-    image.set_name(name.into());
-    let mut texture = ImageTexture::new();
-    texture.set_name(name.into());
-    texture.set_image(image);
-    texture
+fn load_texture(path: &str) -> Gd<ImageTexture> {
+    let mut image: Gd<ImageTexture> = load(path);
+    godot_print!("ResPath: {}", image.get_path());
+    let target_path = image
+        .get_meta("target_path".into(), Variant::nil())
+        .to::<GodotString>();
+    image.set_path(target_path);
+    godot_print!(
+        "NowResPath: {} - {}",
+        image.is_local_to_scene(),
+        image.get_path()
+    );
+    image
 }
 
 pub fn collect_clip(target: &mut HashMap<u32, Gd<Texture2D>>, clip: ImageClip) {
@@ -22,11 +26,11 @@ pub fn collect_clip(target: &mut HashMap<u32, Gd<Texture2D>>, clip: ImageClip) {
 
     match attributes.next().unwrap() {
         ImageClipSubChunk::StillImage(still) => {
-            let path = format!("sar://{}", convert_path(&still.name));
+            let path = sarc_path_to_gd(&still.name);
             for meta in attributes {
                 godot_error!("TODO: {:?}", meta)
             }
-            target.insert(clip.index, load_texture(&path, &still.name).upcast());
+            target.insert(clip.index, load_texture(&path).upcast());
         }
         ImageClipSubChunk::ImageSequence(sequence) => {
             let mut texture = AnimatedTexture::new();
@@ -47,15 +51,17 @@ pub fn collect_clip(target: &mut HashMap<u32, Gd<Texture2D>>, clip: ImageClip) {
 
             for i in sequence.data.start..sequence.data.end {
                 let path = format!(
-                    "sar://{}{:0width$}{}",
-                    convert_path(&sequence.data.prefix),
+                    "{}{:0width$}{}.res",
+                    sarc_path_to_gd(&sequence.data.prefix)
+                        .strip_suffix(".res")
+                        .unwrap(),
                     i,
                     sequence.data.suffix,
                     width = sequence.data.num_digits as usize
                 );
                 let frame = i as i64 - sequence.data.start as i64;
 
-                texture.set_frame_texture(frame, load_texture(&path, &i.to_string()).upcast());
+                texture.set_frame_texture(frame, load_texture(&path).upcast());
                 texture.set_frame_duration(frame, frame_duration);
             }
 

@@ -3,16 +3,15 @@ use crate::lwo::intermediate_layer::IntermediateLayer;
 use crate::lwo::mapping::{collect_discontinuous_mappings, collect_mappings};
 use crate::lwo::material::MaterialUvInfo;
 use godot::builtin::{Vector2, Vector3};
-use godot::engine::node::InternalMode;
-use godot::engine::{MeshInstance3D, Node3D, PackedScene, Texture2D};
-use godot::log::{godot_error, godot_print, godot_warn};
-use godot::obj::{Gd, Share};
+use godot::engine::{ArrayMesh, Texture2D};
+use godot::log::{godot_error, godot_warn};
+use godot::obj::Gd;
 use itertools::Itertools;
 use lightwave_3d::lwo2::tags::Tag;
 use lightwave_3d::LightWaveObject;
 use std::collections::HashMap;
 
-pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
+pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Vec<Gd<ArrayMesh>> {
     let mut materials = HashMap::<u16, MaterialUvInfo>::new();
     let mut textures = HashMap::<u32, Gd<Texture2D>>::new();
     let mut layers = vec![];
@@ -22,7 +21,6 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
         match tag {
             Tag::TagStrings(it) => {
                 tag_strings = it.data.tag_strings.into_iter().collect();
-                godot_print!("{:?}", tag_strings);
             }
             Tag::Layer(layer_tag) => {
                 layers.push(IntermediateLayer {
@@ -143,7 +141,6 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
                     .iter()
                     .find_position(|name| name == &&surf_name)
                     .expect("Invalid File");
-                godot_print!("'{}': {}", surf_name, tag_index);
 
                 materials.insert(
                     tag_index as u16,
@@ -157,36 +154,8 @@ pub fn lightwave_to_gd(lightwave: LightWaveObject) -> Gd<PackedScene> {
         }
     }
 
-    /*godot_print!(
-        "{:?}",
-        surfaces
-            .iter()
-            .map(|(k, v)| (
-                k,
-                tag_strings[*k as usize].clone(),
-                v.material.get_shader_parameter("tex_diffuse".into()),
-                v.material.get_shader_parameter("tex_color".into())
-            ))
-            .collect_vec()
-    );*/
-
-    let mut root_node = Node3D::new_alloc();
-
-    for layer in layers {
-        let mut instance = MeshInstance3D::new_alloc();
-        instance.set_name(layer.name.clone().into());
-        instance.set_mesh(layer.commit(&materials).upcast());
-
-        root_node.add_child(
-            instance.share().upcast(),
-            false,
-            InternalMode::INTERNAL_MODE_DISABLED,
-        );
-        instance.set_owner(root_node.share().upcast());
-    }
-
-    let mut scene = PackedScene::new();
-    scene.pack(root_node.share().upcast());
-    root_node.queue_free();
-    scene
+    layers
+        .into_iter()
+        .map(|layer| layer.commit(&materials))
+        .collect()
 }
