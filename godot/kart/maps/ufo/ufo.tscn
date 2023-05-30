@@ -1,95 +1,95 @@
 [gd_scene load_steps=93 format=3 uid="uid://c0r3rywql7mm1"]
 
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_0.res" id="1_as6pv"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_1.res" id="2_s4dfs"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_2.res" id="3_o4ur7"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_3.res" id="4_ykeok"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_4.res" id="5_exksp"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_5.res" id="6_foc3s"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_6.res" id="7_qho7w"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_7.res" id="8_neh5t"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/skydome.lwo/layer_0.res" id="9_hp2fo"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/colmesh.lwo/layer_0.res" id="10_ffgyy"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/colmesh_ai.lwo/layer_0.res" id="11_3lbhi"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/colmesh_floor.lwo/layer_0.res" id="12_tuwqh"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/stampfer.lwo/layer_0.res" id="13_i3x54"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/timetunnel.lwo/layer_0.res" id="14_gtc2m"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/timetunnel.lwo/layer_1.res" id="15_3bdx5"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_0.res" id="16_fsprb"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_1.res" id="17_tskxe"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_10.res" id="18_bhy1l"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_11.res" id="19_nb6uq"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_12.res" id="20_k5413"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_2.res" id="21_xfq7t"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_3.res" id="22_qed2y"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_4.res" id="23_fqbp4"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_5.res" id="24_oaknc"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_6.res" id="25_n1pfa"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_7.res" id="26_ma2lr"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_8.res" id="27_2i84s"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_9.res" id="28_bkihs"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_0.res" id="29_m6bgv"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_1.res" id="30_7lua4"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_2.res" id="31_yycoy"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_3.res" id="32_usv04"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_4.res" id="33_br8i4"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_5.res" id="34_d6xph"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_6.res" id="35_u2lah"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_7.res" id="36_ytoui"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_8.res" id="37_i0bd7"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/bok.lwo/layer_0.res" id="38_3siup"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/bok.lwo/layer_1.res" id="39_ygfym"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/bok.lwo/layer_2.res" id="40_sgdas"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/bok.lwo/layer_3.res" id="41_78jtq"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_0.res" id="42_ykarw"]
-[ext_resource type="Material" uid="uid://b432kwputp84c" path="res://kart/maps/ufo/glass.tres" id="43_vjxd1"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_1.res" id="44_2qpyn"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_10.res" id="45_jb6ci"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_11.res" id="46_b1eik"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_12.res" id="47_67mku"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_13.res" id="48_bvu2y"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_14.res" id="49_r6bi6"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_2.res" id="50_dj6jk"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_3.res" id="51_x1qua"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_4.res" id="52_juiks"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_5.res" id="53_yskrl"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_6.res" id="54_pb06o"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_7.res" id="55_4co7v"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_8.res" id="56_ffk1o"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_9.res" id="57_6mwrc"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_0.res" id="58_j3nnw"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_1.res" id="59_nms11"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_2.res" id="60_asdvg"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_3.res" id="61_buuyx"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_4.res" id="62_v28lg"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_5.res" id="63_bmy84"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/kraftfelder.lwo/layer_0.res" id="64_qx1ij"]
-[ext_resource type="Material" uid="uid://d0i0klcefalj4" path="res://kart/maps/ufo/force_field.tres" id="65_v2apf"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/kraftfelder.lwo/layer_1.res" id="66_h343m"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/kraftfelder.lwo/layer_2.res" id="67_3ime1"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/kraftfelder.lwo/layer_3.res" id="68_meeru"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/rundgang.lwo/layer_0.res" id="69_3t3mm"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/rundgang.lwo/layer_1.res" id="70_vlnth"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/rundgang.lwo/layer_2.res" id="71_ofo5d"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/rundgang.lwo/layer_3.res" id="72_puiso"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_0.res" id="73_aiqxt"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_1.res" id="74_iyf55"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_10.res" id="75_57w7y"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_11.res" id="76_pw3m8"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_12.res" id="77_v6mwi"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_13.res" id="78_fnp35"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_14.res" id="79_68bmo"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_15.res" id="80_o2d8k"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_16.res" id="81_x64ao"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_17.res" id="82_66sad"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_2.res" id="83_ykjxu"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_3.res" id="84_uk4jb"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_4.res" id="85_fgalk"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_5.res" id="86_m76u5"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_6.res" id="87_rtcrk"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_7.res" id="88_q86h7"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_8.res" id="89_gf20x"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_9.res" id="90_f165k"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_0.res" id="1_tgt6w"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_1.res" id="2_cvdmk"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_2.res" id="3_ba20h"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_3.res" id="4_dwpw1"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_4.res" id="5_3cwp7"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_5.res" id="6_a6rd7"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_6.res" id="7_eg8uo"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_7.res" id="8_ok0cm"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/skydome.lwo/layer_0.res" id="9_xw56v"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/colmesh.lwo/layer_0.res" id="10_cqbdf"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/colmesh_ai.lwo/layer_0.res" id="11_yfk68"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/colmesh_floor.lwo/layer_0.res" id="12_igi6b"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/stampfer.lwo/layer_0.res" id="13_xsr5k"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/timetunnel.lwo/layer_0.res" id="14_kwkoc"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/timetunnel.lwo/layer_1.res" id="15_75lot"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_0.res" id="16_rgewx"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_1.res" id="17_turaq"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_10.res" id="18_o0kb8"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_11.res" id="19_b7il2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_12.res" id="20_shxlu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_2.res" id="21_36u6i"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_3.res" id="22_6fd20"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_4.res" id="23_wsftb"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_5.res" id="24_o1vhw"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_6.res" id="25_5ocps"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_7.res" id="26_3q6iu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_8.res" id="27_av6v5"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/anlagen.lwo/layer_9.res" id="28_p626f"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_0.res" id="29_8uoci"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_1.res" id="30_1larw"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_2.res" id="31_gsn8f"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_3.res" id="32_cssxk"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_4.res" id="33_n1q0g"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_5.res" id="34_nl03x"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_6.res" id="35_u5y6q"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_7.res" id="36_23kj4"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/boden.lwo/layer_8.res" id="37_ps7yv"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/bok.lwo/layer_0.res" id="38_242xs"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/bok.lwo/layer_1.res" id="39_doq3q"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/bok.lwo/layer_2.res" id="40_rsabe"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/bok.lwo/layer_3.res" id="41_neu84"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_0.res" id="42_komm5"]
+[ext_resource type="Material" uid="uid://b432kwputp84c" path="res://kart/maps/ufo/glass.tres" id="43_bn555"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_1.res" id="44_hgjjh"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_10.res" id="45_vcbeu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_11.res" id="46_858q0"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_12.res" id="47_vngr7"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_13.res" id="48_4aabs"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_14.res" id="49_kf8hy"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_2.res" id="50_gv4sb"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_3.res" id="51_j3lds"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_4.res" id="52_mu0y2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_5.res" id="53_wifuj"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_6.res" id="54_n58gj"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_7.res" id="55_tihv6"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_8.res" id="56_6ol8n"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/fensterscheiben.lwo/layer_9.res" id="57_i2sds"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_0.res" id="58_gkrww"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_1.res" id="59_wt6xt"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_2.res" id="60_d28ce"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_3.res" id="61_6m1hp"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_4.res" id="62_daxee"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/gelaender.lwo/layer_5.res" id="63_mq5dq"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/kraftfelder.lwo/layer_0.res" id="64_neyci"]
+[ext_resource type="Material" uid="uid://d0i0klcefalj4" path="res://kart/maps/ufo/force_field.tres" id="65_n76of"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/kraftfelder.lwo/layer_1.res" id="66_cd54o"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/kraftfelder.lwo/layer_2.res" id="67_vyee4"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/kraftfelder.lwo/layer_3.res" id="68_yrc6b"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/rundgang.lwo/layer_0.res" id="69_63556"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/rundgang.lwo/layer_1.res" id="70_al4n0"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/rundgang.lwo/layer_2.res" id="71_b7lj6"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/rundgang.lwo/layer_3.res" id="72_v5jhd"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_0.res" id="73_mckmj"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_1.res" id="74_yafc4"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_10.res" id="75_65yf7"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_11.res" id="76_auu45"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_12.res" id="77_he167"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_13.res" id="78_tagds"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_14.res" id="79_4ju4r"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_15.res" id="80_u5g0w"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_16.res" id="81_fjvvd"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_17.res" id="82_1ip53"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_2.res" id="83_tqnq1"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_3.res" id="84_6jbqt"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_4.res" id="85_d0r1i"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_5.res" id="86_bjyrf"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_6.res" id="87_p7jfa"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_7.res" id="88_6gnnb"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_8.res" id="89_2fx3l"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_9.res" id="90_avbmd"]
 
 [sub_resource type="Environment" id="Environment_jmqkf"]
 reflected_light_source = 1
@@ -111,34 +111,34 @@ orientation = 1
 visible = false
 
 [node name="layer_0" type="MeshInstance3D" parent="CullingPlane"]
-mesh = ExtResource("1_as6pv")
+mesh = ExtResource("1_tgt6w")
 
 [node name="layer_1" type="MeshInstance3D" parent="CullingPlane"]
-mesh = ExtResource("2_s4dfs")
+mesh = ExtResource("2_cvdmk")
 
 [node name="layer_2" type="MeshInstance3D" parent="CullingPlane"]
-mesh = ExtResource("3_o4ur7")
+mesh = ExtResource("3_ba20h")
 
 [node name="layer_3" type="MeshInstance3D" parent="CullingPlane"]
-mesh = ExtResource("4_ykeok")
+mesh = ExtResource("4_dwpw1")
 
 [node name="layer_4" type="MeshInstance3D" parent="CullingPlane"]
-mesh = ExtResource("5_exksp")
+mesh = ExtResource("5_3cwp7")
 
 [node name="layer_5" type="MeshInstance3D" parent="CullingPlane"]
-mesh = ExtResource("6_foc3s")
+mesh = ExtResource("6_a6rd7")
 
 [node name="layer_6" type="MeshInstance3D" parent="CullingPlane"]
-mesh = ExtResource("7_qho7w")
+mesh = ExtResource("7_eg8uo")
 
 [node name="layer_7" type="MeshInstance3D" parent="CullingPlane"]
-mesh = ExtResource("8_neh5t")
+mesh = ExtResource("8_ok0cm")
 
 [node name="skydome" type="Node3D" parent="."]
 
 [node name="layer_0" type="MeshInstance3D" parent="skydome"]
 cast_shadow = 0
-mesh = ExtResource("9_hp2fo")
+mesh = ExtResource("9_xw56v")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jmqkf")
@@ -157,287 +157,287 @@ visible = false
 [node name="colmesh" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh"]
-mesh = ExtResource("10_ffgyy")
+mesh = ExtResource("10_cqbdf")
 
 [node name="colmesh_ai" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_ai"]
-mesh = ExtResource("11_3lbhi")
+mesh = ExtResource("11_yfk68")
 
 [node name="colmesh_floor" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor"]
-mesh = ExtResource("12_tuwqh")
+mesh = ExtResource("12_igi6b")
 
 [node name="Geometry" type="Node3D" parent="."]
 
 [node name="stampfer" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/stampfer"]
-mesh = ExtResource("13_i3x54")
+mesh = ExtResource("13_xsr5k")
 
 [node name="timetunnel" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/timetunnel"]
-mesh = ExtResource("14_gtc2m")
+mesh = ExtResource("14_kwkoc")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/timetunnel"]
-mesh = ExtResource("15_3bdx5")
+mesh = ExtResource("15_75lot")
 
 [node name="anlagen" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("16_fsprb")
+mesh = ExtResource("16_rgewx")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("17_tskxe")
+mesh = ExtResource("17_turaq")
 
 [node name="layer_10" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("18_bhy1l")
+mesh = ExtResource("18_o0kb8")
 
 [node name="layer_11" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("19_nb6uq")
+mesh = ExtResource("19_b7il2")
 
 [node name="layer_12" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("20_k5413")
+mesh = ExtResource("20_shxlu")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("21_xfq7t")
+mesh = ExtResource("21_36u6i")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("22_qed2y")
+mesh = ExtResource("22_6fd20")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("23_fqbp4")
+mesh = ExtResource("23_wsftb")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("24_oaknc")
+mesh = ExtResource("24_o1vhw")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("25_n1pfa")
+mesh = ExtResource("25_5ocps")
 
 [node name="layer_7" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("26_ma2lr")
+mesh = ExtResource("26_3q6iu")
 
 [node name="layer_8" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("27_2i84s")
+mesh = ExtResource("27_av6v5")
 
 [node name="layer_9" type="MeshInstance3D" parent="Geometry/anlagen"]
-mesh = ExtResource("28_bkihs")
+mesh = ExtResource("28_p626f")
 
 [node name="boden" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("29_m6bgv")
+mesh = ExtResource("29_8uoci")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("30_7lua4")
+mesh = ExtResource("30_1larw")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("31_yycoy")
+mesh = ExtResource("31_gsn8f")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("32_usv04")
+mesh = ExtResource("32_cssxk")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("33_br8i4")
+mesh = ExtResource("33_n1q0g")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("34_d6xph")
+mesh = ExtResource("34_nl03x")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("35_u2lah")
+mesh = ExtResource("35_u5y6q")
 
 [node name="layer_7" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("36_ytoui")
+mesh = ExtResource("36_23kj4")
 
 [node name="layer_8" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("37_i0bd7")
+mesh = ExtResource("37_ps7yv")
 
 [node name="bok" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/bok"]
-mesh = ExtResource("38_3siup")
+mesh = ExtResource("38_242xs")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/bok"]
-mesh = ExtResource("39_ygfym")
+mesh = ExtResource("39_doq3q")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/bok"]
-mesh = ExtResource("40_sgdas")
+mesh = ExtResource("40_rsabe")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/bok"]
-mesh = ExtResource("41_78jtq")
+mesh = ExtResource("41_neu84")
 
 [node name="fensterscheiben" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("42_ykarw")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("42_komm5")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("44_2qpyn")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("44_hgjjh")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_10" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("45_jb6ci")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("45_vcbeu")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_11" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("46_b1eik")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("46_858q0")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_12" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("47_67mku")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("47_vngr7")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_13" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("48_bvu2y")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("48_4aabs")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_14" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("49_r6bi6")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("49_kf8hy")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("50_dj6jk")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("50_gv4sb")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("51_x1qua")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("51_j3lds")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("52_juiks")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("52_mu0y2")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("53_yskrl")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("53_wifuj")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("54_pb06o")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("54_n58gj")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_7" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("55_4co7v")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("55_tihv6")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_8" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
-mesh = ExtResource("56_ffk1o")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("56_6ol8n")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="layer_9" type="MeshInstance3D" parent="Geometry/fensterscheiben"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.766632, 0, 1.68039)
-mesh = ExtResource("57_6mwrc")
-surface_material_override/0 = ExtResource("43_vjxd1")
+mesh = ExtResource("57_i2sds")
+surface_material_override/0 = ExtResource("43_bn555")
 
 [node name="gelaender" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/gelaender"]
-mesh = ExtResource("58_j3nnw")
+mesh = ExtResource("58_gkrww")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/gelaender"]
-mesh = ExtResource("59_nms11")
+mesh = ExtResource("59_wt6xt")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/gelaender"]
-mesh = ExtResource("60_asdvg")
+mesh = ExtResource("60_d28ce")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/gelaender"]
-mesh = ExtResource("61_buuyx")
+mesh = ExtResource("61_6m1hp")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/gelaender"]
-mesh = ExtResource("62_v28lg")
+mesh = ExtResource("62_daxee")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/gelaender"]
-mesh = ExtResource("63_bmy84")
+mesh = ExtResource("63_mq5dq")
 
 [node name="kraftfelder" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/kraftfelder"]
-mesh = ExtResource("64_qx1ij")
-surface_material_override/0 = ExtResource("65_v2apf")
+mesh = ExtResource("64_neyci")
+surface_material_override/0 = ExtResource("65_n76of")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/kraftfelder"]
-mesh = ExtResource("66_h343m")
-surface_material_override/0 = ExtResource("65_v2apf")
+mesh = ExtResource("66_cd54o")
+surface_material_override/0 = ExtResource("65_n76of")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/kraftfelder"]
-mesh = ExtResource("67_3ime1")
-surface_material_override/0 = ExtResource("65_v2apf")
+mesh = ExtResource("67_vyee4")
+surface_material_override/0 = ExtResource("65_n76of")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/kraftfelder"]
-mesh = ExtResource("68_meeru")
-surface_material_override/0 = ExtResource("65_v2apf")
+mesh = ExtResource("68_yrc6b")
+surface_material_override/0 = ExtResource("65_n76of")
 
 [node name="rundgang" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/rundgang"]
-mesh = ExtResource("69_3t3mm")
+mesh = ExtResource("69_63556")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/rundgang"]
-mesh = ExtResource("70_vlnth")
+mesh = ExtResource("70_al4n0")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/rundgang"]
-mesh = ExtResource("71_ofo5d")
+mesh = ExtResource("71_b7lj6")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/rundgang"]
-mesh = ExtResource("72_puiso")
+mesh = ExtResource("72_v5jhd")
 
 [node name="waende" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("73_aiqxt")
+mesh = ExtResource("73_mckmj")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("74_iyf55")
+mesh = ExtResource("74_yafc4")
 
 [node name="layer_10" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("75_57w7y")
+mesh = ExtResource("75_65yf7")
 
 [node name="layer_11" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("76_pw3m8")
+mesh = ExtResource("76_auu45")
 
 [node name="layer_12" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("77_v6mwi")
+mesh = ExtResource("77_he167")
 
 [node name="layer_13" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("78_fnp35")
+mesh = ExtResource("78_tagds")
 
 [node name="layer_14" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("79_68bmo")
+mesh = ExtResource("79_4ju4r")
 
 [node name="layer_15" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("80_o2d8k")
+mesh = ExtResource("80_u5g0w")
 
 [node name="layer_16" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("81_x64ao")
+mesh = ExtResource("81_fjvvd")
 
 [node name="layer_17" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("82_66sad")
+mesh = ExtResource("82_1ip53")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("83_ykjxu")
+mesh = ExtResource("83_tqnq1")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("84_uk4jb")
+mesh = ExtResource("84_6jbqt")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("85_fgalk")
+mesh = ExtResource("85_d0r1i")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("86_m76u5")
+mesh = ExtResource("86_bjyrf")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("87_rtcrk")
+mesh = ExtResource("87_p7jfa")
 
 [node name="layer_7" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("88_q86h7")
+mesh = ExtResource("88_6gnnb")
 
 [node name="layer_8" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("89_gf20x")
+mesh = ExtResource("89_2fx3l")
 
 [node name="layer_9" type="MeshInstance3D" parent="Geometry/waende"]
-mesh = ExtResource("90_f165k")
+mesh = ExtResource("90_avbmd")
 
 [node name="lights" type="Node3D" parent="."]
 visible = false

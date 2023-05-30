@@ -6,8 +6,27 @@ A project to make the old classic Moorhuhn Games playable
 on modern systems via an engine reimplementation, written
 in Rust and Godot.
 
+This means that there is no need to ship any copyrighed material, since
+the game will load the original assets from your own installation of the
+original game (but obviously means you need to own it).
+
 Most of the Moorhuhn Games are structured quite similarly,
 which makes supporting them relatively easy.
+
+## Progress
+
+### Moorhuhn Kart 3
+
+3D files are preprocessed on first launch into a `.pck`. Map loading is ~90% complete, I've decided against
+loading `lws` scenes for now, since all the static models are aligned to the origin, and loading them semi-manually opens up the door for easier remastering.
+
+<img src="robinhood.png" height="200">
+<img src="shimalaya.png" height="200">
+
+### Schatzjäger 1-3
+
+All non-interactive map elements load, all assets can be pre-processed, UI can be converted, collision
+works, movement *should* work relatively 1:1 compared to the original.
 
 ## Supported Games
 

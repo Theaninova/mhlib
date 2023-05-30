@@ -84,12 +84,9 @@ impl ExtensionLayer for ResourceLoaderLayer {
         self.datafile = Some(Gd::<DatafileLoader>::with_base(DatafileLoader::init));
         self.editor_pck = Some(Gd::<EditorPck>::with_base(|base| EditorPck { base }));
 
-        if Engine::singleton().is_editor_hint() {
-            ResourceLoader::singleton().add_resource_format_loader(
-                self.editor_pck.as_ref().unwrap().share().upcast(),
-                true,
-            )
-        }
+        // if Engine::singleton().is_editor_hint() {
+        ResourceLoader::singleton()
+            .add_resource_format_loader(self.editor_pck.as_ref().unwrap().share().upcast(), true);
 
         ResourceLoader::singleton()
             .add_resource_format_loader(self.datafile.as_ref().unwrap().share().upcast(), true);
