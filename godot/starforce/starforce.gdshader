@@ -73,12 +73,6 @@ void vertex() {
 }
 
 void fragment() {
-	vec3 rot = vec3(PI / 4.0, PI / -2.0, PI / -4.0);
-	mat3 x = mat3(vec3(1.0, 0.0, 0.0), vec3(0.0, cos(rot.x), -sin(rot.x)), vec3(0.0, sin(rot.x), cos(rot.x)));
-	mat3 y = mat3(vec3(cos(rot.y), 0.0, sin(rot.y)), vec3(0.0, 1.0, 0.0), vec3(-sin(rot.y), 0.0, cos(rot.y)));
-	mat3 z = mat3(vec3(cos(rot.z), -sin(rot.z), 0.0), vec3(sin(rot.z), cos(rot.z), 0.0), vec3(0.0, 0.0, 1.0));
-	mat3 mat = x * y * z;
-	
 	normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
 	
 	ALBEDO = project(
@@ -93,7 +87,7 @@ void fragment() {
 }
 
 void light() {
-	DIFFUSE_LIGHT =project(
+	DIFFUSE_LIGHT = project(
 		tex_diffuse,
 		tex_diffuse_projection,
 		tex_diffuse_projection_transform,

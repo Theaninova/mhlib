@@ -179,7 +179,7 @@ impl ResourceFormatLoaderVirtual for SarLoader {
                     godot_error!("Could not find {} or {}.bmp.dds.res", original_path, base)
                 }
 
-                image.generate_mipmaps(true);
+                image.generate_mipmaps(false);
 
                 image.set_name(
                     original_path

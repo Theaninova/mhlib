@@ -1,0 +1,337 @@
+[gd_scene load_steps=71 format=3 uid="uid://bqmgkpx6t3vk7"]
+
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/CullingPlane.lwo/layer_0.res" id="1_0yo66"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/CullingPlane.lwo/layer_1.res" id="2_bfjhc"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/CullingPlane.lwo/layer_2.res" id="3_ks0ap"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/CullingPlane.lwo/layer_3.res" id="4_ciuwn"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/CullingPlane.lwo/layer_4.res" id="5_g7dcu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/CullingPlane.lwo/layer_5.res" id="6_4ctj4"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/additionals.lwo/layer_0.res" id="7_501rc"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/additionals.lwo/layer_1.res" id="8_ln0jk"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/additionals.lwo/layer_2.res" id="9_w0yi5"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/additionals.lwo/layer_3.res" id="10_2505n"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/additionals.lwo/layer_4.res" id="11_3nhb0"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/additionals.lwo/layer_5.res" id="12_hbfqm"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/additionals.lwo/layer_6.res" id="13_bvudi"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_0.res" id="14_csat8"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_1.res" id="15_rs8v3"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_2.res" id="16_0d04k"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_3.res" id="17_7os6f"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_4.res" id="18_yc68c"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_5.res" id="19_fvg0c"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_6.res" id="20_clws2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_7.res" id="21_4d8uq"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/boden.lwo/layer_8.res" id="22_vtavm"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/colmesh.lwo/layer_0.res" id="23_gfmqx"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/colmesh_ai.lwo/layer_0.res" id="24_jecrl"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/colmesh_fall.lwo/layer_0.res" id="25_c2l45"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/colmesh_floor_fahrbahn.lwo/layer_0.res" id="26_ntr4r"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/colmesh_floor_sand.lwo/layer_0.res" id="27_le080"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/colmesh_floor_wiese.lwo/layer_0.res" id="28_ue2k7"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/colreset.lwo/layer_0.res" id="29_2t08u"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/fackel_flamme.lwo/layer_0.res" id="30_5r61a"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/felsbrocken.lwo/layer_0.res" id="31_8q5o8"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/felsbrocken.lwo/layer_1.res" id="32_04pbv"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/felsbrocken.lwo/layer_2.res" id="33_mnas0"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/felsbrocken.lwo/layer_3.res" id="34_c47ph"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/felsbrocken.lwo/layer_4.res" id="35_ex8ew"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/felsbrocken.lwo/layer_5.res" id="36_r2ue0"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/felsbrocken.lwo/layer_6.res" id="37_pbaok"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/holzbauten.lwo/layer_0.res" id="38_gx0nc"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/holzbauten.lwo/layer_1.res" id="39_hojkl"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/holzbauten.lwo/layer_2.res" id="40_jcknq"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/holzbauten.lwo/layer_3.res" id="41_aqdfv"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/holzbauten.lwo/layer_4.res" id="42_6dgpg"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/holzbauten.lwo/layer_5.res" id="43_lqtav"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/holzbauten.lwo/layer_6.res" id="44_qqx7p"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/kisten_faesser.lwo/layer_0.res" id="45_stash"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/kisten_faesser.lwo/layer_1.res" id="46_wiipg"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/kisten_faesser.lwo/layer_2.res" id="47_jkuu4"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/kisten_faesser.lwo/layer_3.res" id="48_01ue8"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/kisten_faesser.lwo/layer_4.res" id="49_q3qkm"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/lavastrom.lwo/layer_0.res" id="50_djqxu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/lavastrom.lwo/layer_1.res" id="51_6aiqd"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/lavastrom.lwo/layer_2.res" id="52_brree"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/lavastrom.lwo/layer_3.res" id="53_rxuwr"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/leitplanken.lwo/layer_0.res" id="54_ukl5y"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/leitplanken.lwo/layer_1.res" id="55_5ecx2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/leitplanken.lwo/layer_2.res" id="56_s6bt2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_0.res" id="57_4yjfx"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_1.res" id="58_ypxo2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_2.res" id="59_tyy58"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_3.res" id="60_1fxnr"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_4.res" id="61_cghxw"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_5.res" id="62_kppsh"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_6.res" id="63_1ccee"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_7.res" id="64_345rm"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/palmen.lwo/layer_8.res" id="65_af10r"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/piratenschiff.lwo/layer_0.res" id="66_qtbij"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/skydome.lwo/layer_0.res" id="67_i1olr"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/stampfer_kanonenkugel.lwo/layer_0.res" id="68_05dfn"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track02_pirateninsel/vulkan_feuer.lwo/layer_0.res" id="69_cslqb"]
+
+[sub_resource type="Environment" id="Environment_2ida3"]
+ambient_light_source = 2
+
+[node name="pirate_island" type="Node3D"]
+
+[node name="CullingPlane" type="Node3D" parent="."]
+visible = false
+
+[node name="layer_0" type="MeshInstance3D" parent="CullingPlane"]
+mesh = ExtResource("1_0yo66")
+
+[node name="layer_1" type="MeshInstance3D" parent="CullingPlane"]
+mesh = ExtResource("2_bfjhc")
+
+[node name="layer_2" type="MeshInstance3D" parent="CullingPlane"]
+mesh = ExtResource("3_ks0ap")
+
+[node name="layer_3" type="MeshInstance3D" parent="CullingPlane"]
+mesh = ExtResource("4_ciuwn")
+
+[node name="layer_4" type="MeshInstance3D" parent="CullingPlane"]
+mesh = ExtResource("5_g7dcu")
+
+[node name="layer_5" type="MeshInstance3D" parent="CullingPlane"]
+mesh = ExtResource("6_4ctj4")
+
+[node name="skydome" type="Node3D" parent="."]
+
+[node name="layer_0" type="MeshInstance3D" parent="skydome"]
+mesh = ExtResource("67_i1olr")
+
+[node name="Collision" type="Node3D" parent="."]
+visible = false
+
+[node name="colmesh" type="Node3D" parent="Collision"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh"]
+mesh = ExtResource("23_gfmqx")
+
+[node name="colmesh_ai" type="Node3D" parent="Collision"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_ai"]
+mesh = ExtResource("24_jecrl")
+
+[node name="colmesh_fall" type="Node3D" parent="Collision"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_fall"]
+mesh = ExtResource("25_c2l45")
+
+[node name="colmesh_floor_fahrbahn" type="Node3D" parent="Collision"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor_fahrbahn"]
+mesh = ExtResource("26_ntr4r")
+
+[node name="colmesh_floor_sand" type="Node3D" parent="Collision"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor_sand"]
+mesh = ExtResource("27_le080")
+
+[node name="colmesh_floor_wiese" type="Node3D" parent="Collision"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor_wiese"]
+mesh = ExtResource("28_ue2k7")
+
+[node name="colreset" type="Node3D" parent="Collision"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Collision/colreset"]
+mesh = ExtResource("29_2t08u")
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="additionals" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/additionals"]
+mesh = ExtResource("7_501rc")
+
+[node name="layer_1" type="MeshInstance3D" parent="Geometry/additionals"]
+mesh = ExtResource("8_ln0jk")
+
+[node name="layer_2" type="MeshInstance3D" parent="Geometry/additionals"]
+mesh = ExtResource("9_w0yi5")
+
+[node name="layer_3" type="MeshInstance3D" parent="Geometry/additionals"]
+mesh = ExtResource("10_2505n")
+
+[node name="layer_4" type="MeshInstance3D" parent="Geometry/additionals"]
+mesh = ExtResource("11_3nhb0")
+
+[node name="layer_5" type="MeshInstance3D" parent="Geometry/additionals"]
+mesh = ExtResource("12_hbfqm")
+
+[node name="layer_6" type="MeshInstance3D" parent="Geometry/additionals"]
+mesh = ExtResource("13_bvudi")
+
+[node name="boden" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("14_csat8")
+
+[node name="layer_1" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("15_rs8v3")
+
+[node name="layer_2" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("16_0d04k")
+
+[node name="layer_3" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("17_7os6f")
+
+[node name="layer_4" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("18_yc68c")
+
+[node name="layer_5" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("19_fvg0c")
+
+[node name="layer_6" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("20_clws2")
+
+[node name="layer_7" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("21_4d8uq")
+
+[node name="layer_8" type="MeshInstance3D" parent="Geometry/boden"]
+mesh = ExtResource("22_vtavm")
+
+[node name="fackel_flamme" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/fackel_flamme"]
+mesh = ExtResource("30_5r61a")
+
+[node name="felsbrocken" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/felsbrocken"]
+mesh = ExtResource("31_8q5o8")
+
+[node name="layer_1" type="MeshInstance3D" parent="Geometry/felsbrocken"]
+mesh = ExtResource("32_04pbv")
+
+[node name="layer_2" type="MeshInstance3D" parent="Geometry/felsbrocken"]
+mesh = ExtResource("33_mnas0")
+
+[node name="layer_3" type="MeshInstance3D" parent="Geometry/felsbrocken"]
+mesh = ExtResource("34_c47ph")
+
+[node name="layer_4" type="MeshInstance3D" parent="Geometry/felsbrocken"]
+mesh = ExtResource("35_ex8ew")
+
+[node name="layer_5" type="MeshInstance3D" parent="Geometry/felsbrocken"]
+mesh = ExtResource("36_r2ue0")
+
+[node name="layer_6" type="MeshInstance3D" parent="Geometry/felsbrocken"]
+mesh = ExtResource("37_pbaok")
+
+[node name="holzbauten" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/holzbauten"]
+mesh = ExtResource("38_gx0nc")
+
+[node name="layer_1" type="MeshInstance3D" parent="Geometry/holzbauten"]
+mesh = ExtResource("39_hojkl")
+
+[node name="layer_2" type="MeshInstance3D" parent="Geometry/holzbauten"]
+mesh = ExtResource("40_jcknq")
+
+[node name="layer_3" type="MeshInstance3D" parent="Geometry/holzbauten"]
+mesh = ExtResource("41_aqdfv")
+
+[node name="layer_4" type="MeshInstance3D" parent="Geometry/holzbauten"]
+mesh = ExtResource("42_6dgpg")
+
+[node name="layer_5" type="MeshInstance3D" parent="Geometry/holzbauten"]
+mesh = ExtResource("43_lqtav")
+
+[node name="layer_6" type="MeshInstance3D" parent="Geometry/holzbauten"]
+mesh = ExtResource("44_qqx7p")
+
+[node name="kisten_faesser" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/kisten_faesser"]
+mesh = ExtResource("45_stash")
+
+[node name="layer_1" type="MeshInstance3D" parent="Geometry/kisten_faesser"]
+mesh = ExtResource("46_wiipg")
+
+[node name="layer_2" type="MeshInstance3D" parent="Geometry/kisten_faesser"]
+mesh = ExtResource("47_jkuu4")
+
+[node name="layer_3" type="MeshInstance3D" parent="Geometry/kisten_faesser"]
+mesh = ExtResource("48_01ue8")
+
+[node name="layer_4" type="MeshInstance3D" parent="Geometry/kisten_faesser"]
+mesh = ExtResource("49_q3qkm")
+
+[node name="lavastrom" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/lavastrom"]
+mesh = ExtResource("50_djqxu")
+
+[node name="layer_1" type="MeshInstance3D" parent="Geometry/lavastrom"]
+mesh = ExtResource("51_6aiqd")
+
+[node name="layer_2" type="MeshInstance3D" parent="Geometry/lavastrom"]
+mesh = ExtResource("52_brree")
+
+[node name="layer_3" type="MeshInstance3D" parent="Geometry/lavastrom"]
+mesh = ExtResource("53_rxuwr")
+
+[node name="leitplanken" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/leitplanken"]
+mesh = ExtResource("54_ukl5y")
+
+[node name="layer_1" type="MeshInstance3D" parent="Geometry/leitplanken"]
+mesh = ExtResource("55_5ecx2")
+
+[node name="layer_2" type="MeshInstance3D" parent="Geometry/leitplanken"]
+mesh = ExtResource("56_s6bt2")
+
+[node name="palmen" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("57_4yjfx")
+
+[node name="layer_1" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("58_ypxo2")
+
+[node name="layer_2" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("59_tyy58")
+
+[node name="layer_3" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("60_1fxnr")
+
+[node name="layer_4" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("61_cghxw")
+
+[node name="layer_5" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("62_kppsh")
+
+[node name="layer_6" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("63_1ccee")
+
+[node name="layer_7" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("64_345rm")
+
+[node name="layer_8" type="MeshInstance3D" parent="Geometry/palmen"]
+mesh = ExtResource("65_af10r")
+
+[node name="piratenschiff" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/piratenschiff"]
+mesh = ExtResource("66_qtbij")
+
+[node name="stampfer_kanonenkugel" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/stampfer_kanonenkugel"]
+mesh = ExtResource("68_05dfn")
+
+[node name="vulkan_feuer" type="Node3D" parent="Geometry"]
+
+[node name="layer_0" type="MeshInstance3D" parent="Geometry/vulkan_feuer"]
+mesh = ExtResource("69_cslqb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2ida3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.559705, -0.54641, -0.62303, 0.592459, 0.261825, -0.761866, 0.579416, -0.79554, 0.177181, 0, 0, 0)

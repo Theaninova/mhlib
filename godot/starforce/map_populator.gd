@@ -1,7 +1,7 @@
 @tool
 extends EditorScript
 
-var map_id = "07_ufo"
+var map_id = "08_shimalaya"
 
 var res_path = "res://games/"
 var actual_path = "user://.install/"
