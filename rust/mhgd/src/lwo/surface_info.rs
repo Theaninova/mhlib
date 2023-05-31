@@ -78,8 +78,8 @@ impl SurfaceInfo {
 
     pub fn collect_from_layer(layer: &IntermediateLayer, material: &MaterialUvInfo) -> Self {
         let uv_names = [
-            material.diffuse_channel.as_ref(),
             material.color_channel.as_ref(),
+            material.diffuse_channel.as_ref(),
         ];
 
         let uv_subset = uv_names

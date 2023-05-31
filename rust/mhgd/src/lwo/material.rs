@@ -198,18 +198,17 @@ impl MaterialUvInfo {
                         );*/
                         let channel_name = match &chan {
                             TextureChannel::Color => "color",
+                            // this is a bit confusing, but this is actually diffuse *lighting*
+                            // aka baked lightmaps
                             TextureChannel::Diffuse => "diffuse",
-                            x => {
-                                godot_error!("TODO: Texture channel {:?} is not supported", x);
-                                "color"
-                            } /*TextureChannel::Luminosity => "luminosity",
-                              TextureChannel::Specular => "specular",
-                              TextureChannel::Glossy => "glossy",
-                              TextureChannel::Reflectivity => "reflectivity",
-                              TextureChannel::Transparency => "transparency",
-                              TextureChannel::RefractiveIndex => "refractive_index",
-                              TextureChannel::Translucency => "translucency",
-                              TextureChannel::Bump => "bump",*/
+                            TextureChannel::Bump => "bump",
+                            TextureChannel::Specular => "specular",
+                            TextureChannel::Glossy => "glossy",
+                            TextureChannel::Reflectivity => "reflectivity",
+                            TextureChannel::Transparency => "transparency",
+                            TextureChannel::RefractiveIndex => "refractive_index",
+                            TextureChannel::Translucency => "translucency",
+                            TextureChannel::Luminosity => "luminosity",
                         };
                         m.material.set_shader_parameter(
                             format!("tex_{}_axis", channel_name).into(),
