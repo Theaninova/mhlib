@@ -22,8 +22,22 @@ float aaStep(float compValue, float gradient){
 
 void fragment() {
 	vec2 pos = FRAGCOORD.xy;
-	pos.y += sin(pos.x / (size * wave_amount) + TIME * time_scale) * (wave_scale * size);
-	pos *= mat2(vec2(sin(rotation), -cos(rotation)), vec2(cos(rotation), sin(rotation)));
-	pos = abs(fract(pos / size) - 0.5);
+	
+	float t = TIME * time_scale;
+	float w = size * wave_amount;
+	float s = size * wave_scale;
+	
+	float wave = sin(pos.x / w + t) * s;
+	mat2 rot = mat2(vec2(sin(rotation), -cos(rotation)), vec2(cos(rotation), sin(rotation)));
+	
+	pos.y += wave;
+	pos *= rot;
+	pos /= size;
+	
+	float shade = sin(pos.y / w + t) * s;
+	
+	pos = abs(fract(pos) - 0.5);
 	COLOR = mix(color1, color2, aaStep(0.5, pos.x + pos.y));
+	
+	// COLOR -= (1.0 - (shade / 2.0 + 0.5)) / 80.0;
 }

@@ -1,47 +1,47 @@
 [gd_resource type="ShaderMaterial" load_steps=15 format=3 uid="uid://d0i0klcefalj4"]
 
-[ext_resource type="Shader" uid="uid://44g7mn3konwc" path="res://kart/maps/ufo/force_field_shader.tres" id="1_3qf8k"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_00.bmp.res" id="2_8ni5q"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_01.bmp.res" id="3_cwcke"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_10.bmp.res" id="4_b55nt"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_11.bmp.res" id="5_mmi5y"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_02.bmp.res" id="6_17mhp"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_03.bmp.res" id="7_lvo7y"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_04.bmp.res" id="8_slcnh"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_05.bmp.res" id="9_tw8vf"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_06.bmp.res" id="10_w3pnb"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_07.bmp.res" id="11_2ae66"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_08.bmp.res" id="12_5ggfs"]
-[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_09.bmp.res" id="13_te3bx"]
+[ext_resource type="Shader" uid="uid://44g7mn3konwc" path="res://kart/maps/ufo/force_field_shader.tres" id="1_pd64v"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_00.bmp.res" id="2_no7ce"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_01.bmp.res" id="3_htebp"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_10.bmp.res" id="4_q5kk8"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_11.bmp.res" id="5_fmppl"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_02.bmp.res" id="6_8f4n3"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_03.bmp.res" id="7_ooiha"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_04.bmp.res" id="8_wxvtu"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_05.bmp.res" id="9_11nbj"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_06.bmp.res" id="10_diaxf"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_07.bmp.res" id="11_g3uk8"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_08.bmp.res" id="12_pbssw"]
+[ext_resource type="Texture2D" path="res://games/mhk3/D/Moorhuhnkart/textures_animations/portal/water_09.bmp.res" id="13_2bl65"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_mt86o"]
 frames = 12
-frame_0/texture = ExtResource("2_8ni5q")
+frame_0/texture = ExtResource("2_no7ce")
 frame_0/duration = 0.0666667
-frame_1/texture = ExtResource("3_cwcke")
+frame_1/texture = ExtResource("3_htebp")
 frame_1/duration = 0.0666667
-frame_2/texture = ExtResource("6_17mhp")
+frame_2/texture = ExtResource("6_8f4n3")
 frame_2/duration = 0.0666667
-frame_3/texture = ExtResource("7_lvo7y")
+frame_3/texture = ExtResource("7_ooiha")
 frame_3/duration = 0.0666667
-frame_4/texture = ExtResource("8_slcnh")
+frame_4/texture = ExtResource("8_wxvtu")
 frame_4/duration = 0.0666667
-frame_5/texture = ExtResource("9_tw8vf")
+frame_5/texture = ExtResource("9_11nbj")
 frame_5/duration = 0.0666667
-frame_6/texture = ExtResource("10_w3pnb")
+frame_6/texture = ExtResource("10_diaxf")
 frame_6/duration = 0.0666667
-frame_7/texture = ExtResource("11_2ae66")
+frame_7/texture = ExtResource("11_g3uk8")
 frame_7/duration = 0.0666667
-frame_8/texture = ExtResource("12_5ggfs")
+frame_8/texture = ExtResource("12_pbssw")
 frame_8/duration = 0.0666667
-frame_9/texture = ExtResource("13_te3bx")
+frame_9/texture = ExtResource("13_2bl65")
 frame_9/duration = 0.0666667
-frame_10/texture = ExtResource("4_b55nt")
+frame_10/texture = ExtResource("4_q5kk8")
 frame_10/duration = 0.0666667
-frame_11/texture = ExtResource("5_mmi5y")
+frame_11/texture = ExtResource("5_fmppl")
 frame_11/duration = 0.0666667
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_3qf8k")
+shader = ExtResource("1_pd64v")
 shader_parameter/Texture2DParameter = SubResource("AnimatedTexture_mt86o")

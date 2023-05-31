@@ -1,44 +1,44 @@
 [gd_scene load_steps=33 format=3 uid="uid://kn2mkq2fupmv"]
 
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/skydome.lwo/layer_0.res" id="1_sgib3"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh.lwo/layer_0.res" id="2_nrqs5"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_ai.lwo/layer_0.res" id="3_7tsnp"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_fall.lwo/layer_0.res" id="4_2al36"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_floor_dreck.lwo/layer_0.res" id="5_iqasl"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_floor_fahrbahn.lwo/layer_0.res" id="6_yqmtw"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_floor_holz.lwo/layer_0.res" id="7_kfdj1"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colreset.lwo/layer_0.res" id="8_gceap"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_0.res" id="9_78qoq"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_1.res" id="10_24uu1"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_2.res" id="11_s12io"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_3.res" id="12_keomc"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_4.res" id="13_bdbwy"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_5.res" id="14_ll4ys"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_0.res" id="15_n2ps5"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_1.res" id="16_oun7r"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_2.res" id="17_3s2vd"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_3.res" id="18_40sxv"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_4.res" id="19_2xa5g"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_5.res" id="20_u25iy"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_6.res" id="21_awk7q"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_7.res" id="22_3f4sk"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_8.res" id="23_aangp"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/boden.lwo/layer_0.res" id="24_dqk7v"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/boden.lwo/layer_1.res" id="25_7c6ax"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/boden.lwo/layer_2.res" id="26_r4il0"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/boden.lwo/layer_3.res" id="27_wpkmg"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/felsbrocken.lwo/layer_0.res" id="28_plbmc"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/lagerfeuer.lwo/layer_0.res" id="29_aesw5"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/mammutbaeume.lwo/layer_0.res" id="30_63bpd"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/mammutbaeume.lwo/layer_1.res" id="31_5iqkq"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/stampfer_baum.lwo/layer_0.res" id="32_6cfto"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/skydome.lwo/layer_0.res" id="1_1epea"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh.lwo/layer_0.res" id="2_dihei"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_ai.lwo/layer_0.res" id="3_27bse"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_fall.lwo/layer_0.res" id="4_q62il"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_floor_dreck.lwo/layer_0.res" id="5_2sy3t"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_floor_fahrbahn.lwo/layer_0.res" id="6_d4g0p"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colmesh_floor_holz.lwo/layer_0.res" id="7_hvi67"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/colreset.lwo/layer_0.res" id="8_lsno0"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_0.res" id="9_xl47g"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_1.res" id="10_j7bpo"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_2.res" id="11_i3bmi"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_3.res" id="12_c5mft"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_4.res" id="13_gmkdh"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/additionals.lwo/layer_5.res" id="14_ndwxl"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_0.res" id="15_25ped"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_1.res" id="16_f0ne7"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_2.res" id="17_7b5qj"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_3.res" id="18_g4csv"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_4.res" id="19_6p2a5"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_5.res" id="20_k83j7"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_6.res" id="21_r5udq"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_7.res" id="22_hnkjs"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/baeume.lwo/layer_8.res" id="23_6tnx3"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/boden.lwo/layer_0.res" id="24_2txem"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/boden.lwo/layer_1.res" id="25_xnant"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/boden.lwo/layer_2.res" id="26_8oguf"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/boden.lwo/layer_3.res" id="27_e0x8i"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/felsbrocken.lwo/layer_0.res" id="28_0an2m"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/lagerfeuer.lwo/layer_0.res" id="29_hvgkh"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/mammutbaeume.lwo/layer_0.res" id="30_ety3m"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/mammutbaeume.lwo/layer_1.res" id="31_pttwh"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track04_robinhood/stampfer_baum.lwo/layer_0.res" id="32_ygkkq"]
 
 [node name="robin_hood" type="Node3D"]
 
 [node name="skydome" type="Node3D" parent="."]
 
 [node name="layer_0" type="MeshInstance3D" parent="skydome"]
-mesh = ExtResource("1_sgib3")
+mesh = ExtResource("1_1epea")
 
 [node name="Collision" type="Node3D" parent="."]
 visible = false
@@ -46,125 +46,125 @@ visible = false
 [node name="colmesh" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh"]
-mesh = ExtResource("2_nrqs5")
+mesh = ExtResource("2_dihei")
 
 [node name="colmesh_ai" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_ai"]
-mesh = ExtResource("3_7tsnp")
+mesh = ExtResource("3_27bse")
 
 [node name="colmesh_fall" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_fall"]
-mesh = ExtResource("4_2al36")
+mesh = ExtResource("4_q62il")
 
 [node name="colmesh_floor_dreck" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor_dreck"]
-mesh = ExtResource("5_iqasl")
+mesh = ExtResource("5_2sy3t")
 
 [node name="colmesh_floor_fahrbahn" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor_fahrbahn"]
-mesh = ExtResource("6_yqmtw")
+mesh = ExtResource("6_d4g0p")
 
 [node name="colmesh_floor_holz" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor_holz"]
-mesh = ExtResource("7_kfdj1")
+mesh = ExtResource("7_hvi67")
 
 [node name="colreset" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colreset"]
-mesh = ExtResource("8_gceap")
+mesh = ExtResource("8_lsno0")
 
 [node name="Geometry" type="Node3D" parent="."]
 
 [node name="additionals" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/additionals"]
-mesh = ExtResource("9_78qoq")
+mesh = ExtResource("9_xl47g")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/additionals"]
-mesh = ExtResource("10_24uu1")
+mesh = ExtResource("10_j7bpo")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/additionals"]
-mesh = ExtResource("11_s12io")
+mesh = ExtResource("11_i3bmi")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/additionals"]
-mesh = ExtResource("12_keomc")
+mesh = ExtResource("12_c5mft")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/additionals"]
-mesh = ExtResource("13_bdbwy")
+mesh = ExtResource("13_gmkdh")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/additionals"]
-mesh = ExtResource("14_ll4ys")
+mesh = ExtResource("14_ndwxl")
 
 [node name="baeume" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("15_n2ps5")
+mesh = ExtResource("15_25ped")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("16_oun7r")
+mesh = ExtResource("16_f0ne7")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("17_3s2vd")
+mesh = ExtResource("17_7b5qj")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("18_40sxv")
+mesh = ExtResource("18_g4csv")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("19_2xa5g")
+mesh = ExtResource("19_6p2a5")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("20_u25iy")
+mesh = ExtResource("20_k83j7")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("21_awk7q")
+mesh = ExtResource("21_r5udq")
 
 [node name="layer_7" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("22_3f4sk")
+mesh = ExtResource("22_hnkjs")
 
 [node name="layer_8" type="MeshInstance3D" parent="Geometry/baeume"]
-mesh = ExtResource("23_aangp")
+mesh = ExtResource("23_6tnx3")
 
 [node name="boden" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("24_dqk7v")
+mesh = ExtResource("24_2txem")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("25_7c6ax")
+mesh = ExtResource("25_xnant")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("26_r4il0")
+mesh = ExtResource("26_8oguf")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("27_wpkmg")
+mesh = ExtResource("27_e0x8i")
 
 [node name="felsbrocken" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/felsbrocken"]
-mesh = ExtResource("28_plbmc")
+mesh = ExtResource("28_0an2m")
 
 [node name="lagerfeuer" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/lagerfeuer"]
-mesh = ExtResource("29_aesw5")
+mesh = ExtResource("29_hvgkh")
 
 [node name="mammutbaeume" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/mammutbaeume"]
-mesh = ExtResource("30_63bpd")
+mesh = ExtResource("30_ety3m")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/mammutbaeume"]
-mesh = ExtResource("31_5iqkq")
+mesh = ExtResource("31_pttwh")
 
 [node name="stampfer_baum" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/stampfer_baum"]
-mesh = ExtResource("32_6cfto")
+mesh = ExtResource("32_ygkkq")
 
 [node name="Thumbnail" type="Camera3D" parent="."]
 transform = Transform3D(-0.681998, -0.0637417, 0.728571, 0, 0.996195, 0.0871557, -0.731354, 0.0594401, -0.679403, 147.036, 35.492, -82.815)

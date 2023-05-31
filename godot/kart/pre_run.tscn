@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://kiub4um8hqrn"]
+
+[sub_resource type="GDScript" id="GDScript_7lsuk"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="pre_run" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_7lsuk")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CenterContainer"]
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CenterContainer/AspectRatioContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+text = "Shimalaya"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/AspectRatioContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 2
+
+[node name="Prev" type="Button" parent="CenterContainer/AspectRatioContainer/HBoxContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="Button" type="Button" parent="CenterContainer/AspectRatioContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select"
+
+[node name="Next" type="Button" parent="CenterContainer/AspectRatioContainer/HBoxContainer"]
+layout_mode = 2
+text = ">"

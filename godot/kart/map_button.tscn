@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://hl63uxablh8m"]
+
+[node name="MapSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(512, 600)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="VBoxContainer" parent="Button"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 512.0
+grow_horizontal = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Button/CenterContainer"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+stretch = true
+
+[node name="MapPreview" type="SubViewport" parent="Button/CenterContainer/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Map" type="Node3D" parent="Button/CenterContainer/SubViewportContainer/MapPreview"]
+
+[node name="PreviewCamera" type="Camera3D" parent="Button/CenterContainer/SubViewportContainer/MapPreview/Map"]
+
+[node name="Label" type="Label" parent="Button/CenterContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 60
+text = "Shimalaya"
+horizontal_alignment = 1

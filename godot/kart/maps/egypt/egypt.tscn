@@ -1,68 +1,68 @@
 [gd_scene load_steps=57 format=3 uid="uid://c08iaahf32kfe"]
 
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/skydome.lwo/layer_0.res" id="1_yak81"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh.lwo/layer_0.res" id="2_v7w5g"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh_ai.lwo/layer_0.res" id="3_lgy6n"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh_fall.lwo/layer_0.res" id="4_lwhqt"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh_floor_fahrbahn.lwo/layer_0.res" id="5_06c5o"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh_floor_sand.lwo/layer_0.res" id="6_e7ne1"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colreset.lwo/layer_0.res" id="7_u0sn2"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_0.res" id="8_044dt"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_1.res" id="9_yfr2t"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_2.res" id="10_sys3v"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_3.res" id="11_l4s76"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_4.res" id="12_ewehu"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_5.res" id="13_1f5fo"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_6.res" id="14_nk3rd"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackel_flamme.lwo/layer_0.res" id="15_rrue5"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackeln.lwo/layer_0.res" id="16_op501"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackeln.lwo/layer_1.res" id="17_baayb"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackeln.lwo/layer_2.res" id="18_asdw3"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackeln.lwo/layer_3.res" id="19_0pcgn"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fadeplane.lwo/layer_0.res" id="20_cvau4"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_0.res" id="21_grvm0"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_1.res" id="22_qqv6n"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_2.res" id="23_qlger"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_3.res" id="24_aloh6"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_4.res" id="25_c4gya"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/flamme_gruen.lwo/layer_0.res" id="26_hu1q4"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_0.res" id="27_2mtpc"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_1.res" id="28_32skg"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_2.res" id="29_3o2va"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_3.res" id="30_4ewnb"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_4.res" id="31_x00oc"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_5.res" id="32_joei8"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_6.res" id="33_tjhtu"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_0.res" id="34_jysjs"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_1.res" id="35_526bs"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_2.res" id="36_5kv66"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_3.res" id="37_gjx7r"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_4.res" id="38_3ew1p"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_5.res" id="39_72r5o"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_6.res" id="40_bat20"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_7.res" id="41_j6vop"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/pyramide_inside.lwo/layer_0.res" id="42_11bhy"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/pyramide_inside.lwo/layer_1.res" id="43_tl770"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/pyramide_inside.lwo/layer_2.res" id="44_rbsth"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/sphinx.lwo/layer_0.res" id="45_cw5jd"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/stampfer_saeule.lwo/layer_0.res" id="46_gisip"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_0.res" id="47_16qxs"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_1.res" id="48_2jxwk"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_2.res" id="49_rju1c"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_3.res" id="50_vs1re"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_4.res" id="51_or0ej"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_5.res" id="52_2y87g"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_6.res" id="53_7nfmu"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_7.res" id="54_hi1ly"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_8.res" id="55_fhu83"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_9.res" id="56_blfcr"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/skydome.lwo/layer_0.res" id="1_c65rh"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh.lwo/layer_0.res" id="2_0vph3"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh_ai.lwo/layer_0.res" id="3_5o533"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh_fall.lwo/layer_0.res" id="4_xogjj"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh_floor_fahrbahn.lwo/layer_0.res" id="5_ifrb3"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colmesh_floor_sand.lwo/layer_0.res" id="6_ihb7w"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/colreset.lwo/layer_0.res" id="7_72khp"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_0.res" id="8_5p6dl"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_1.res" id="9_ytc4o"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_2.res" id="10_lywwv"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_3.res" id="11_4v0yx"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_4.res" id="12_jvdyb"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_5.res" id="13_336u2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/boden.lwo/layer_6.res" id="14_ee0c4"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackel_flamme.lwo/layer_0.res" id="15_70tk5"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackeln.lwo/layer_0.res" id="16_cemce"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackeln.lwo/layer_1.res" id="17_4gfai"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackeln.lwo/layer_2.res" id="18_5gmxo"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fackeln.lwo/layer_3.res" id="19_y4m5k"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/fadeplane.lwo/layer_0.res" id="20_vrkeu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_0.res" id="21_hd23i"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_1.res" id="22_5k0rw"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_2.res" id="23_myo8x"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_3.res" id="24_cmcne"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/felsbrocken.lwo/layer_4.res" id="25_6wu5v"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/flamme_gruen.lwo/layer_0.res" id="26_pgy6e"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_0.res" id="27_5qssv"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_1.res" id="28_2k7mn"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_2.res" id="29_svld3"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_3.res" id="30_oiilc"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_4.res" id="31_q5gnp"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_5.res" id="32_iota2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/haeuser.lwo/layer_6.res" id="33_xu506"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_0.res" id="34_bpxiv"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_1.res" id="35_3cejh"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_2.res" id="36_qmnch"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_3.res" id="37_huntu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_4.res" id="38_rwaiu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_5.res" id="39_u5xq7"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_6.res" id="40_ayamf"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/palmen.lwo/layer_7.res" id="41_eb8ee"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/pyramide_inside.lwo/layer_0.res" id="42_77jcw"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/pyramide_inside.lwo/layer_1.res" id="43_c0iwq"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/pyramide_inside.lwo/layer_2.res" id="44_tx4mp"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/sphinx.lwo/layer_0.res" id="45_n7j1d"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/stampfer_saeule.lwo/layer_0.res" id="46_pa778"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_0.res" id="47_7yqjk"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_1.res" id="48_di7dj"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_2.res" id="49_k4ed0"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_3.res" id="50_pes1e"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_4.res" id="51_cwuyq"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_5.res" id="52_8aw2s"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_6.res" id="53_6avia"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_7.res" id="54_wy6ms"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_8.res" id="55_mib5n"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track05_aegypten/statuen.lwo/layer_9.res" id="56_l2bqy"]
 
 [node name="egypt" type="Node3D"]
 
 [node name="skydome" type="Node3D" parent="."]
 
 [node name="layer_0" type="MeshInstance3D" parent="skydome"]
-mesh = ExtResource("1_yak81")
+mesh = ExtResource("1_c65rh")
 
 [node name="Collision" type="Node3D" parent="."]
 visible = false
@@ -70,202 +70,202 @@ visible = false
 [node name="colmesh" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh"]
-mesh = ExtResource("2_v7w5g")
+mesh = ExtResource("2_0vph3")
 
 [node name="colmesh_ai" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_ai"]
-mesh = ExtResource("3_lgy6n")
+mesh = ExtResource("3_5o533")
 
 [node name="colmesh_fall" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_fall"]
-mesh = ExtResource("4_lwhqt")
+mesh = ExtResource("4_xogjj")
 
 [node name="colmesh_floor_fahrbahn" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor_fahrbahn"]
-mesh = ExtResource("5_06c5o")
+mesh = ExtResource("5_ifrb3")
 
 [node name="colmesh_floor_sand" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colmesh_floor_sand"]
-mesh = ExtResource("6_e7ne1")
+mesh = ExtResource("6_ihb7w")
 
 [node name="colreset" type="Node3D" parent="Collision"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Collision/colreset"]
-mesh = ExtResource("7_u0sn2")
+mesh = ExtResource("7_72khp")
 
 [node name="Geometry" type="Node3D" parent="."]
 
 [node name="boden" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("8_044dt")
+mesh = ExtResource("8_5p6dl")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("9_yfr2t")
+mesh = ExtResource("9_ytc4o")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("10_sys3v")
+mesh = ExtResource("10_lywwv")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("11_l4s76")
+mesh = ExtResource("11_4v0yx")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("12_ewehu")
+mesh = ExtResource("12_jvdyb")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("13_1f5fo")
+mesh = ExtResource("13_336u2")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/boden"]
-mesh = ExtResource("14_nk3rd")
+mesh = ExtResource("14_ee0c4")
 
 [node name="fackel_flamme" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/fackel_flamme"]
-mesh = ExtResource("15_rrue5")
+mesh = ExtResource("15_70tk5")
 
 [node name="fackeln" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/fackeln"]
-mesh = ExtResource("16_op501")
+mesh = ExtResource("16_cemce")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/fackeln"]
-mesh = ExtResource("17_baayb")
+mesh = ExtResource("17_4gfai")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/fackeln"]
-mesh = ExtResource("18_asdw3")
+mesh = ExtResource("18_5gmxo")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/fackeln"]
-mesh = ExtResource("19_0pcgn")
+mesh = ExtResource("19_y4m5k")
 
 [node name="fadeplane" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/fadeplane"]
-mesh = ExtResource("20_cvau4")
+mesh = ExtResource("20_vrkeu")
 
 [node name="felsbrocken" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/felsbrocken"]
-mesh = ExtResource("21_grvm0")
+mesh = ExtResource("21_hd23i")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/felsbrocken"]
-mesh = ExtResource("22_qqv6n")
+mesh = ExtResource("22_5k0rw")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/felsbrocken"]
-mesh = ExtResource("23_qlger")
+mesh = ExtResource("23_myo8x")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/felsbrocken"]
-mesh = ExtResource("24_aloh6")
+mesh = ExtResource("24_cmcne")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/felsbrocken"]
-mesh = ExtResource("25_c4gya")
+mesh = ExtResource("25_6wu5v")
 
 [node name="flamme_gruen" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/flamme_gruen"]
-mesh = ExtResource("26_hu1q4")
+mesh = ExtResource("26_pgy6e")
 
 [node name="haeuser" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/haeuser"]
-mesh = ExtResource("27_2mtpc")
+mesh = ExtResource("27_5qssv")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/haeuser"]
-mesh = ExtResource("28_32skg")
+mesh = ExtResource("28_2k7mn")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/haeuser"]
-mesh = ExtResource("29_3o2va")
+mesh = ExtResource("29_svld3")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/haeuser"]
-mesh = ExtResource("30_4ewnb")
+mesh = ExtResource("30_oiilc")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/haeuser"]
-mesh = ExtResource("31_x00oc")
+mesh = ExtResource("31_q5gnp")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/haeuser"]
-mesh = ExtResource("32_joei8")
+mesh = ExtResource("32_iota2")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/haeuser"]
-mesh = ExtResource("33_tjhtu")
+mesh = ExtResource("33_xu506")
 
 [node name="palmen" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/palmen"]
-mesh = ExtResource("34_jysjs")
+mesh = ExtResource("34_bpxiv")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/palmen"]
-mesh = ExtResource("35_526bs")
+mesh = ExtResource("35_3cejh")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/palmen"]
-mesh = ExtResource("36_5kv66")
+mesh = ExtResource("36_qmnch")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/palmen"]
-mesh = ExtResource("37_gjx7r")
+mesh = ExtResource("37_huntu")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/palmen"]
-mesh = ExtResource("38_3ew1p")
+mesh = ExtResource("38_rwaiu")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/palmen"]
-mesh = ExtResource("39_72r5o")
+mesh = ExtResource("39_u5xq7")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/palmen"]
-mesh = ExtResource("40_bat20")
+mesh = ExtResource("40_ayamf")
 
 [node name="layer_7" type="MeshInstance3D" parent="Geometry/palmen"]
-mesh = ExtResource("41_j6vop")
+mesh = ExtResource("41_eb8ee")
 
 [node name="pyramide_inside" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/pyramide_inside"]
-mesh = ExtResource("42_11bhy")
+mesh = ExtResource("42_77jcw")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/pyramide_inside"]
-mesh = ExtResource("43_tl770")
+mesh = ExtResource("43_c0iwq")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/pyramide_inside"]
-mesh = ExtResource("44_rbsth")
+mesh = ExtResource("44_tx4mp")
 
 [node name="sphinx" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/sphinx"]
-mesh = ExtResource("45_cw5jd")
+mesh = ExtResource("45_n7j1d")
 
 [node name="stampfer_saeule" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/stampfer_saeule"]
-mesh = ExtResource("46_gisip")
+mesh = ExtResource("46_pa778")
 
 [node name="statuen" type="Node3D" parent="Geometry"]
 
 [node name="layer_0" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("47_16qxs")
+mesh = ExtResource("47_7yqjk")
 
 [node name="layer_1" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("48_2jxwk")
+mesh = ExtResource("48_di7dj")
 
 [node name="layer_2" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("49_rju1c")
+mesh = ExtResource("49_k4ed0")
 
 [node name="layer_3" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("50_vs1re")
+mesh = ExtResource("50_pes1e")
 
 [node name="layer_4" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("51_or0ej")
+mesh = ExtResource("51_cwuyq")
 
 [node name="layer_5" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("52_2y87g")
+mesh = ExtResource("52_8aw2s")
 
 [node name="layer_6" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("53_7nfmu")
+mesh = ExtResource("53_6avia")
 
 [node name="layer_7" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("54_hi1ly")
+mesh = ExtResource("54_wy6ms")
 
 [node name="layer_8" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("55_fhu83")
+mesh = ExtResource("55_mib5n")
 
 [node name="layer_9" type="MeshInstance3D" parent="Geometry/statuen"]
-mesh = ExtResource("56_blfcr")
+mesh = ExtResource("56_l2bqy")

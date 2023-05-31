@@ -1,0 +1,203 @@
+[gd_scene load_steps=16 format=3 uid="uid://1sm0qglu7q7i"]
+
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_0.res" id="1_7xoeb"]
+[ext_resource type="Script" path="res://PhysicsInterpolator.gd" id="1_xwg54"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_1.res" id="2_rqr3x"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_2.res" id="3_2ahcn"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_0.res" id="4_tcjef"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_1.res" id="5_13jx2"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_6.res" id="6_0vyph"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_7.res" id="7_1mx86"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_8.res" id="8_pw7qf"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_3.res" id="9_6j3ei"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_4.res" id="10_5d0vq"]
+
+[sub_resource type="GDScript" id="GDScript_dfi4v"]
+script/source = "extends VehicleBody3D
+
+@export_range(0, 90, 0.1, \"radians\") var max_steer = PI
+@export var max_accel = 600.0
+@export var max_brake = 4.0
+@export var top_speed = 40.0
+
+@export_exp_easing(\"attenuation\") var acceleration_curve = 0.5
+@export_exp_easing(\"attenuation\") var steering_curve = 0.5
+
+@export_range(0, 90, 0.1, \"radians\") var camera_steer = PI / 4.0
+@export_exp_easing(\"attenuation\") var camera_steer_amount = 0.2
+
+@onready var camera_arm = %Camera
+
+func _process(delta):
+	camera_arm.global_transform = Transform3D(
+		camera_arm.global_transform.basis.slerp(global_transform.basis, delta * 14.0),
+		camera_arm.global_transform.origin.slerp(global_transform.origin, delta * 8.0)).orthonormalized()
+
+func _physics_process(delta):
+	var accel = Input.get_axis(\"Brake\", \"Accelerate\")
+	var steer = Input.get_axis(\"Steer Left\", \"Steer Right\")
+	var speed = linear_velocity.length()
+	var speed_ratio = clampf(absf(speed / top_speed), 0.0, 1.0)
+	var speed_ratio_att = 1.0 - speed_ratio
+	
+	var is_accelerating = Input.is_action_pressed(\"Accelerate\") or Input.is_action_pressed(\"Brake\")
+	var is_steering = Input.is_action_pressed(\"Steer Left\") or Input.is_action_pressed(\"Steer Right\")
+	
+	accel *= ease(speed_ratio_att, acceleration_curve)
+	steer *= ease(speed_ratio_att, steering_curve)
+	
+	if is_accelerating:
+		engine_force = max_accel * accel
+		brake = 0.0
+	else:
+		brake = max_brake
+		engine_force = 0.0
+
+	steering = lerpf(steering, max_steer * -steer, delta * (1.0 if is_steering else 6.0))
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b66lv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0jwr0"]
+radius = 0.232815
+height = 1.04271
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_brd41"]
+points = PackedVector3Array(-0.0201069, 0.0673008, -0.585454, -0.0201069, 0.218916, -0.585454, 0.229898, 0.0673008, -0.544651, -0.0201069, 0.0319772, -0.565511, -0.200022, 0.0319772, -0.570096, -0.200022, 0.0673008, -0.580068, -0.0201069, 0.267626, -0.565511, 0.229898, 0.196375, -0.544651, -0.200022, 0.217664, -0.580068, -0.200022, 0.267972, -0.570096, 0.819866, 0.109966, -0.404477, 0.374847, 0.0673008, -0.510038, 0.362927, 0.0319772, -0.500066, 0.229898, 0.0319772, -0.524594, 0.79841, 0.021311, -0.332155, -0.160129, 0.0159995, -0.185562, -0.458609, 0.0659621, -0.0723222, -0.682072, 0.114457, -0.377886, -0.69431, 0.159971, -0.442644, -0.714018, 0.233555, -0.467401, -0.690019, 0.239989, -0.477716, -0.100051, 0.0159995, -0.18923, -0.0201069, 0.327607, -0.532158, 0.229898, 0.238348, -0.524594, -0.200022, 0.327996, -0.536743, 0.374847, 0.217966, -0.500066, 0.374847, 0.177633, -0.510038, -0.711316, 0.319403, -0.451011, 0.845137, 0.164031, -0.385107, 0.836236, 0.102408, -0.397142, 0.812873, 0.0522731, -0.379147, 0.812396, 0.0336613, -0.326539, 0.79841, 0.021311, 0.33204, 0.744531, 0.0159995, -0.0530668, 0.0898763, 0.0159995, -0.188542, -0.160129, 0.0159995, 0.185447, -0.458609, 0.0659621, 0.0722076, -0.682072, 0.114457, 0.377772, -0.697966, 0.134537, -0.370207, -0.707979, 0.171328, -0.422701, -0.723872, 0.230921, -0.442759, -0.733726, 0.307182, -0.442644, 0.383748, 0.423171, -0.0992568, 0.414899, 0.40918, -0.136048, 0.229898, 0.288354, -0.491241, -0.25247, 0.457156, -0.141664, -0.724508, 0.368502, -0.380981, -0.745964, 0.352697, -0.377886, 0.860712, 0.197454, -0.334447, 0.8596, 0.152501, -0.379147, 0.861825, 0.139805, -0.364591, 0.842912, 0.0992561, -0.379147, 0.823998, 0.0587074, -0.364591, 0.812396, 0.0336613, 0.326424, 0.873586, 0.164851, -0.326539, 0.744531, 0.0159995, 0.0529522, 0.812873, 0.0522731, 0.379032, 0.362927, 0.0319772, 0.499951, 0.229898, 0.0319772, 0.524479, -0.0201069, 0.0319772, 0.565397, -0.200022, 0.0319772, 0.569981, -0.100051, 0.0159995, 0.189115, 0.0898763, 0.0159995, 0.188427, -0.69431, 0.159971, 0.442529, -0.707979, 0.171328, 0.422586, -0.697966, 0.134537, 0.370093, -0.74962, 0.327348, -0.370207, -0.739766, 0.290513, -0.422701, 0.383748, 0.423171, 0.0991421, 0.414899, 0.40918, 0.135934, -0.25247, 0.457156, 0.14155, -0.724508, 0.368502, 0.380866, -0.745964, 0.352697, 0.377772, 0.860712, 0.197454, 0.334333, 0.874063, 0.183463, -0.332155, 0.873586, 0.164851, 0.326424, 0.842912, 0.0992561, 0.379032, 0.823998, 0.0587074, 0.364476, 0.836236, 0.102408, 0.397027, 0.374847, 0.0673008, 0.509923, 0.229898, 0.0673008, 0.544537, 0.819866, 0.109966, 0.404362, -0.0201069, 0.0673008, 0.585454, -0.200022, 0.0673008, 0.579953, -0.690019, 0.239989, 0.477602, -0.714018, 0.233555, 0.467286, -0.723872, 0.230921, 0.442644, -0.74962, 0.327348, 0.370093, -0.0201069, 0.327607, 0.532044, 0.229898, 0.288354, 0.491126, -0.200022, 0.327996, 0.536628, -0.711316, 0.319403, 0.450896, -0.739766, 0.290513, 0.422586, -0.733726, 0.307182, 0.442529, 0.845137, 0.164031, 0.384992, 0.8596, 0.152501, 0.379032, 0.874063, 0.183463, 0.33204, 0.861825, 0.139805, 0.364476, 0.229898, 0.196375, 0.544537, 0.374847, 0.177633, 0.509923, -0.0201069, 0.218916, 0.585454, -0.200022, 0.217664, 0.579953, -0.200022, 0.267972, 0.569981, -0.0201069, 0.267626, 0.565397, 0.229898, 0.238348, 0.524479, 0.374847, 0.217966, 0.499951)
+
+[node name="kart" type="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mass = 150.0
+center_of_mass_mode = 1
+script = SubResource("GDScript_dfi4v")
+max_steer = 0.485202
+acceleration_curve = 2.21914
+steering_curve = 0.307787
+camera_steer_amount = 5.768
+
+[node name="Camera" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+top_level = true
+
+[node name="CameraArm" type="SpringArm3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86265e-09, 1.36095, -0.247209)
+shape = SubResource("SphereShape3D_b66lv")
+spring_length = -2.06
+
+[node name="Camera3D" type="Camera3D" parent="Camera/CameraArm"]
+transform = Transform3D(-1, 1.21669e-08, -8.6572e-08, 0, 0.990268, 0.139173, 8.74228e-08, 0.139173, -0.990268, 0, 0, 0)
+
+[node name="Interpolator" type="Node3D" parent="."]
+script = ExtResource("1_xwg54")
+
+[node name="Character" type="Node3D" parent="Interpolator"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="layer_0" type="MeshInstance3D" parent="Interpolator/Character"]
+mesh = ExtResource("1_7xoeb")
+skeleton = NodePath("../..")
+
+[node name="layer_1" type="MeshInstance3D" parent="Interpolator/Character"]
+mesh = ExtResource("2_rqr3x")
+skeleton = NodePath("../..")
+
+[node name="layer_2" type="MeshInstance3D" parent="Interpolator/Character"]
+mesh = ExtResource("3_2ahcn")
+skeleton = NodePath("../..")
+
+[node name="kart_01" type="Node3D" parent="Interpolator"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.00301218, -0.102925, 0.0106623)
+
+[node name="kart_base" type="MeshInstance3D" parent="Interpolator/kart_01"]
+mesh = ExtResource("4_tcjef")
+
+[node name="steering_wheel" type="MeshInstance3D" parent="Interpolator/kart_01"]
+mesh = ExtResource("5_13jx2")
+
+[node name="engine" type="MeshInstance3D" parent="Interpolator/kart_01"]
+mesh = ExtResource("6_0vyph")
+
+[node name="layer_7" type="MeshInstance3D" parent="Interpolator/kart_01"]
+mesh = ExtResource("7_1mx86")
+
+[node name="exhaust" type="MeshInstance3D" parent="Interpolator/kart_01"]
+mesh = ExtResource("8_pw7qf")
+
+[node name="CharacterCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.00301217, 0.516557, 0.0695111)
+shape = SubResource("CapsuleShape3D_0jwr0")
+
+[node name="KartCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.00301218, -0.102925, 0.0106623)
+shape = SubResource("ConvexPolygonShape3D_brd41")
+
+[node name="FrontLeftWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.408904, 0.0390752, 0.560662)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.01
+wheel_radius = 0.14
+wheel_rest_length = 0.05
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+
+[node name="Interpolator" type="Node3D" parent="FrontLeftWheel"]
+script = ExtResource("1_xwg54")
+
+[node name="wheel_fr" type="MeshInstance3D" parent="FrontLeftWheel/Interpolator"]
+transform = Transform3D(-7.54979e-08, -6.60024e-15, 1, 8.74228e-08, -1, 0, 1, 8.74228e-08, 7.54979e-08, -0.412, 0.142, -0.55)
+mesh = ExtResource("9_6j3ei")
+skeleton = NodePath("../../../Interpolator/kart_01")
+
+[node name="FrontRightWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.415154, 0.0390752, 0.560662)
+use_as_traction = true
+use_as_steering = true
+wheel_roll_influence = 0.01
+wheel_radius = 0.14
+wheel_rest_length = 0.05
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+
+[node name="Node3D" type="Node3D" parent="FrontRightWheel"]
+script = ExtResource("1_xwg54")
+
+[node name="wheel_fr" type="MeshInstance3D" parent="FrontRightWheel/Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.412142, -0.142, -0.55)
+mesh = ExtResource("9_6j3ei")
+skeleton = NodePath("../../../Interpolator/kart_01")
+
+[node name="RearLeftWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.420988, 0.0620752, -0.434338)
+use_as_traction = true
+wheel_roll_influence = 0.01
+wheel_radius = 0.175
+wheel_rest_length = 0.05
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+
+[node name="Node3D" type="Node3D" parent="RearLeftWheel"]
+script = ExtResource("1_xwg54")
+
+[node name="wheel_bl" type="MeshInstance3D" parent="RearLeftWheel/Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.421, -0.175, 0.44)
+mesh = ExtResource("10_5d0vq")
+skeleton = NodePath("../../../Interpolator/kart_01")
+
+[node name="RearRightWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.427012, 0.0620752, -0.434735)
+use_as_traction = true
+wheel_roll_influence = 0.01
+wheel_radius = 0.175
+wheel_rest_length = 0.05
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+
+[node name="Node3D" type="Node3D" parent="RearRightWheel"]
+script = ExtResource("1_xwg54")
+
+[node name="wheel_bl" type="MeshInstance3D" parent="RearRightWheel/Node3D"]
+transform = Transform3D(4.37114e-08, 0, 1, 0, -1, 0, -1, 0, 4.37114e-08, 0.421, 0.18, -0.44)
+mesh = ExtResource("10_5d0vq")
+skeleton = NodePath("../../../Interpolator/kart_01")
