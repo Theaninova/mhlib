@@ -5,3 +5,4 @@ pub(crate) mod material;
 pub(crate) mod object;
 pub(crate) mod surface_info;
 pub(crate) mod unique_vertex;
+pub(crate) mod uv_baker;

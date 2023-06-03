@@ -1,13 +1,11 @@
-use godot::builtin::{Basis, Color, EulerOrder, ToVariant, Transform3D, Variant, Vector3};
+use godot::builtin::{Basis, Color, EulerOrder, ToVariant, Transform3D, Vector3};
 use godot::engine::{load, PlaceholderTexture2D, ShaderMaterial, Texture2D};
 use godot::log::{godot_error, godot_print};
 use godot::obj::{Gd, Share};
 use lightwave_3d::lwo2::sub_tags::blocks::image_texture::{
     ProjectionMode, SurfaceBlockImageTextureSubChunk,
 };
-use lightwave_3d::lwo2::sub_tags::blocks::texture_mapping::{
-    CoordinateSystem, FalloffType, TextureMappingSubChunk,
-};
+use lightwave_3d::lwo2::sub_tags::blocks::texture_mapping::{FalloffType, TextureMappingSubChunk};
 use lightwave_3d::lwo2::sub_tags::blocks::{
     SurfaceBlockHeaderSubChunk, SurfaceBlocks, TextureChannel,
 };
@@ -16,9 +14,16 @@ use lightwave_3d::lwo2::tags::surface_definition::SurfaceDefinition;
 use std::collections::HashMap;
 
 #[derive(Debug)]
+pub enum MaterialProjectionMode {
+    UvChannelName(String),
+    Planar { transform: Transform3D, axis: u16 },
+    Cubic { transform: Transform3D },
+}
+
+#[derive(Debug)]
 pub struct MaterialUvInfo {
-    pub diffuse_channel: Option<String>,
-    pub color_channel: Option<String>,
+    pub diffuse_projection: Option<MaterialProjectionMode>,
+    pub color_projection: Option<MaterialProjectionMode>,
     pub material: Gd<ShaderMaterial>,
     pub id: u16,
 }
@@ -30,8 +35,8 @@ impl MaterialUvInfo {
         id: u16,
     ) -> Self {
         let mut m = MaterialUvInfo {
-            diffuse_channel: None,
-            color_channel: None,
+            diffuse_projection: None,
+            color_projection: None,
             material: ShaderMaterial::new(),
             id,
         };
@@ -47,8 +52,8 @@ impl MaterialUvInfo {
                         let mut chan = TextureChannel::Color;
                         let mut uv_channel = None;
                         let mut major_axis = 0;
+                        let mut transform: Transform3D = Transform3D::IDENTITY;
                         let mut projection_mode = ProjectionMode::UV;
-                        let mut mapping_info = Vec::<(&str, Variant)>::new();
                         for attr in header.data.block_attributes {
                             match attr {
                                 SurfaceBlockHeaderSubChunk::Channel(c) => {
@@ -116,6 +121,7 @@ impl MaterialUvInfo {
                                                 };
                                             }
                                             TextureMappingSubChunk::Falloff(it) => {
+                                                /* TODO
                                                 mapping_info.push((
                                                     "falloff",
                                                     Vector3 {
@@ -135,9 +141,10 @@ impl MaterialUvInfo {
                                                         FalloffType::LinearZ => 4,
                                                     }
                                                     .to_variant(),
-                                                ));
+                                                ));*/
                                             }
                                             TextureMappingSubChunk::CoordinateSystem(it) => {
+                                                /* TODO
                                                 mapping_info.push((
                                                     "world_coords",
                                                     matches!(
@@ -145,7 +152,7 @@ impl MaterialUvInfo {
                                                         CoordinateSystem::WorldCoordinates
                                                     )
                                                     .to_variant(),
-                                                ));
+                                                ));*/
                                             }
                                             TextureMappingSubChunk::ReferenceObject(it) => {
                                                 if !matches!(it.object_name.as_str(), "" | "(none)")
@@ -156,16 +163,11 @@ impl MaterialUvInfo {
                                         }
                                     }
 
-                                    mapping_info.push((
-                                        "transform",
-                                        Transform3D {
-                                            basis: Basis::from_euler(EulerOrder::ZYX, rot)
-                                                .scaled(size),
-                                            origin: pos,
-                                        }
-                                        .affine_inverse()
-                                        .to_variant(),
-                                    ));
+                                    transform = Transform3D {
+                                        basis: Basis::from_euler(EulerOrder::ZYX, rot).scaled(size),
+                                        origin: pos,
+                                    }
+                                    .affine_inverse()
                                 }
                                 SurfaceBlockImageTextureSubChunk::MajorAxis(axis) => {
                                     major_axis = axis.data.texture_axis;
@@ -190,12 +192,7 @@ impl MaterialUvInfo {
                                 }
                             }
                         }
-                        /*godot_print!(
-                            "TX: {:?} ({:?}) @ UV{:?}",
-                            chan,
-                            projection_mode,
-                            uv_channel
-                        );*/
+
                         let channel_name = match &chan {
                             TextureChannel::Color => "color",
                             // this is a bit confusing, but this is actually diffuse *lighting*
@@ -211,36 +208,28 @@ impl MaterialUvInfo {
                             TextureChannel::Luminosity => "luminosity",
                         };
                         m.material.set_shader_parameter(
-                            format!("tex_{}_axis", channel_name).into(),
-                            major_axis.to_variant(),
-                        );
-                        m.material.set_shader_parameter(
-                            format!("tex_{}_projection", channel_name).into(),
-                            match projection_mode {
-                                ProjectionMode::Planar => 0,
-                                ProjectionMode::Cylindrical => 1,
-                                ProjectionMode::Spherical => 2,
-                                ProjectionMode::Cubic => 3,
-                                ProjectionMode::FrontProjection => 4,
-                                ProjectionMode::UV => 5,
-                            }
-                            .to_variant(),
-                        );
-                        m.material.set_shader_parameter(
                             format!("tex_{}", channel_name).into(),
                             texture.to_variant(),
                         );
 
-                        for (name, value) in mapping_info {
-                            m.material.set_shader_parameter(
-                                format!("tex_{}_projection_{}", channel_name, name).into(),
-                                value,
-                            );
-                        }
+                        let projection_info = match projection_mode {
+                            ProjectionMode::UV => {
+                                MaterialProjectionMode::UvChannelName(uv_channel.unwrap())
+                            }
+                            ProjectionMode::Cubic => MaterialProjectionMode::Cubic { transform },
+                            ProjectionMode::Planar => MaterialProjectionMode::Planar {
+                                transform,
+                                axis: major_axis,
+                            },
+                            x => {
+                                godot_error!("TODO: {:?}", x);
+                                MaterialProjectionMode::UvChannelName("[[unsupported]]".into())
+                            }
+                        };
 
                         match chan {
-                            TextureChannel::Diffuse => m.diffuse_channel = uv_channel,
-                            TextureChannel::Color => m.color_channel = uv_channel,
+                            TextureChannel::Diffuse => m.diffuse_projection = Some(projection_info),
+                            TextureChannel::Color => m.color_projection = Some(projection_info),
                             _ => (),
                         }
                     }

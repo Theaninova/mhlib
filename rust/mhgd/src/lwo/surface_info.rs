@@ -1,6 +1,6 @@
 use crate::lwo::intermediate_layer::IntermediateLayer;
 use crate::lwo::mapping::find_mapping;
-use crate::lwo::material::MaterialUvInfo;
+use crate::lwo::material::{MaterialProjectionMode, MaterialUvInfo};
 use crate::lwo::unique_vertex::UniqueVertex;
 use godot::builtin::{
     PackedFloat32Array, PackedInt32Array, PackedVector2Array, PackedVector3Array, ToVariant,
@@ -78,13 +78,18 @@ impl SurfaceInfo {
 
     pub fn collect_from_layer(layer: &IntermediateLayer, material: &MaterialUvInfo) -> Self {
         let uv_names = [
-            material.color_channel.as_ref(),
-            material.diffuse_channel.as_ref(),
+            material.color_projection.as_ref(),
+            material.diffuse_projection.as_ref(),
         ];
 
         let uv_subset = uv_names
             .iter()
-            .map(|it| it.and_then(|it| layer.uv_mappings.iter().find(|(name, _)| name == it)))
+            .map(|it| {
+                it.and_then(|it| {
+                    layer.uv_mappings.iter().find(|(name, _)|
+                matches!(it, MaterialProjectionMode::UvChannelName(it) if name == it))
+                })
+            })
             .collect_vec();
 
         let mut surface_info = SurfaceInfo {

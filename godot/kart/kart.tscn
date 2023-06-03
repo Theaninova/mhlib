@@ -1,16 +1,16 @@
 [gd_scene load_steps=16 format=3 uid="uid://1sm0qglu7q7i"]
 
-[ext_resource type="Script" path="res://PhysicsInterpolator.gd" id="1_x8dkv"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_0.res" id="2_rbnr8"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_1.res" id="3_j84nv"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_2.res" id="4_trmbd"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_0.res" id="5_ydkp1"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_1.res" id="6_ul4ba"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_6.res" id="7_s4uu8"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_7.res" id="8_yx2s2"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_8.res" id="9_kadfc"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_3.res" id="10_hfn0h"]
-[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_4.res" id="11_scyqe"]
+[ext_resource type="Script" path="res://PhysicsInterpolator.gd" id="1_cxgl4"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_0.res" id="2_ges5k"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_1.res" id="3_3dgmt"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/moorhuhn.lwo/layer_2.res" id="4_pr7c3"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_0.res" id="5_eqscg"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_1.res" id="6_o6fvu"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_6.res" id="7_bicni"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_7.res" id="8_3dlnt"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_8.res" id="9_qvqff"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_3.res" id="10_xywge"]
+[ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_cars/kart_01.lwo/layer_4.res" id="11_57yte"]
 
 [sub_resource type="GDScript" id="GDScript_dfi4v"]
 script/source = "extends VehicleBody3D
@@ -89,40 +89,40 @@ spring_length = -2.06
 transform = Transform3D(-1, 1.21669e-08, -8.6572e-08, 0, 0.990268, 0.139173, 8.74228e-08, 0.139173, -0.990268, 0, 0, 0)
 
 [node name="Interpolator" type="Node3D" parent="."]
-script = ExtResource("1_x8dkv")
+script = ExtResource("1_cxgl4")
 
 [node name="Character" type="Node3D" parent="Interpolator"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="layer_0" type="MeshInstance3D" parent="Interpolator/Character"]
-mesh = ExtResource("2_rbnr8")
+mesh = ExtResource("2_ges5k")
 skeleton = NodePath("../..")
 
 [node name="layer_1" type="MeshInstance3D" parent="Interpolator/Character"]
-mesh = ExtResource("3_j84nv")
+mesh = ExtResource("3_3dgmt")
 skeleton = NodePath("../..")
 
 [node name="layer_2" type="MeshInstance3D" parent="Interpolator/Character"]
-mesh = ExtResource("4_trmbd")
+mesh = ExtResource("4_pr7c3")
 skeleton = NodePath("../..")
 
 [node name="kart_01" type="Node3D" parent="Interpolator"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.00301218, -0.102925, 0.0106623)
 
 [node name="kart_base" type="MeshInstance3D" parent="Interpolator/kart_01"]
-mesh = ExtResource("5_ydkp1")
+mesh = ExtResource("5_eqscg")
 
 [node name="steering_wheel" type="MeshInstance3D" parent="Interpolator/kart_01"]
-mesh = ExtResource("6_ul4ba")
+mesh = ExtResource("6_o6fvu")
 
 [node name="engine" type="MeshInstance3D" parent="Interpolator/kart_01"]
-mesh = ExtResource("7_s4uu8")
+mesh = ExtResource("7_bicni")
 
 [node name="layer_7" type="MeshInstance3D" parent="Interpolator/kart_01"]
-mesh = ExtResource("8_yx2s2")
+mesh = ExtResource("8_3dlnt")
 
 [node name="exhaust" type="MeshInstance3D" parent="Interpolator/kart_01"]
-mesh = ExtResource("9_kadfc")
+mesh = ExtResource("9_qvqff")
 
 [node name="CharacterCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.00301217, 0.516557, 0.0695111)
@@ -143,11 +143,11 @@ suspension_travel = 0.1
 suspension_stiffness = 50.0
 
 [node name="Interpolator" type="Node3D" parent="FrontLeftWheel"]
-script = ExtResource("1_x8dkv")
+script = ExtResource("1_cxgl4")
 
 [node name="wheel_fr" type="MeshInstance3D" parent="FrontLeftWheel/Interpolator"]
 transform = Transform3D(-7.54979e-08, -6.60024e-15, 1, 8.74228e-08, -1, 0, 1, 8.74228e-08, 7.54979e-08, -0.412, 0.142, -0.55)
-mesh = ExtResource("10_hfn0h")
+mesh = ExtResource("10_xywge")
 skeleton = NodePath("../../../Interpolator/kart_01")
 
 [node name="FrontRightWheel" type="VehicleWheel3D" parent="."]
@@ -161,11 +161,11 @@ suspension_travel = 0.1
 suspension_stiffness = 50.0
 
 [node name="Node3D" type="Node3D" parent="FrontRightWheel"]
-script = ExtResource("1_x8dkv")
+script = ExtResource("1_cxgl4")
 
 [node name="wheel_fr" type="MeshInstance3D" parent="FrontRightWheel/Node3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.412142, -0.142, -0.55)
-mesh = ExtResource("10_hfn0h")
+mesh = ExtResource("10_xywge")
 skeleton = NodePath("../../../Interpolator/kart_01")
 
 [node name="RearLeftWheel" type="VehicleWheel3D" parent="."]
@@ -178,11 +178,11 @@ suspension_travel = 0.1
 suspension_stiffness = 50.0
 
 [node name="Node3D" type="Node3D" parent="RearLeftWheel"]
-script = ExtResource("1_x8dkv")
+script = ExtResource("1_cxgl4")
 
 [node name="wheel_bl" type="MeshInstance3D" parent="RearLeftWheel/Node3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.421, -0.175, 0.44)
-mesh = ExtResource("11_scyqe")
+mesh = ExtResource("11_57yte")
 skeleton = NodePath("../../../Interpolator/kart_01")
 
 [node name="RearRightWheel" type="VehicleWheel3D" parent="."]
@@ -195,9 +195,9 @@ suspension_travel = 0.1
 suspension_stiffness = 50.0
 
 [node name="Node3D" type="Node3D" parent="RearRightWheel"]
-script = ExtResource("1_x8dkv")
+script = ExtResource("1_cxgl4")
 
 [node name="wheel_bl" type="MeshInstance3D" parent="RearRightWheel/Node3D"]
 transform = Transform3D(4.37114e-08, 0, 1, 0, -1, 0, -1, 0, 4.37114e-08, 0.421, 0.18, -0.44)
-mesh = ExtResource("11_scyqe")
+mesh = ExtResource("11_57yte")
 skeleton = NodePath("../../../Interpolator/kart_01")

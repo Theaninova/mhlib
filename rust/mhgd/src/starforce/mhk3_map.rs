@@ -45,7 +45,9 @@ impl Mhk3Map {
         };
         let mut files_to_convert = HashSet::new();
         for file in archive.files.iter_mut() {
-            let convert = file.path.ends_with(".lwo");
+            let convert = file.path.ends_with(".lwo")
+                || file.path.ends_with(".bmp")
+                || file.path.ends_with(".dds");
             file.path = sarc_path_to_gd(&file.path);
             if convert {
                 files_to_convert.insert(file.path.clone());

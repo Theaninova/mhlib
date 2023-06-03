@@ -1,13 +1,18 @@
-use crate::lwo::material::MaterialUvInfo;
+use crate::lwo::material::{MaterialProjectionMode, MaterialUvInfo};
 use crate::lwo::surface_info::SurfaceInfo;
-use godot::builtin::{Array, Dictionary, Vector2, Vector3};
-use godot::engine::mesh::{ArrayFormat, PrimitiveType};
+use crate::lwo::uv_baker::{project_cubic, project_planar};
+use godot::builtin::{
+    Array, Dictionary, FromVariant, PackedVector2Array, PackedVector3Array, ToVariant, Vector2,
+    Vector3,
+};
+use godot::engine::mesh::{ArrayFormat, ArrayType, PrimitiveType};
 use godot::engine::{ArrayMesh, SurfaceTool};
 use godot::log::godot_print;
-use godot::obj::{Gd, Share};
+use godot::obj::{EngineEnum, Gd, Share};
 use itertools::Itertools;
 use lightwave_3d::lwo2::tags::polygon_list::PolygonList;
 use std::collections::HashMap;
+use std::iter::zip;
 
 pub type SurfaceMapping<T> = HashMap<i32, HashMap<i32, T>>;
 
@@ -75,16 +80,52 @@ fn post_process_mesh(
         tool.create_from(mesh.share().upcast(), surface_idx as i64);
         tool.generate_normals(false);
         tool.generate_tangents();
+        let mut arrays = tool.commit_to_arrays();
+
+        let mat = &materials[surface_id];
+        for (uv_type, info) in [
+            (ArrayType::ARRAY_TEX_UV, &mat.color_projection),
+            (ArrayType::ARRAY_TEX_UV2, &mat.diffuse_projection),
+        ] {
+            match info {
+                Some(MaterialProjectionMode::Planar { transform, axis }) => {
+                    let vertices = PackedVector3Array::from_variant(
+                        &arrays.get(ArrayType::ARRAY_VERTEX.ord() as usize),
+                    )
+                    .to_vec();
+                    let mut uvs = PackedVector2Array::new();
+                    for vertex in vertices {
+                        uvs.push(project_planar(vertex, *axis, *transform))
+                    }
+                    arrays.set(uv_type.ord() as usize, uvs.to_variant());
+                }
+                Some(MaterialProjectionMode::Cubic { transform }) => {
+                    let vertices = PackedVector3Array::from_variant(
+                        &arrays.get(ArrayType::ARRAY_VERTEX.ord() as usize),
+                    )
+                    .to_vec();
+                    let normals = PackedVector3Array::from_variant(
+                        &arrays.get(ArrayType::ARRAY_NORMAL.ord() as usize),
+                    )
+                    .to_vec();
+                    let mut uvs = PackedVector2Array::new();
+                    for (vertex, normal) in zip(vertices, normals) {
+                        uvs.push(project_cubic(vertex, normal, *transform))
+                    }
+                    arrays.set(uv_type.ord() as usize, uvs.to_variant());
+                }
+                _ => (),
+            }
+        }
 
         out_mesh.add_surface_from_arrays(
             PrimitiveType::PRIMITIVE_TRIANGLES,
-            tool.commit_to_arrays(),
+            arrays,
             Array::new(),
             Dictionary::new(),
             ArrayFormat::ARRAY_FORMAT_NORMAL,
         );
 
-        let mat = &materials[surface_id];
         out_mesh.surface_set_material(surface_idx as i64, mat.material.share().upcast())
     }
 

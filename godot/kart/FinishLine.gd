@@ -1,6 +1,13 @@
-extends Area3D
+extends Node3D
 
 class_name FinishLine
 
-@export var start_positions: Array[Marker3D]
+@onready var start_positions = [
+	$pos_0,
+	$pos_1,
+	$pos_2,
+	$pos_3,
+	$pos_4,
+	$pos_5
+]
 
