@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbpjxkadvcs0l"]
+
+[sub_resource type="GDScript" id="GDScript_huaxa"]
+script/source = "extends CenterContainer
+
+@onready var progress_bar = %progress
+@onready var status = %status
+@onready var back = %back
+@onready var installer = Mhk3Map.new()
+
+var thread: Thread
+
+func _ready():
+	installer = Mhk3Map.new()
+
+func _on_file_dialog_file_selected(path):
+	back.disabled = true
+	thread = Thread.new()
+	thread.start(self.perform_install.bind(path, \"mhk3\"))
+
+func perform_install(path, game):
+	status.text = \"Preparing...\"
+	installer.start_install(path, game)
+	while true:
+		var result = installer.tick_install()
+		if typeof(result) == TYPE_STRING:
+			progress_bar.value = installer.progress * 100
+			status.text = result
+		else:
+			status.text = \"Finishing up...\"
+			installer.end_install()
+			progress_bar.value = 100
+			status.text = \"Done!\"
+			back.disabled = false
+			return
+
+func _exit_tree():
+	if thread != null:
+		thread.wait_to_finish()
+
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file(\"res://main.tscn\")
+"
+
+[node name="installer" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_huaxa")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Installing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="progress" type="ProgressBar" parent="VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="status" type="Label" parent="VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="back" type="Button" parent="VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+initial_position = 1
+title = "Open a File"
+size = Vector2i(533, 455)
+visible = true
+always_on_top = true
+popup_window = true
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[connection signal="pressed" from="VBoxContainer2/back" to="." method="_on_back_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

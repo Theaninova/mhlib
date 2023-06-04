@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=3 uid="uid://c0r3rywql7mm1"]
+[gd_scene load_steps=141 format=3 uid="uid://c0r3rywql7mm1"]
 
 [ext_resource type="Script" path="res://kart/map.gd" id="1_kg2pw"]
 [ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/CullingPlane.lwo/layer_0.res" id="2_i2nmm"]
@@ -122,7 +122,6 @@
 [ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_8.res" id="120_x0lm7"]
 [ext_resource type="ArrayMesh" path="res://games/mhk3/D/Moorhuhnkart/3dobjects_tracks/track07_ufo/waende.lwo/layer_9.res" id="121_jfm1k"]
 [ext_resource type="Script" path="res://kart/FinishLine.gd" id="123_1kl2a"]
-[ext_resource type="LightmapGIData" uid="uid://xevskp8ah5fi" path="res://kart/maps/ufo/ufo.lmbake" id="123_ln603"]
 
 [sub_resource type="Environment" id="Environment_jmqkf"]
 reflected_light_source = 1
@@ -369,7 +368,6 @@ environment = SubResource("Environment_jmqkf")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.771433, -0.0339059, 0.635407, 0.126327, 0.970542, 0.205159, -0.623645, 0.238535, -0.744424, 262.612, 0, -1.24118)
-visible = false
 light_bake_mode = 1
 shadow_normal_bias = 10.0
 shadow_reverse_cull_face = true
@@ -1562,6 +1560,7 @@ omni_range = 9.60262
 
 [node name="sun blocker" type="MeshInstance3D" parent="."]
 transform = Transform3D(492.265, 0, 0, 0, 1, 0, 0, 0, 719.198, -67.3466, 25.5562, 46.1811)
+visible = false
 mesh = SubResource("QuadMesh_enhn7")
 
 [node name="colmesh" type="StaticBody3D" parent="."]
@@ -1588,11 +1587,6 @@ shape = SubResource("ConcavePolygonShape3D_xcrbo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.945, 15.6906, 21.2187)
 size = Vector3(81.587, 19.4637, 51.5803)
 material = SubResource("FogMaterial_018wf")
-
-[node name="LightmapGI" type="LightmapGI" parent="."]
-directional = true
-interior = true
-light_data = ExtResource("123_ln603")
 
 [node name="FinishLine" type="Area3D" parent="."]
 unique_name_in_owner = true

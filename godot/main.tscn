@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmqfu6cc780h4"]
+[gd_scene load_steps=22 format=3 uid="uid://cmqfu6cc780h4"]
 
 [ext_resource type="Theme" uid="uid://ks2uyxqg6u4k" path="res://mhjnr/theme.tres" id="1_knjtf"]
 [ext_resource type="Script" path="res://main.gd" id="2_p7swk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bk5a3xob0raqj" path="res://cover_art/mh_kart.jpg" id="7_2e20o"]
 [ext_resource type="Texture2D" uid="uid://dkhygfyylbjov" path="res://cover_art/mh_kart2.jpg" id="8_txpwp"]
 [ext_resource type="Texture2D" uid="uid://l8groudaf385" path="res://cover_art/mh_kart3.webp" id="9_lxivp"]
+[ext_resource type="Script" path="res://install_status_button.gd" id="10_5ntk6"]
 [ext_resource type="Texture2D" uid="uid://cjp0ilsodyu4j" path="res://cover_art/mh_kart4.jpg" id="10_7ea4r"]
 [ext_resource type="Texture2D" uid="uid://wetnflcj1b0w" path="res://cover_art/mh1.jpg" id="11_jg4b8"]
 [ext_resource type="Texture2D" uid="uid://baqjofchj6yaw" path="res://cover_art/mhw.webp" id="12_rg2iw"]
@@ -55,6 +56,7 @@ layout_mode = 2
 [node name="Schatzjaeger1" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_5nh86")
 flat = true
 icon_alignment = 1
@@ -63,6 +65,7 @@ expand_icon = true
 [node name="Schatzjaeger2" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
+disabled = true
 icon = ExtResource("4_f32r0")
 flat = true
 icon_alignment = 1
@@ -71,6 +74,7 @@ expand_icon = true
 [node name="Schatzjaeger3" type="Button" parent="margins/VBoxContainer/JNR/JNR"]
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
+disabled = true
 icon = ExtResource("5_wx0lg")
 flat = true
 icon_alignment = 1
@@ -88,10 +92,17 @@ expand_icon = true
 [node name="Kart" type="VBoxContainer" parent="margins/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="margins/VBoxContainer/Kart"]
+[node name="HBoxContainer" type="HBoxContainer" parent="margins/VBoxContainer/Kart"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="margins/VBoxContainer/Kart/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Moorhuhn Kart"
+
+[node name="Button" type="Button" parent="margins/VBoxContainer/Kart/HBoxContainer"]
+layout_mode = 2
+text = "Start"
 
 [node name="JNR2" type="HFlowContainer" parent="margins/VBoxContainer/Kart"]
 layout_mode = 2
@@ -117,11 +128,14 @@ expand_icon = true
 [node name="Kart3" type="Button" parent="margins/VBoxContainer/Kart/JNR2"]
 custom_minimum_size = Vector2(200, 256)
 layout_mode = 2
-disabled = true
+theme_override_font_sizes/font_size = 76
+text = "✅"
 icon = ExtResource("9_lxivp")
 flat = true
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("10_5ntk6")
+game = "mhk3"
 
 [node name="Kart4" type="Button" parent="margins/VBoxContainer/Kart/JNR2"]
 custom_minimum_size = Vector2(200, 256)
@@ -232,3 +246,5 @@ icon = ExtResource("20_bo8ks")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[connection signal="pressed" from="margins/VBoxContainer/Kart/HBoxContainer/Button" to="." method="_start_mhk"]

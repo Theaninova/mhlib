@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://4n26dt3e4pv3"]
+[gd_scene load_steps=6 format=3 uid="uid://4n26dt3e4pv3"]
 
 [ext_resource type="Shader" path="res://kart/flag.gdshader" id="1_myhy7"]
 [ext_resource type="FontFile" uid="uid://b50bdb32aerbb" path="res://remakes/font/LondrinaSolid-Regular.otf" id="2_os5ao"]
@@ -15,6 +15,13 @@ shader_parameter/color2 = Color(1, 1, 1, 1)
 
 [sub_resource type="Theme" id="Theme_ugqrn"]
 
+[sub_resource type="GDScript" id="GDScript_2emc5"]
+script/source = "extends PanelContainer
+
+func _select_map(map):
+	get_tree().change_scene_to_file(\"res://kart/maps/ufo/ufo.tscn\")
+"
+
 [node name="Control" type="PanelContainer"]
 material = SubResource("ShaderMaterial_y6o8u")
 anchors_preset = 15
@@ -23,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_ugqrn")
+script = SubResource("GDScript_2emc5")
 
 [node name="Logo" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 200)
@@ -80,12 +88,18 @@ vertical_alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "Start"
+text = "UFO"
+
+[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Shimalaya"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="_select_map" binds= ["ufo"]]
