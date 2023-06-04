@@ -2,3 +2,6 @@
 name = "renderwarelib"
 version = "0.1.0"
 edition = "2021"
+
+[dependencies]
+binrw = "0.11.2"

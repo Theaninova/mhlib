@@ -24,6 +24,7 @@ pub enum MaterialProjectionMode {
 pub struct MaterialUvInfo {
     pub diffuse_projection: Option<MaterialProjectionMode>,
     pub color_projection: Option<MaterialProjectionMode>,
+    pub max_smoothing_angle: Option<f32>,
     pub material: Gd<ShaderMaterial>,
     pub id: u16,
 }
@@ -37,6 +38,7 @@ impl MaterialUvInfo {
         let mut m = MaterialUvInfo {
             diffuse_projection: None,
             color_projection: None,
+            max_smoothing_angle: None,
             material: ShaderMaterial::new(),
             id,
         };
@@ -244,6 +246,9 @@ impl MaterialUvInfo {
                     }
                     .to_variant(),
                 ),
+                SurfaceParameterSubChunk::MaxSmoothingAngle(it) => {
+                    m.max_smoothing_angle = Some(it.max_smoothing_angle);
+                }
                 SurfaceParameterSubChunk::BaseShadingValueDiffuse(it) => {
                     m.material
                         .set_shader_parameter("diffuse".into(), it.value.to_variant());

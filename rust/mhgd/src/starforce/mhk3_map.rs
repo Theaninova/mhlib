@@ -1,9 +1,9 @@
-use crate::starforce::sar_archive::{sarc_path_to_gd, SarLoader, GAMES_PATH};
+use crate::starforce::sar_archive::{sarc_path_to_gd, SarLoader, INSTALL_PATH};
 use godot::bind::godot_api;
-use godot::builtin::GodotString;
+use godot::builtin::{GodotString, ToVariant, Variant};
 use godot::engine::file_access::ModeFlags;
 use godot::engine::global::Error;
-use godot::engine::{try_load, DirAccess, FileAccess, PckPacker, Resource, ResourceLoader};
+use godot::engine::{try_load, FileAccess, PckPacker, Resource, ResourceLoader};
 use godot::log::godot_print;
 use godot::obj::{Gd, Share};
 use godot::prelude::GodotClass;
@@ -11,8 +11,7 @@ use itertools::Itertools;
 use starforcelib::sarc::SarcArchive;
 use std::collections::HashSet;
 use std::io::Cursor;
-use std::iter::{Chain, FlatMap};
-use std::path::Iter;
+use std::iter::Enumerate;
 use std::vec::IntoIter;
 
 /// This is supposedly to be the default.
@@ -20,18 +19,41 @@ const KEY: &str = "0000000000000000000000000000000000000000000000000000000000000
 
 #[derive(GodotClass)]
 #[class(init)]
-pub struct Mhk3Map {}
+pub struct Mhk3Map {
+    #[export]
+    pub progress: f32,
+    pub total_files: i32,
+    files_to_convert: Option<Enumerate<IntoIter<String>>>,
+    loader: Option<Gd<SarLoader>>,
+    game: GodotString,
+}
 
 #[godot_api]
 impl Mhk3Map {
     #[func]
-    pub fn get_available_maps() {}
+    pub fn tick_install(&mut self) -> Variant {
+        self.files_to_convert
+            .as_mut()
+            .map(|it| {
+                it.next()
+                    .map(|(i, file)| {
+                        godot_print!("Loading {}", file);
+                        try_load::<Resource>(&file);
+                        self.progress = i as f32 / self.total_files as f32;
+                        file.strip_prefix(INSTALL_PATH)
+                            .unwrap()
+                            .rsplit_once('.')
+                            .unwrap()
+                            .0
+                            .to_variant()
+                    })
+                    .unwrap_or_else(Variant::nil)
+            })
+            .unwrap_or_else(|| Error::FAILED.to_variant())
+    }
 
     #[func]
-    pub fn test() {}
-
-    #[func]
-    pub fn install(path: GodotString, game: GodotString) -> Error {
+    pub fn start_install(&mut self, path: GodotString, game: GodotString) -> Error {
         let file = if let Some(file) = FileAccess::open(path, ModeFlags::READ) {
             file
         } else {
@@ -78,18 +100,34 @@ impl Mhk3Map {
             base,
         });
 
+        self.total_files = files_to_convert.len() as i32;
+        self.files_to_convert = Some(files_to_convert.into_iter().sorted().enumerate());
+
         ResourceLoader::singleton().add_resource_format_loader(sar_loader.share().upcast(), true);
-        for (i, file) in files_to_convert.into_iter().sorted().enumerate() {
-            godot_print!("{}x Next up: {}", i, file);
-            try_load::<Resource>(file);
-        }
+        self.loader = Some(sar_loader);
+        self.game = game;
+        Error::OK
+    }
+
+    #[func]
+    pub fn end_install(&mut self) -> Error {
+        let sar_loader = if let Some(loader) = self.loader.take() {
+            loader
+        } else {
+            return Error::FAILED;
+        };
         ResourceLoader::singleton().remove_resource_format_loader(sar_loader.upcast());
 
         let mut packer = PckPacker::new();
-        packer.pck_start(format!("user://{}.pck", game).into(), 32, KEY.into(), false);
+        packer.pck_start(
+            format!("user://{}.pck", self.game).into(),
+            32,
+            KEY.into(),
+            false,
+        );
         for file in SarLoader::list_installed_files() {
             packer.add_file(
-                SarLoader::resource_path_at(file.clone(), &game),
+                SarLoader::resource_path_at(file.clone(), &self.game),
                 file.clone().into(),
                 false,
             );

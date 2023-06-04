@@ -107,19 +107,29 @@ impl SurfaceInfo {
             });
 
         for (id, poly) in surface_polygons {
-            for index in triangulate(&poly.vert) {
+            let tri = triangulate(&poly.vert);
+            /*let edge0 = layer.points[tri[1] as usize] - layer.points[tri[0] as usize];
+            let edge1 = layer.points[tri[tri.len() - 2] as usize]
+                - layer.points[tri[tri.len() - 1] as usize];
+            let normal = edge0.cross(edge1);*/
+
+            for index in tri {
                 let uv = uv_subset
                     .iter()
                     .map(|it| it.and_then(|(_, it)| find_mapping(it, id, index)))
                     .collect_vec();
                 // TODO: let weight = find_mapping(weight_mappings, id, vert);
-                let vert = layer.points.get(index as usize).unwrap();
+                let vert = layer.points[index as usize];
 
-                surface_info.push_index(vert, &uv, 0f32);
+                surface_info.push_index(&vert, &uv, 0f32);
             }
         }
 
         surface_info
+    }
+
+    fn surface_normals(&mut self) {
+        let normals: HashMap<i32, Vector3> = HashMap::with_capacity(self.vertices.len());
     }
 
     fn push_index(&mut self, vert: &Vector3, uvs: &[Option<Vector2>], weight: f32) {
